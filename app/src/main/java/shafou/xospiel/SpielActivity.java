@@ -47,7 +47,8 @@ public class SpielActivity extends Activity {
 //        });
 
         /**
-         * Test 16
+         * Test 17
+         * I hope it finally works!
          */
 
         // TEst
