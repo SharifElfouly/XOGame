@@ -7,8 +7,8 @@ import shafou.xospiel.SpielLogik.Position;
  * Diese Klasse stellt ein Quadrat aus dem dargestellten Display dar. Ein
  * LayoutDisplay Objekt stellt ein 1/9 des gesamten Layout Displays dar.
  *
- * Ein LayoutDisplayRechteck wird aus 4 Positionen zusammengestellt.
- * Ein LayoutDisplayRechteck ist immutable.
+ * Ein DisplayRechtecke wird aus 4 Positionen zusammengestellt.
+ * Ein DisplayRechtecke ist immutable.
  *
  * x1 --------------- x2
  *    |             |
@@ -24,7 +24,7 @@ import shafou.xospiel.SpielLogik.Position;
  * 1) 26.05.2017 ELF Klasse erstellt.
  */
 
-public class LayoutDisplayRechteck {
+public class DisplayRechtecke {
 
     /** Position x1 */
     private final Position x1;
@@ -46,8 +46,8 @@ public class LayoutDisplayRechteck {
      * @param x3 Position x3
      * @param x4 Position x4
      */
-    public LayoutDisplayRechteck(Position x1, Position x2, Position x3,
-                                 Position x4) {
+    public DisplayRechtecke(Position x1, Position x2, Position x3,
+                            Position x4) {
 
         this.x1 = x1;
         this.x2 = x2;
@@ -76,7 +76,7 @@ public class LayoutDisplayRechteck {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        LayoutDisplayRechteck that = (LayoutDisplayRechteck) o;
+        DisplayRechtecke that = (DisplayRechtecke) o;
 
         if (x1 != null ? !x1.equals(that.x1) : that.x1 != null) return false;
         if (x2 != null ? !x2.equals(that.x2) : that.x2 != null) return false;

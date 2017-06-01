@@ -46,26 +46,21 @@ public class SpielActivity extends Activity {
 //            }
 //        });
 
-        /**
-         * Test 17
-         * I hope it finally works!
-         */
-
         // TEst
         float breite = 750;
         float hoehe = 1200;
 
-        ArrayList<LayoutDisplayRechteck> layoutDisplayQuadrate
+        ArrayList<DisplayRechtecke> layoutDisplayQuadrate
                 = LayoutDisplayRechteckGenerator
                     .teileDisplayInRechtecke(new LayoutDisplay(breite, hoehe), 1, 10);
 
-        for(LayoutDisplayRechteck layoutDisplayRechteck : layoutDisplayQuadrate) {
+        for(DisplayRechtecke displayRechtecke : layoutDisplayQuadrate) {
 
-            XSpielstein xSpielstein = new XSpielstein(this, layoutDisplayRechteck.getX1());
+            XSpielstein xSpielstein = new XSpielstein(this, displayRechtecke.getX1());
 
             RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(100, 100);
-            params.leftMargin = (int) layoutDisplayRechteck.getX1().getxPosition();
-            params.topMargin = (int) layoutDisplayRechteck.getX1().getyPosition();
+            params.leftMargin = (int) displayRechtecke.getX1().getxPosition();
+            params.topMargin = (int) displayRechtecke.getX1().getyPosition();
 
             relativeLayout.addView(xSpielstein, params);
         }

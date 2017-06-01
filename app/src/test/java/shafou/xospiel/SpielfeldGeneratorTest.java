@@ -1,5 +1,6 @@
 package shafou.xospiel;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -10,29 +11,118 @@ import static org.junit.Assert.assertEquals;
 
 /**
  *
- * Diese Klasse enthält Tests zur Berechnung gleich grosser Rechtecke
- * {@link DisplayRechtecke} zur einer bestimmten Anzahl von Reihen und Spalten.
- *
- * Die Tests werden anhand verschiedenen Display Größen durchgeführt.
- *
- * (0|0)  --------------------------------> X   (X|0)
- *        |
- *        |
- *        |
- *        |
- *        |
- *        |
- *        |
- * (0|Y)  Y                                     (X|Y)
+ * Diese Klasse testet die Funktionalität des Spielfeldgenerators.
  *
  * @author Sharif Elfouly
  * @version 1.0
  *
  * Änderungshistorie:
- * 1) 26.05.2017 ELF Test Klasse erstellt.
+ * 1) 01.06.2017 ELF Klasse erstellt.
  */
 
-public class DisplayRechnerTest {
+public class SpielfeldGeneratorTest {
+
+    SpielfeldGenerator sG;
+
+    @Test(expected = IllegalArgumentException.class)
+    public void spielfeldGeneratorInitialiserungTest() {
+
+        new SpielfeldGenerator(-100, 0);
+    }
+
+    @Test
+    public void getPositionen3x3Test() {
+
+        SpielfeldGenerator sG = new SpielfeldGenerator(120, 120);
+
+        ArrayList<Position> generiertePositionen = sG.getPositionen(3, 3);
+
+        ArrayList<Position> testPositionen = new ArrayList<>();
+        testPositionen.add(new Position(0, 0));
+        testPositionen.add(new Position(40, 0));
+        testPositionen.add(new Position(80, 0));
+        testPositionen.add(new Position(120, 0));
+        testPositionen.add(new Position(0, 40));
+        testPositionen.add(new Position(40, 40));
+        testPositionen.add(new Position(80, 40));
+        testPositionen.add(new Position(120, 40));
+        testPositionen.add(new Position(0, 80));
+        testPositionen.add(new Position(40, 80));
+        testPositionen.add(new Position(80, 80));
+        testPositionen.add(new Position(120, 80));
+        testPositionen.add(new Position(0, 120));
+        testPositionen.add(new Position(40, 120));
+        testPositionen.add(new Position(80, 120));
+        testPositionen.add(new Position(120, 120));
+
+        assertEquals(testPositionen, generiertePositionen);
+    }
+
+    @Test
+    public void getPositionen1x1Test() {
+
+        SpielfeldGenerator sG = new SpielfeldGenerator(120, 120);
+
+        ArrayList<Position> generiertePositionen = sG.getPositionen(1, 1);
+
+        ArrayList<Position> testPositionen = new ArrayList<>();
+        testPositionen.add(new Position(0, 0));
+        testPositionen.add(new Position(120, 0));
+        testPositionen.add(new Position(0, 120));
+        testPositionen.add(new Position(120, 120));
+
+        assertEquals(testPositionen, generiertePositionen);
+    }
+
+    @Test
+    public void getPositionen2x1Test() {
+
+        SpielfeldGenerator sG = new SpielfeldGenerator(120, 120);
+
+        ArrayList<Position> generiertePositionen = sG.getPositionen(1, 2);
+
+        ArrayList<Position> testPositionen = new ArrayList<>();
+        testPositionen.add(new Position(0, 0));
+        testPositionen.add(new Position(120, 0));
+        testPositionen.add(new Position(0, 60));
+        testPositionen.add(new Position(120, 60));
+        testPositionen.add(new Position(0, 120));
+        testPositionen.add(new Position(120, 120));
+
+        assertEquals(testPositionen, generiertePositionen);
+    }
+
+    @Test
+    public void getPositionen1x2Test() {
+
+        SpielfeldGenerator sG = new SpielfeldGenerator(120, 120);
+
+        ArrayList<Position> generiertePositionen = sG.getPositionen(2, 1);
+
+        ArrayList<Position> testPositionen = new ArrayList<>();
+        testPositionen.add(new Position(0, 0));
+        testPositionen.add(new Position(60, 0));
+        testPositionen.add(new Position(120, 0));
+        testPositionen.add(new Position(0, 120));
+        testPositionen.add(new Position(60, 120));
+        testPositionen.add(new Position(120, 120));
+
+        assertEquals(testPositionen, generiertePositionen);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void getPositionenNegativeReihenOderSpaltenTest() {
+
+        SpielfeldGenerator sG = new SpielfeldGenerator(120, 120);
+        sG.getPositionen(-3, 3);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void getPositionenReihenOderSpaltenGleich0Test() {
+
+        SpielfeldGenerator sG = new SpielfeldGenerator(120, 120);
+        sG.getPositionen(1, 0);
+    }
 
     @Test
     public void layoutDisplayGeneratorTest3x3() {
@@ -42,6 +132,8 @@ public class DisplayRechnerTest {
 
         /** Y Display Größe in Pixel */
         final float Y_LAYOUT_GROESSE = 120;
+
+        SpielfeldGenerator sG = new SpielfeldGenerator(X_LAYOUT_GROESSE, Y_LAYOUT_GROESSE);
 
         DisplayRechtecke lDQ1 = new DisplayRechtecke(
                 new Position(0,0),
@@ -107,8 +199,7 @@ public class DisplayRechnerTest {
         );
 
         ArrayList<DisplayRechtecke> generierteLayoutDisplayQuadrate
-                = LayoutDisplayRechteckGenerator.teileDisplayInRechtecke(
-                new LayoutDisplay(X_LAYOUT_GROESSE, Y_LAYOUT_GROESSE), 3, 3);
+                = sG.gibDisplayRechtecke(3, 3);
 
         ArrayList<DisplayRechtecke> testLayoutDisplayListe = new ArrayList<>();
 
@@ -133,6 +224,8 @@ public class DisplayRechnerTest {
 
         /** Y Display Größe in Pixel */
         final float Y_LAYOUT_GROESSE = 1280;
+
+        SpielfeldGenerator sG = new SpielfeldGenerator(X_LAYOUT_GROESSE, Y_LAYOUT_GROESSE);
 
         DisplayRechtecke lDQ1 = new DisplayRechtecke(
                 new Position(0,0),
@@ -198,8 +291,7 @@ public class DisplayRechnerTest {
         );
 
         ArrayList<DisplayRechtecke> generierteLayoutDisplayQuadrate
-                = LayoutDisplayRechteckGenerator.teileDisplayInRechtecke(
-                new LayoutDisplay(X_LAYOUT_GROESSE, Y_LAYOUT_GROESSE), 3, 3);
+                = sG.gibDisplayRechtecke(3, 3);
 
         ArrayList<DisplayRechtecke> testLayoutDisplayListe = new ArrayList<>();
 
@@ -235,6 +327,8 @@ public class DisplayRechnerTest {
         /** Y Display Größe in Pixel */
         final float Y_LAYOUT_GROESSE = 100;
 
+        SpielfeldGenerator sG = new SpielfeldGenerator(X_LAYOUT_GROESSE, Y_LAYOUT_GROESSE);
+
         DisplayRechtecke lDQ1 = new DisplayRechtecke(
                 new Position(0,0),
                 new Position(100,0),
@@ -247,8 +341,7 @@ public class DisplayRechnerTest {
         testListe.add(lDQ1);
 
         ArrayList<DisplayRechtecke> generierteQuadrate
-                = LayoutDisplayRechteckGenerator
-                .teileDisplayInRechtecke(new LayoutDisplay(X_LAYOUT_GROESSE, Y_LAYOUT_GROESSE), 1, 1);
+                = sG.gibDisplayRechtecke(1, 1);
 
         assertEquals(testListe, generierteQuadrate);
     }
@@ -261,6 +354,8 @@ public class DisplayRechnerTest {
 
         /** Y Display Größe in Pixel */
         final float Y_LAYOUT_GROESSE = 100;
+
+        SpielfeldGenerator sG = new SpielfeldGenerator(X_LAYOUT_GROESSE, Y_LAYOUT_GROESSE);
 
         DisplayRechtecke lDQ1 = new DisplayRechtecke(
                 new Position(0,0),
@@ -282,8 +377,7 @@ public class DisplayRechnerTest {
         testListe.add(lDQ2);
 
         ArrayList<DisplayRechtecke> generierteQuadrate
-                = LayoutDisplayRechteckGenerator
-                .teileDisplayInRechtecke(new LayoutDisplay(X_LAYOUT_GROESSE, Y_LAYOUT_GROESSE), 2, 1);
+                = sG.gibDisplayRechtecke(2, 1);
 
         assertEquals(testListe.get(0), generierteQuadrate.get(0));
         assertEquals(testListe.get(1), generierteQuadrate.get(1));
@@ -294,11 +388,7 @@ public class DisplayRechnerTest {
     @Test
     public void layoutDisplayGeneratorTest1x3() {
 
-        /** X Display Größe in Pixel */
-        final float X_LAYOUT_GROESSE = 120;
-
-        /** Y Display Größe in Pixel */
-        final float Y_LAYOUT_GROESSE = 120;
+        SpielfeldGenerator sG = new SpielfeldGenerator(120, 120);
 
         DisplayRechtecke lDQ1 = new DisplayRechtecke(
                 new Position(0, 0),
@@ -328,8 +418,7 @@ public class DisplayRechnerTest {
         testListe.add(lDQ3);
 
         ArrayList<DisplayRechtecke> generierteQuadrate
-                = LayoutDisplayRechteckGenerator
-                .teileDisplayInRechtecke(new LayoutDisplay(120, 120), 1, 3);
+                = sG.gibDisplayRechtecke(1, 3);
 
         assertEquals(testListe.get(0), generierteQuadrate.get(0));
         assertEquals(testListe.get(1), generierteQuadrate.get(1));
@@ -338,40 +427,48 @@ public class DisplayRechnerTest {
     }
 
     @Test
-    public void layoutDisplayGeneratorGleichGrosseRechteckeTest() {
+    public void layoutDisplayGeneratorTest3x1() {
 
-        /** X Display Größe in Pixel */
-        final float X_LAYOUT_GROESSE = 100;
+        SpielfeldGenerator sG = new SpielfeldGenerator(120, 120);
 
-        /** Y Display Größe in Pixel */
-        final float Y_LAYOUT_GROESSE = 100;
+        DisplayRechtecke lDQ1 = new DisplayRechtecke(
+                new Position(0, 0),
+                new Position(40, 0),
+                new Position(40, 120),
+                new Position(0, 120)
+        );
 
-        final float RECHTECK_GROESSE = 5000;
+        DisplayRechtecke lDQ2 = new DisplayRechtecke(
+                new Position(40, 0),
+                new Position(80, 0),
+                new Position(80, 120),
+                new Position(40, 120)
+        );
+
+        DisplayRechtecke lDQ3 = new DisplayRechtecke(
+                new Position(80, 0),
+                new Position(120, 0),
+                new Position(120, 120),
+                new Position(80, 120)
+        );
+
+        ArrayList<DisplayRechtecke> testListe = new ArrayList<>();
+
+        testListe.add(lDQ1);
+        testListe.add(lDQ2);
+        testListe.add(lDQ3);
 
         ArrayList<DisplayRechtecke> generierteQuadrate
-                = LayoutDisplayRechteckGenerator
-                .teileDisplayInRechtecke(new LayoutDisplay(X_LAYOUT_GROESSE, Y_LAYOUT_GROESSE), 2, 1);
+                = sG.gibDisplayRechtecke(3, 1);
 
-        for(DisplayRechtecke displayRechtecke : generierteQuadrate) {
-
-            float breite = displayRechtecke.getX2().getxPosition() - displayRechtecke.getX1().getxPosition();
-            float hoehe = displayRechtecke.getX4().getyPosition() - displayRechtecke.getX1().getyPosition();
-
-            assertEquals(RECHTECK_GROESSE, hoehe * breite, 0.0);
-        }
+        assertEquals(testListe, generierteQuadrate);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void layoutDisplayGeneratorTestNegativeParameter() {
 
-        /** X Display Größe in Pixel */
-        final float X_LAYOUT_GROESSE = 120;
+        SpielfeldGenerator sG = new SpielfeldGenerator(120, 120);
 
-        /** Y Display Größe in Pixel */
-        final float Y_LAYOUT_GROESSE = 120;
-
-        LayoutDisplayRechteckGenerator
-                .teileDisplayInRechtecke(
-                        new LayoutDisplay(X_LAYOUT_GROESSE, Y_LAYOUT_GROESSE), -1, -3);
+        sG.gibDisplayRechtecke(-3, 3);
     }
 }

@@ -23,14 +23,14 @@ public class LayoutDisplayRechteckGenerator {
      * der Spalten und Reihen.
      *
      * Für den Aufbau eines LayoutDisplayRechtecks siehe
-     * {@link LayoutDisplayRechteck}.
+     * {@link DisplayRechtecke}.
      *
      * @param layoutDisplay LayoutDisplayObjekt
      * @param spalten Anzahl der Spalten
      * @param reihen Anzahl der Reihen
-     * @return Eine Liste von LayoutDisplayRechteck Objekten
+     * @return Eine Liste von DisplayRechtecke Objekten
      */
-    public static ArrayList<LayoutDisplayRechteck> teileDisplayInRechtecke
+    public static ArrayList<DisplayRechtecke> teileDisplayInRechtecke
             (LayoutDisplay layoutDisplay, int spalten, int reihen) {
 
         /** Spalten und Reihen müssen positiv sein */
@@ -40,8 +40,8 @@ public class LayoutDisplayRechteckGenerator {
                     "positiv sein!");
         }
 
-        /** Liste von LayoutDisplayRechteck Objekten */
-        ArrayList<LayoutDisplayRechteck> layoutDisplayQuadrate
+        /** Liste von DisplayRechtecke Objekten */
+        ArrayList<DisplayRechtecke> layoutDisplayQuadrate
                 = new ArrayList<>();
 
         /** Breite und Höhe des übergebene LayoutDisplay Objektes */
@@ -69,7 +69,7 @@ public class LayoutDisplayRechteckGenerator {
         for(int i = 1; i <= (spalten * reihen); i++) {
 
             /** Initialisierung der LayoutDisplayRechtecke */
-            LayoutDisplayRechteck lDQ = new LayoutDisplayRechteck(
+            DisplayRechtecke lDQ = new DisplayRechtecke(
                     positionen.get(i + neueReihe - 1),
                     positionen.get(i + neueReihe),
                     positionen.get(i + neueReihe + spalten + 1),
