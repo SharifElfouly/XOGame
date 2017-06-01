@@ -471,4 +471,57 @@ public class SpielfeldGeneratorTest {
 
         sG.gibDisplayRechtecke(-3, 3);
     }
+
+    @Test
+    public void gibXOFeldLinien3x3Test(){
+
+        Linie linie1 = new Linie(new Position(40, 0), new Position(40, 120));
+        Linie linie2 = new Linie(new Position(80, 0), new Position(80, 120));
+        Linie linie3 = new Linie(new Position(0, 40), new Position(120, 40));
+        Linie linie4 = new Linie(new Position(0, 80), new Position(120, 80));
+
+        SpielfeldGenerator sG = new SpielfeldGenerator(120, 120);
+
+        ArrayList<Linie> xOFeldLinienTest = new ArrayList<>();
+        xOFeldLinienTest.add(linie1);
+        xOFeldLinienTest.add(linie2);
+        xOFeldLinienTest.add(linie3);
+        xOFeldLinienTest.add(linie4);
+
+        ArrayList<Linie> xOFeldLinienGeneriert = sG.gibXOFeldLinien(3, 3);
+
+        assertEquals(xOFeldLinienTest, xOFeldLinienGeneriert);
+    }
+
+    @Test
+    public void gibXOFeldLinien4x4Test(){
+
+        Linie linie1 = new Linie(new Position(25, 0), new Position(25, 100));
+        Linie linie2 = new Linie(new Position(50, 0), new Position(50, 100));
+        Linie linie3 = new Linie(new Position(75, 0), new Position(75, 100));
+        Linie linie4 = new Linie(new Position(0, 25), new Position(100, 25));
+        Linie linie5 = new Linie(new Position(0, 50), new Position(100, 50));
+        Linie linie6 = new Linie(new Position(0, 75), new Position(100, 75));
+
+        SpielfeldGenerator sG = new SpielfeldGenerator(100, 100);
+
+        ArrayList<Linie> xOFeldLinienTest = new ArrayList<>();
+        xOFeldLinienTest.add(linie1);
+        xOFeldLinienTest.add(linie2);
+        xOFeldLinienTest.add(linie3);
+        xOFeldLinienTest.add(linie4);
+        xOFeldLinienTest.add(linie5);
+        xOFeldLinienTest.add(linie6);
+
+        ArrayList<Linie> xOFeldLinienGeneriert = sG.gibXOFeldLinien(4, 4);
+
+        assertEquals(xOFeldLinienTest, xOFeldLinienGeneriert);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void gibXOFeldLinien2x3Test(){
+
+        SpielfeldGenerator sG = new SpielfeldGenerator(120, 120);
+        sG.gibXOFeldLinien(2, 3);
+    }
 }

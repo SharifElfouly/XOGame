@@ -115,4 +115,100 @@ public final class SpielfeldGenerator {
 
         return displayRechtecke;
     }
+
+    /**
+     * Baut mithilfe der errechneten Positionen, die Linien des Spielfeldes aus.
+     *
+     * Gibt eine Liste von Linien zurück.
+     *
+     * @param spalten Anzahl der Spalten des Spielfeldes
+     * @param reihen Anzahl der Reihen des Spielfeldes
+     * @return Eine Liste von Linien
+     */
+    public ArrayList<Linie> gibXOFeldLinien(int spalten, int reihen) {
+
+        if(spalten < 3 || reihen < 3) {
+
+            throw new IllegalArgumentException("Spalten und Reihen müssen" +
+                    " mindestens 3 sein.");
+        }
+
+        /** Gibt die Positionen des Spielfeldes zurück */
+        ArrayList<Position> positionen = getPositionen(spalten, reihen);
+
+        /** Liste mit den zu zeichnenden Linien */
+        ArrayList<Linie> xOFeldLinien = new ArrayList<>();
+
+        /** Gibt die gesamte Zahl von benötigten Linien an */
+        int anzahlGesuchterLinien = spalten + reihen - 2;
+
+        /** Anzahl der senkrechten Linien */
+        int anzahlSenkrechteLinien = spalten - 1;
+
+        /** Anzahl der horizontalen Linien */
+        int anzahlHorizontaleLinien = reihen - 1;
+
+        /** Momentane Anzahl an gefundenen Senkrechten Linien */
+        int indexSenkrechterLinien = 0;
+
+        /** Momentane Anzahl an gefundenen Horizontalen Linien */
+        int indexHorizontalerLinien = 0;
+
+        /**
+         * Die Iteration wird nur solange durchgeführt bis alle Linien gefunden
+         * wurden.
+         */
+        for(int i = 1; xOFeldLinien.size() < anzahlGesuchterLinien; i++) {
+
+            Position aktuellePosition = positionen.get(i);
+
+            /** Alle Senkrechten Linien haben als Startpunkt die yKoordinate 0 */
+            if(aktuellePosition.getyPosition() == 0) {
+
+                indexSenkrechterLinien++;
+
+                /**
+                 * Alle Linien werden betrachtet, außer die letzte Position die
+                 * als yKoordinate eine 0 hat, da diese nicht mehr zum Spielfeld
+                 * gehört.
+                 */
+                if(indexSenkrechterLinien != anzahlSenkrechteLinien + 1) {
+
+                    Position startPosition
+                            = new Position(aktuellePosition.getxPosition(), 0);
+                    /** Der Endpunkt wird mithilfe der Höhe berechnet */
+                    Position endPosition
+                            = new Position(aktuellePosition.getxPosition(), this.hoehe);
+
+                    Linie senkrechteLinie = new Linie(startPosition, endPosition);
+                    xOFeldLinien.add(senkrechteLinie);
+                }
+            }
+
+            /** Alle horizontalen Linien haben als Startpunkt die xKoordinate 0 */
+            if(aktuellePosition.getxPosition() == 0) {
+
+                indexHorizontalerLinien++;
+
+                /**
+                 * Alle Linien werden betrachtet, außer die letzte Position die
+                 * als xKoordinate eine 0 hat, da diese nicht mehr zum Spielfeld
+                 * gehört.
+                 */
+                if(indexHorizontalerLinien != anzahlHorizontaleLinien + 1) {
+
+                    Position startPosition
+                            = new Position(0, aktuellePosition.getyPosition());
+                    /** Der Endpunkt wird mithilfe der Breite berechnet */
+                    Position endPosition
+                            = new Position(this.breite, aktuellePosition.getyPosition());
+
+                    Linie horizontaleLinie = new Linie(startPosition, endPosition);
+                    xOFeldLinien.add(horizontaleLinie);
+                }
+            }
+        }
+
+        return xOFeldLinien;
+    }
 }
