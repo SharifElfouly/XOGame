@@ -29,6 +29,14 @@ public class Linie {
         this.endPosition = endPosition;
     }
 
+    public Position getAnfangsPosition() {
+        return anfangsPosition;
+    }
+
+    public Position getEndPosition() {
+        return endPosition;
+    }
+
     @Override
     public String toString() {
         return "Linie{" +

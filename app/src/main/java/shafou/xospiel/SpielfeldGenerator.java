@@ -47,7 +47,7 @@ public final class SpielfeldGenerator {
      * @param spalten Anzahl der Spalten auf dem Spielfeld
      * @return Liste mit Positionen auf dem Spielfeld
      */
-    public ArrayList<Position> getPositionen(int spalten, int reihen) {
+    public ArrayList<Position> positionenBerechnen(int spalten, int reihen) {
 
         /** Spalten und Reihen müssen positiv sein */
         if(spalten <= 0 || reihen <= 0) {
@@ -81,10 +81,10 @@ public final class SpielfeldGenerator {
      * @param reihen Anzahl der Zeilen des Spielfeldes
      * @return Liste von DisplayRechteck Objekten
      */
-    public ArrayList<DisplayRechtecke> gibDisplayRechtecke(int spalten, int reihen) {
+    public ArrayList<DisplayRechtecke> displayRechteckeBerechnen(int spalten, int reihen) {
 
         /** Gibt die Positionen des Spielfeldes zurück */
-        ArrayList<Position> positionen = getPositionen(spalten, reihen);
+        ArrayList<Position> positionen = positionenBerechnen(spalten, reihen);
 
         /** Liste von DisplayRechtecke Objekten */
         ArrayList<DisplayRechtecke> displayRechtecke
@@ -117,7 +117,7 @@ public final class SpielfeldGenerator {
     }
 
     /**
-     * Baut mithilfe der errechneten Positionen, die Linien des Spielfeldes aus.
+     * Baut mithilfe der errechneten Positionen, die Linien des Spielfeldes auf.
      *
      * Gibt eine Liste von Linien zurück.
      *
@@ -125,8 +125,9 @@ public final class SpielfeldGenerator {
      * @param reihen Anzahl der Reihen des Spielfeldes
      * @return Eine Liste von Linien
      */
-    public ArrayList<Linie> gibXOFeldLinien(int spalten, int reihen) {
+    public ArrayList<Linie> xOFeldlinienBerechnen(int spalten, int reihen) {
 
+        /** Spielfeld muss mindestens 3x3 groß sein */
         if(spalten < 3 || reihen < 3) {
 
             throw new IllegalArgumentException("Spalten und Reihen müssen" +
@@ -134,7 +135,7 @@ public final class SpielfeldGenerator {
         }
 
         /** Gibt die Positionen des Spielfeldes zurück */
-        ArrayList<Position> positionen = getPositionen(spalten, reihen);
+        ArrayList<Position> positionen = positionenBerechnen(spalten, reihen);
 
         /** Liste mit den zu zeichnenden Linien */
         ArrayList<Linie> xOFeldLinien = new ArrayList<>();
@@ -210,5 +211,93 @@ public final class SpielfeldGenerator {
         }
 
         return xOFeldLinien;
+    }
+
+    /**
+     * Für die Implementierung der Linien Berechnung { @see
+     * {@link SpielfeldGenerator#xOFeldlinienBerechnen(int, int)}}
+     *
+     * Zusätslich können die generierten Linien mit einem Prozentsatz angepasst
+     * werden.
+     *
+     * Beispiel: Bei der Angabe von 10% wird eine Linie auf beiden Seiten um 10%
+     * gekürtzt.
+     *
+     * @param spalten Anzahl der Spalten des Spielfeldes
+     * @param reihen Anzahl der Reihen des Spielfeldes
+     * @param prozent Prozent mit dem die gezeichneten Linien angepasst werden
+     * @return Eine Liste von angepassten Linien, die ein X O Spielfeld darstellen
+     */
+    public ArrayList<Linie> xOFeldLinienBerechnen(int spalten, int reihen, int prozent) {
+
+        if(prozent <= 0) {
+
+            throw new IllegalArgumentException("Prozent muss positiv sein.");
+        }
+
+        /** Nicht angepasste Linien */
+        ArrayList<Linie> xOFeldLinien = xOFeldlinienBerechnen(spalten, reihen);
+
+        /** Liste von angepassten Linien */
+        ArrayList<Linie> xOFeldLinienAngepasst = new ArrayList<>();
+
+        /** Iteration über alle nicht angepassten Linien */
+        for(Linie linie: xOFeldLinien) {
+
+            /**
+             * Falls die Y Koordinate eines Startpunktes 0 ist, handelt es sich
+             * um eine senkrechte Linie
+             */
+            if(linie.getAnfangsPosition().getyPosition() == 0) {
+
+                /** Berechnung der neuen Start und Endpunkte der Linie */
+                int anfangsPositionX = (int) linie.getAnfangsPosition().getxPosition();
+                int anfangsPositionY = (int) prozentBerechnen(this.hoehe, prozent);
+                int endPositionX = (int) linie.getAnfangsPosition().getxPosition();
+                int endPositionY = (int) (this.hoehe - ((int) prozentBerechnen(this.hoehe, prozent)));
+
+                Linie angepassteLinie = new Linie(new Position(anfangsPositionX, anfangsPositionY), new Position(endPositionX, endPositionY));
+                xOFeldLinienAngepasst.add(angepassteLinie);
+            }
+
+            /**
+             * Falls die X Koordinate eines Startpunktes 0 ist, handelt es sich
+             * um eine horizontale Linie
+             */
+            if(linie.getAnfangsPosition().getxPosition() == 0) {
+
+                /** Berechnung der neuen Start und Endpunkte der Linie */
+                int anfangsPositionX = (int) prozentBerechnen(this.breite, prozent);
+                int anfangsPositionY = (int) linie.getAnfangsPosition().getyPosition();
+                int endPositionX = (int) (this.breite - ((int) prozentBerechnen(this.breite, prozent)));
+                int endPositionY = (int) linie.getAnfangsPosition().getyPosition();
+
+                Linie angepassteLinie = new Linie(new Position(anfangsPositionX, anfangsPositionY), new Position(endPositionX, endPositionY));
+                xOFeldLinienAngepasst.add(angepassteLinie);
+            }
+        }
+
+        return xOFeldLinienAngepasst;
+    }
+
+    /**
+     * Berechnet den Prozentsatz eines Betrages.
+     *
+     * @param betrag Betrag
+     * @param prozent Prozent
+     * @return Prozentsatz
+     */
+    public static double prozentBerechnen(double betrag, double prozent) {
+
+        /** Betrag und Prozent müssen positiv sein */
+        if(betrag <= 0 || prozent <= 0) {
+
+            throw new IllegalArgumentException("Prozent und Betrag müssen" +
+                    " positiv sein");
+        }
+
+        double prozentQuotient = prozent / 100;
+
+        return betrag * prozentQuotient;
     }
 }

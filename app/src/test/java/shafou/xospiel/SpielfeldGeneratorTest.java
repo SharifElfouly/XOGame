@@ -1,6 +1,5 @@
 package shafou.xospiel;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -22,20 +21,18 @@ import static org.junit.Assert.assertEquals;
 
 public class SpielfeldGeneratorTest {
 
-    SpielfeldGenerator sG;
-
     @Test(expected = IllegalArgumentException.class)
-    public void spielfeldGeneratorInitialiserungTest() {
+    public void SpielfeldGeneratorInitialisierung_NegativerParameter_Exception() {
 
         new SpielfeldGenerator(-100, 0);
     }
 
     @Test
-    public void getPositionen3x3Test() {
+    public void PositionenBerechnen_3x3_Berechnet() {
 
         SpielfeldGenerator sG = new SpielfeldGenerator(120, 120);
 
-        ArrayList<Position> generiertePositionen = sG.getPositionen(3, 3);
+        ArrayList<Position> generiertePositionen = sG.positionenBerechnen(3, 3);
 
         ArrayList<Position> testPositionen = new ArrayList<>();
         testPositionen.add(new Position(0, 0));
@@ -59,11 +56,11 @@ public class SpielfeldGeneratorTest {
     }
 
     @Test
-    public void getPositionen1x1Test() {
+    public void PositionenBerechnen_1x1_Berechnet() {
 
         SpielfeldGenerator sG = new SpielfeldGenerator(120, 120);
 
-        ArrayList<Position> generiertePositionen = sG.getPositionen(1, 1);
+        ArrayList<Position> generiertePositionen = sG.positionenBerechnen(1, 1);
 
         ArrayList<Position> testPositionen = new ArrayList<>();
         testPositionen.add(new Position(0, 0));
@@ -75,11 +72,11 @@ public class SpielfeldGeneratorTest {
     }
 
     @Test
-    public void getPositionen2x1Test() {
+    public void PositionenBerechnen_1x2_Berechnet() {
 
         SpielfeldGenerator sG = new SpielfeldGenerator(120, 120);
 
-        ArrayList<Position> generiertePositionen = sG.getPositionen(1, 2);
+        ArrayList<Position> generiertePositionen = sG.positionenBerechnen(1, 2);
 
         ArrayList<Position> testPositionen = new ArrayList<>();
         testPositionen.add(new Position(0, 0));
@@ -93,11 +90,11 @@ public class SpielfeldGeneratorTest {
     }
 
     @Test
-    public void getPositionen1x2Test() {
+    public void PositionenBerechnen_2x1_Berechnet() {
 
         SpielfeldGenerator sG = new SpielfeldGenerator(120, 120);
 
-        ArrayList<Position> generiertePositionen = sG.getPositionen(2, 1);
+        ArrayList<Position> generiertePositionen = sG.positionenBerechnen(2, 1);
 
         ArrayList<Position> testPositionen = new ArrayList<>();
         testPositionen.add(new Position(0, 0));
@@ -111,29 +108,23 @@ public class SpielfeldGeneratorTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void getPositionenNegativeReihenOderSpaltenTest() {
+    public void PositionenBerechnen_NegativerParameter_Exception() {
 
         SpielfeldGenerator sG = new SpielfeldGenerator(120, 120);
-        sG.getPositionen(-3, 3);
+        sG.positionenBerechnen(-3, 3);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void getPositionenReihenOderSpaltenGleich0Test() {
+    public void PositionenBerechnen_0_Parameter_Exception() {
 
         SpielfeldGenerator sG = new SpielfeldGenerator(120, 120);
-        sG.getPositionen(1, 0);
+        sG.positionenBerechnen(1, 0);
     }
 
     @Test
-    public void layoutDisplayGeneratorTest3x3() {
+    public void DisplayRechteckeBerechnen_3x3_Berechnet() {
 
-        /** X Display Größe in Pixel */
-        final float X_LAYOUT_GROESSE = 120;
-
-        /** Y Display Größe in Pixel */
-        final float Y_LAYOUT_GROESSE = 120;
-
-        SpielfeldGenerator sG = new SpielfeldGenerator(X_LAYOUT_GROESSE, Y_LAYOUT_GROESSE);
+        SpielfeldGenerator sG = new SpielfeldGenerator(120, 120);
 
         DisplayRechtecke lDQ1 = new DisplayRechtecke(
                 new Position(0,0),
@@ -199,7 +190,7 @@ public class SpielfeldGeneratorTest {
         );
 
         ArrayList<DisplayRechtecke> generierteLayoutDisplayQuadrate
-                = sG.gibDisplayRechtecke(3, 3);
+                = sG.displayRechteckeBerechnen(3, 3);
 
         ArrayList<DisplayRechtecke> testLayoutDisplayListe = new ArrayList<>();
 
@@ -217,7 +208,7 @@ public class SpielfeldGeneratorTest {
     }
 
     @Test
-    public void layoutDisplayGeneratorTest3x3MitRealistischerDisplayGroesse() {
+    public void DisplayRechteckeBerechnen_3x3MitRealistischenGroessen_Berechnet() {
 
         /** X Display Größe in Pixel */
         final float X_LAYOUT_GROESSE = 768;
@@ -291,7 +282,7 @@ public class SpielfeldGeneratorTest {
         );
 
         ArrayList<DisplayRechtecke> generierteLayoutDisplayQuadrate
-                = sG.gibDisplayRechtecke(3, 3);
+                = sG.displayRechteckeBerechnen(3, 3);
 
         ArrayList<DisplayRechtecke> testLayoutDisplayListe = new ArrayList<>();
 
@@ -319,15 +310,9 @@ public class SpielfeldGeneratorTest {
     }
 
     @Test
-    public void layoutDisplayGeneratorTest1x1() {
+    public void DisplayRechteckeBerechnen_1x1_Berechnet() {
 
-        /** X Display Größe in Pixel */
-        final float X_LAYOUT_GROESSE = 100;
-
-        /** Y Display Größe in Pixel */
-        final float Y_LAYOUT_GROESSE = 100;
-
-        SpielfeldGenerator sG = new SpielfeldGenerator(X_LAYOUT_GROESSE, Y_LAYOUT_GROESSE);
+        SpielfeldGenerator sG = new SpielfeldGenerator(100, 100);
 
         DisplayRechtecke lDQ1 = new DisplayRechtecke(
                 new Position(0,0),
@@ -341,21 +326,15 @@ public class SpielfeldGeneratorTest {
         testListe.add(lDQ1);
 
         ArrayList<DisplayRechtecke> generierteQuadrate
-                = sG.gibDisplayRechtecke(1, 1);
+                = sG.displayRechteckeBerechnen(1, 1);
 
         assertEquals(testListe, generierteQuadrate);
     }
 
     @Test
-    public void layoutDisplayGeneratorTest2x1() {
+    public void DisplayRechteckeBerechnen_2x1_Berechnet() {
 
-        /** X Display Größe in Pixel */
-        final float X_LAYOUT_GROESSE = 100;
-
-        /** Y Display Größe in Pixel */
-        final float Y_LAYOUT_GROESSE = 100;
-
-        SpielfeldGenerator sG = new SpielfeldGenerator(X_LAYOUT_GROESSE, Y_LAYOUT_GROESSE);
+        SpielfeldGenerator sG = new SpielfeldGenerator(100, 100);
 
         DisplayRechtecke lDQ1 = new DisplayRechtecke(
                 new Position(0,0),
@@ -377,7 +356,7 @@ public class SpielfeldGeneratorTest {
         testListe.add(lDQ2);
 
         ArrayList<DisplayRechtecke> generierteQuadrate
-                = sG.gibDisplayRechtecke(2, 1);
+                = sG.displayRechteckeBerechnen(2, 1);
 
         assertEquals(testListe.get(0), generierteQuadrate.get(0));
         assertEquals(testListe.get(1), generierteQuadrate.get(1));
@@ -386,7 +365,7 @@ public class SpielfeldGeneratorTest {
     }
 
     @Test
-    public void layoutDisplayGeneratorTest1x3() {
+    public void DisplayRechteckeBerechnen_1x3_Berechnet() {
 
         SpielfeldGenerator sG = new SpielfeldGenerator(120, 120);
 
@@ -418,7 +397,7 @@ public class SpielfeldGeneratorTest {
         testListe.add(lDQ3);
 
         ArrayList<DisplayRechtecke> generierteQuadrate
-                = sG.gibDisplayRechtecke(1, 3);
+                = sG.displayRechteckeBerechnen(1, 3);
 
         assertEquals(testListe.get(0), generierteQuadrate.get(0));
         assertEquals(testListe.get(1), generierteQuadrate.get(1));
@@ -427,7 +406,7 @@ public class SpielfeldGeneratorTest {
     }
 
     @Test
-    public void layoutDisplayGeneratorTest3x1() {
+    public void DisplayRechteckeBerechnen_3x1_Berechnet() {
 
         SpielfeldGenerator sG = new SpielfeldGenerator(120, 120);
 
@@ -459,21 +438,21 @@ public class SpielfeldGeneratorTest {
         testListe.add(lDQ3);
 
         ArrayList<DisplayRechtecke> generierteQuadrate
-                = sG.gibDisplayRechtecke(3, 1);
+                = sG.displayRechteckeBerechnen(3, 1);
 
         assertEquals(testListe, generierteQuadrate);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void layoutDisplayGeneratorTestNegativeParameter() {
+    public void DisplayRechteckeBerechnen_NegativerParameter_Exception() {
 
         SpielfeldGenerator sG = new SpielfeldGenerator(120, 120);
 
-        sG.gibDisplayRechtecke(-3, 3);
+        sG.displayRechteckeBerechnen(-3, 3);
     }
 
     @Test
-    public void gibXOFeldLinien3x3Test(){
+    public void XOFeldlinienBerechnen_3x3_Berechnet(){
 
         Linie linie1 = new Linie(new Position(40, 0), new Position(40, 120));
         Linie linie2 = new Linie(new Position(80, 0), new Position(80, 120));
@@ -488,13 +467,13 @@ public class SpielfeldGeneratorTest {
         xOFeldLinienTest.add(linie3);
         xOFeldLinienTest.add(linie4);
 
-        ArrayList<Linie> xOFeldLinienGeneriert = sG.gibXOFeldLinien(3, 3);
+        ArrayList<Linie> xOFeldLinienGeneriert = sG.xOFeldlinienBerechnen(3, 3);
 
         assertEquals(xOFeldLinienTest, xOFeldLinienGeneriert);
     }
 
     @Test
-    public void gibXOFeldLinien4x4Test(){
+    public void XOFeldlinienBerechnen_4x4_Berechnet(){
 
         Linie linie1 = new Linie(new Position(25, 0), new Position(25, 100));
         Linie linie2 = new Linie(new Position(50, 0), new Position(50, 100));
@@ -513,15 +492,107 @@ public class SpielfeldGeneratorTest {
         xOFeldLinienTest.add(linie5);
         xOFeldLinienTest.add(linie6);
 
-        ArrayList<Linie> xOFeldLinienGeneriert = sG.gibXOFeldLinien(4, 4);
+        ArrayList<Linie> xOFeldLinienGeneriert = sG.xOFeldlinienBerechnen(4, 4);
 
         assertEquals(xOFeldLinienTest, xOFeldLinienGeneriert);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void gibXOFeldLinien2x3Test(){
+    public void XOFeldlinienBerechnen_2x3_Exception(){
 
         SpielfeldGenerator sG = new SpielfeldGenerator(120, 120);
-        sG.gibXOFeldLinien(2, 3);
+        sG.xOFeldlinienBerechnen(2, 3);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void ProzentVonLinieAbziehen_NegativerParameter_Exception() {
+
+        SpielfeldGenerator sG = new SpielfeldGenerator(100, 100);
+        sG.xOFeldLinienBerechnen(3, 3, -10);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void ProzentVonLinieAbziehen_0_Parameter_Exception() {
+
+        SpielfeldGenerator sG = new SpielfeldGenerator(100, 100);
+        sG.xOFeldLinienBerechnen(0, 3, 3);
+    }
+
+    @Test
+    public void ProzentVonLinieAbziehen_10_Prozent_Berechnet() {
+
+        SpielfeldGenerator sG = new SpielfeldGenerator(120, 120);
+
+        Linie linie1 = new Linie(new Position(40, 12), new Position(40, 108));
+        Linie linie2 = new Linie(new Position(80, 12), new Position(80, 108));
+        Linie linie3 = new Linie(new Position(12, 40), new Position(108, 40));
+        Linie linie4 = new Linie(new Position(12, 80), new Position(108, 80));
+
+        ArrayList<Linie> xOFeldLinienTest = new ArrayList<>();
+        xOFeldLinienTest.add(linie1);
+        xOFeldLinienTest.add(linie2);
+        xOFeldLinienTest.add(linie3);
+        xOFeldLinienTest.add(linie4);
+
+        ArrayList<Linie> xOFeldLinienGeneriert = sG.xOFeldLinienBerechnen(3, 3, 10);
+        assertEquals(xOFeldLinienTest, xOFeldLinienGeneriert);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void ProzentBerechnen_0_ProzentParameter_Exception() {
+
+        SpielfeldGenerator.prozentBerechnen(100, 0);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void ProzentBerechnen_0_BetragParameter_Exception() {
+
+        SpielfeldGenerator.prozentBerechnen(0, 100);
+    }
+
+    @Test
+    public void ProzentBerechnen_10ProzentVon100_Berechnet() {
+
+        double berechneterBetrag = SpielfeldGenerator.prozentBerechnen(100, 10);
+
+        assertEquals(10, berechneterBetrag, 0.0);
+    }
+
+    @Test
+    public void ProzentBerechnen_45ProzentVon322_Berechnet() {
+
+        double berechneterBetrag = SpielfeldGenerator.prozentBerechnen(322, 45);
+
+        assertEquals(144.9, berechneterBetrag, 0.0);
+    }
+
+    @Test
+    public void ProzentBerechnen_3ProzentVon10_Berechnet() {
+
+        double berechneterBetrag = SpielfeldGenerator.prozentBerechnen(10, 3);
+
+        assertEquals(0.3, berechneterBetrag, 0.0);
+    }
+
+    @Test
+    public void ProzentBerechnen_22ProzentVon100_Berechnet() {
+
+        double berechneterBetrag = SpielfeldGenerator.prozentBerechnen(100, 22);
+
+        assertEquals(22, berechneterBetrag, 0.0);
+    }
+
+    @Test
+    public void ProzentBerechnen_200ProzentVon100_Berechnet() {
+
+        double berechneterBetrag = SpielfeldGenerator.prozentBerechnen(100, 200);
+        assertEquals(200, berechneterBetrag, 0.1);
+    }
+
+    @Test
+    public void ProzentBerechnen_222ProzentVon33_Berechnet() {
+
+        double berechneterBetrag = SpielfeldGenerator.prozentBerechnen(33, 222);
+        assertEquals(73.26, berechneterBetrag, 0.1);
     }
 }
