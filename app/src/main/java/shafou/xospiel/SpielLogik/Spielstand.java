@@ -3,6 +3,7 @@ package shafou.xospiel.SpielLogik;
 import java.util.ArrayList;
 import java.util.HashSet;
 
+import shafou.xospiel.Ausnahmen.FeldIstBesetztException;
 import shafou.xospiel.TestDaten.AlleMoeglichenPositionen;
 
 /**

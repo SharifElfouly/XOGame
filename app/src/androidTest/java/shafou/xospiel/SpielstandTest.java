@@ -8,7 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import shafou.xospiel.SpielLogik.FeldIstBesetztException;
+import shafou.xospiel.Ausnahmen.FeldIstBesetztException;
 import shafou.xospiel.SpielLogik.OSpielstein;
 import shafou.xospiel.SpielLogik.Position;
 import shafou.xospiel.SpielLogik.Spielstand;

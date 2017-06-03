@@ -1,4 +1,4 @@
-package shafou.xospiel.SpielLogik;
+package shafou.xospiel.Ausnahmen;
 
 /**
  *

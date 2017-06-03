@@ -1,4 +1,4 @@
-package shafou.xospiel;
+package shafou.xospiel.Spielfeld;
 
 import shafou.xospiel.SpielLogik.Position;
 
@@ -80,8 +80,7 @@ public class DisplayRechtecke {
 
         if (x1 != null ? !x1.equals(that.x1) : that.x1 != null) return false;
         if (x2 != null ? !x2.equals(that.x2) : that.x2 != null) return false;
-        if (x3 != null ? !x3.equals(that.x3) : that.x3 != null) return false;
-        return x4 != null ? x4.equals(that.x4) : that.x4 == null;
+        return x3 != null ? x3.equals(that.x3) : that.x3 == null && (x4 != null ? x4.equals(that.x4) : that.x4 == null);
 
     }
 

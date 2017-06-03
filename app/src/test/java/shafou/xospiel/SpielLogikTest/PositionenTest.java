@@ -1,4 +1,4 @@
-package shafou.xospiel;
+package shafou.xospiel.SpielLogikTest;
 
 import org.junit.Test;
 
@@ -21,7 +21,6 @@ public class PositionenTest {
 
     /**
      * Testet die Initialisierung einer Position.
-     * TODO: X und Y müssen dynamisch berechnet werden!
      */
     @Test
     public void positionInitializationTest() {

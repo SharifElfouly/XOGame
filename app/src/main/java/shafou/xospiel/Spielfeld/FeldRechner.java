@@ -1,4 +1,4 @@
-package shafou.xospiel;
+package shafou.xospiel.Spielfeld;
 
 import java.util.ArrayList;
 
@@ -6,47 +6,32 @@ import shafou.xospiel.SpielLogik.Position;
 
 /**
  *
- * Diese Klasse ist ein Generator der ein Display in beliebig viele Reihen und
- * Spalten aufteilt.
+ * Diese Klasse stellt Methoden der Berechnungen auf einem Feld dar.
  *
  * @author Sharif Elfouly
  * @version 1.0
  *
  * Änderungshistorie:
- * 1) 26.05.2017 ELF Klasse erstellt.
+ * 1) 03.06.2017 ELF Klasse erstellt.
  */
 
-public class LayoutDisplayRechteckGenerator {
+public final class FeldRechner {
 
     /**
-     * Teilt ein LayoutDisplay Objekt in gleich große Rechtecke je nach Anzahl
-     * der Spalten und Reihen.
+     * Gibt anhand der Reihen und Spalten alle Positionen des Spielfeldes zurück
      *
-     * Für den Aufbau eines LayoutDisplayRechtecks siehe
-     * {@link DisplayRechtecke}.
-     *
-     * @param layoutDisplay LayoutDisplayObjekt
-     * @param spalten Anzahl der Spalten
-     * @param reihen Anzahl der Reihen
-     * @return Eine Liste von DisplayRechtecke Objekten
+     * @param reihen Anzahl der Reihen auf dem Spielfeld
+     * @param spalten Anzahl der Spalten auf dem Spielfeld
+     * @return Liste mit Positionen auf dem Spielfeld
      */
-    public static ArrayList<DisplayRechtecke> teileDisplayInRechtecke
-            (LayoutDisplay layoutDisplay, int spalten, int reihen) {
+    public static ArrayList<Position> positionenBerechnen(float breite, float hoehe, int spalten, int reihen) {
 
         /** Spalten und Reihen müssen positiv sein */
-        if(spalten < 0 || reihen < 0) {
+        if(spalten <= 0 || reihen <= 0) {
 
             throw new IllegalArgumentException("Spalten und Reihen müssen " +
                     "positiv sein!");
         }
-
-        /** Liste von DisplayRechtecke Objekten */
-        ArrayList<DisplayRechtecke> layoutDisplayQuadrate
-                = new ArrayList<>();
-
-        /** Breite und Höhe des übergebene LayoutDisplay Objektes */
-        float breite = layoutDisplay.getBreite();
-        float hoehe = layoutDisplay.getHoehe();
 
         /** Liste mit den errechneten Positionen */
         ArrayList<Position> positionen = new ArrayList<>();
@@ -61,6 +46,26 @@ public class LayoutDisplayRechteckGenerator {
                 positionen.add(position);
             }
         }
+
+        return positionen;
+    }
+
+    /**
+     * Gibt anhand der Anzahl von Spalten und Reihen DisplayRechteck Objekte
+     * zurück.
+     *
+     * @param spalten Anzahl der Spalten des Spielfeldes
+     * @param reihen Anzahl der Zeilen des Spielfeldes
+     * @return Liste von DisplayRechteck Objekten
+     */
+    public static ArrayList<DisplayRechtecke> displayRechteckeBerechnen(float breite, float hoehe, int spalten, int reihen) {
+
+        /** Gibt die Positionen des Spielfeldes zurück */
+        ArrayList<Position> positionen = positionenBerechnen(breite, hoehe, spalten, reihen);
+
+        /** Liste von DisplayRechtecke Objekten */
+        ArrayList<DisplayRechtecke> displayRechtecke
+                = new ArrayList<>();
 
         /** Falls eine neue Reihe bearbeitet wird muss dieses separat berechnet werden */
         int neueReihe = 0;
@@ -82,9 +87,9 @@ public class LayoutDisplayRechteckGenerator {
                 neueReihe++;
             }
 
-            layoutDisplayQuadrate.add(lDQ);
+            displayRechtecke.add(lDQ);
         }
 
-        return layoutDisplayQuadrate;
+        return displayRechtecke;
     }
 }

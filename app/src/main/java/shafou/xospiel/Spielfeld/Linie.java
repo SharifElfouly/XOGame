@@ -1,4 +1,4 @@
-package shafou.xospiel;
+package shafou.xospiel.Spielfeld;
 
 import shafou.xospiel.SpielLogik.Position;
 
