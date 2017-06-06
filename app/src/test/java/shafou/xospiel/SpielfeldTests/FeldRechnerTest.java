@@ -5,7 +5,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 
 import shafou.xospiel.SpielLogik.Position;
-import shafou.xospiel.Spielfeld.DisplayRechtecke;
+import shafou.xospiel.Spielfeld.Feld;
 import shafou.xospiel.Spielfeld.FeldRechner;
 
 import static org.junit.Assert.assertEquals;
@@ -120,73 +120,73 @@ public class FeldRechnerTest {
     @Test
     public void DisplayRechteckeBerechnen_3x3_Berechnet() {
 
-        DisplayRechtecke lDQ1 = new DisplayRechtecke(
+        Feld lDQ1 = new Feld(
                 new Position(0,0),
                 new Position(40,0),
                 new Position(40,40),
-                new Position(0,40)
-        );
+                new Position(0,40),
+                1);
 
-        DisplayRechtecke lDQ2 = new DisplayRechtecke(
+        Feld lDQ2 = new Feld(
                 new Position(40,0),
                 new Position(80,0),
                 new Position(80,40),
-                new Position(40,40)
-        );
+                new Position(40,40),
+                2);
 
-        DisplayRechtecke lDQ3 = new DisplayRechtecke(
+        Feld lDQ3 = new Feld(
                 new Position(80,0),
                 new Position(120,0),
                 new Position(120,40),
-                new Position(80,40)
-        );
+                new Position(80,40),
+                3);
 
-        DisplayRechtecke lDQ4 = new DisplayRechtecke(
+        Feld lDQ4 = new Feld(
                 new Position(0,40),
                 new Position(40,40),
                 new Position(40,80),
-                new Position(0,80)
-        );
+                new Position(0,80),
+                4);
 
-        DisplayRechtecke lDQ5 = new DisplayRechtecke(
+        Feld lDQ5 = new Feld(
                 new Position(40,40),
                 new Position(80,40),
                 new Position(80,80),
-                new Position(40,80)
-        );
+                new Position(40,80),
+                5);
 
-        DisplayRechtecke lDQ6 = new DisplayRechtecke(
+        Feld lDQ6 = new Feld(
                 new Position(80,40),
                 new Position(120,40),
                 new Position(120,80),
-                new Position(80,80)
-        );
+                new Position(80,80),
+                6);
 
-        DisplayRechtecke lDQ7 = new DisplayRechtecke(
+        Feld lDQ7 = new Feld(
                 new Position(0,80),
                 new Position(40,80),
                 new Position(40,120),
-                new Position(0,120)
-        );
+                new Position(0,120),
+                7);
 
-        DisplayRechtecke lDQ8 = new DisplayRechtecke(
+        Feld lDQ8 = new Feld(
                 new Position(40,80),
                 new Position(80,80),
                 new Position(80,120),
-                new Position(40,120)
-        );
+                new Position(40,120),
+                8);
 
-        DisplayRechtecke lDQ9 = new DisplayRechtecke(
+        Feld lDQ9 = new Feld(
                 new Position(80,80),
                 new Position(120,80),
                 new Position(120,120),
-                new Position(80,120)
-        );
+                new Position(80,120),
+                9);
 
-        ArrayList<DisplayRechtecke> generierteLayoutDisplayQuadrate
+        ArrayList<Feld> generierteLayoutDisplayQuadrate
                 = FeldRechner.displayRechteckeBerechnen(120, 120, 3, 3);
 
-        ArrayList<DisplayRechtecke> testLayoutDisplayListe = new ArrayList<>();
+        ArrayList<Feld> testLayoutDisplayListe = new ArrayList<>();
 
         testLayoutDisplayListe.add(lDQ1);
         testLayoutDisplayListe.add(lDQ2);
@@ -210,73 +210,73 @@ public class FeldRechnerTest {
         /** Y Display Größe in Pixel */
         final float Y_LAYOUT_GROESSE = 1280;
 
-        DisplayRechtecke lDQ1 = new DisplayRechtecke(
+        Feld lDQ1 = new Feld(
                 new Position(0,0),
                 new Position(1f/3f * X_LAYOUT_GROESSE, 0),
                 new Position(1f/3f * X_LAYOUT_GROESSE, 1f/3f * Y_LAYOUT_GROESSE),
-                new Position(0, 1f/3f * Y_LAYOUT_GROESSE)
-        );
+                new Position(0, 1f/3f * Y_LAYOUT_GROESSE),
+                1);
 
-        DisplayRechtecke lDQ2 = new DisplayRechtecke(
+        Feld lDQ2 = new Feld(
                 new Position(1f/3f * X_LAYOUT_GROESSE, 0),
                 new Position(2f/3f * X_LAYOUT_GROESSE, 0),
                 new Position(2f/3f * X_LAYOUT_GROESSE, 1f/3f * Y_LAYOUT_GROESSE),
-                new Position(1f/3f * X_LAYOUT_GROESSE, 1f/3f * Y_LAYOUT_GROESSE)
-        );
+                new Position(1f/3f * X_LAYOUT_GROESSE, 1f/3f * Y_LAYOUT_GROESSE),
+                2);
 
-        DisplayRechtecke lDQ3 = new DisplayRechtecke(
+        Feld lDQ3 = new Feld(
                 new Position(2f/3f * X_LAYOUT_GROESSE, 0),
                 new Position(X_LAYOUT_GROESSE, 0),
                 new Position(X_LAYOUT_GROESSE, 1f/3f * Y_LAYOUT_GROESSE),
-                new Position(2f/3f * X_LAYOUT_GROESSE, 1f/3f * Y_LAYOUT_GROESSE)
-        );
+                new Position(2f/3f * X_LAYOUT_GROESSE, 1f/3f * Y_LAYOUT_GROESSE),
+                3);
 
-        DisplayRechtecke lDQ4 = new DisplayRechtecke(
+        Feld lDQ4 = new Feld(
                 new Position(0, 1f/3f * Y_LAYOUT_GROESSE),
                 new Position(1f/3f * X_LAYOUT_GROESSE, 1f/3f * Y_LAYOUT_GROESSE),
                 new Position(1f/3f * X_LAYOUT_GROESSE, 2f/3f * Y_LAYOUT_GROESSE),
-                new Position(0, 2f/3f * Y_LAYOUT_GROESSE)
-        );
+                new Position(0, 2f/3f * Y_LAYOUT_GROESSE),
+                4);
 
-        DisplayRechtecke lDQ5 = new DisplayRechtecke(
+        Feld lDQ5 = new Feld(
                 new Position(1f/3f * X_LAYOUT_GROESSE, 1f/3f * Y_LAYOUT_GROESSE),
                 new Position(2f/3f * X_LAYOUT_GROESSE, 1f/3f * Y_LAYOUT_GROESSE),
                 new Position(2f/3f * X_LAYOUT_GROESSE, 2f/3f * Y_LAYOUT_GROESSE),
-                new Position(1f/3f * X_LAYOUT_GROESSE, 2f/3f * Y_LAYOUT_GROESSE)
-        );
+                new Position(1f/3f * X_LAYOUT_GROESSE, 2f/3f * Y_LAYOUT_GROESSE),
+                5);
 
-        DisplayRechtecke lDQ6 = new DisplayRechtecke(
+        Feld lDQ6 = new Feld(
                 new Position(2f/3f * X_LAYOUT_GROESSE, 1f/3f * Y_LAYOUT_GROESSE),
                 new Position(X_LAYOUT_GROESSE, 1f/3f * Y_LAYOUT_GROESSE),
                 new Position(X_LAYOUT_GROESSE, 2f/3f * Y_LAYOUT_GROESSE),
-                new Position(2f/3f * X_LAYOUT_GROESSE, 2f/3f * Y_LAYOUT_GROESSE)
-        );
+                new Position(2f/3f * X_LAYOUT_GROESSE, 2f/3f * Y_LAYOUT_GROESSE),
+                6);
 
-        DisplayRechtecke lDQ7 = new DisplayRechtecke(
+        Feld lDQ7 = new Feld(
                 new Position(0, 2f/3f * Y_LAYOUT_GROESSE),
                 new Position(1f/3f * X_LAYOUT_GROESSE, 2f/3f * Y_LAYOUT_GROESSE),
                 new Position(1f/3f * X_LAYOUT_GROESSE, Y_LAYOUT_GROESSE),
-                new Position(0, Y_LAYOUT_GROESSE)
-        );
+                new Position(0, Y_LAYOUT_GROESSE),
+                7);
 
-        DisplayRechtecke lDQ8 = new DisplayRechtecke(
+        Feld lDQ8 = new Feld(
                 new Position(1f/3f * X_LAYOUT_GROESSE, 2f/3f * Y_LAYOUT_GROESSE),
                 new Position(2f/3f * X_LAYOUT_GROESSE, 2f/3f * Y_LAYOUT_GROESSE),
                 new Position(2f/3f * X_LAYOUT_GROESSE, Y_LAYOUT_GROESSE),
-                new Position(1f/3f * X_LAYOUT_GROESSE, Y_LAYOUT_GROESSE)
-        );
+                new Position(1f/3f * X_LAYOUT_GROESSE, Y_LAYOUT_GROESSE),
+                8);
 
-        DisplayRechtecke lDQ9 = new DisplayRechtecke(
+        Feld lDQ9 = new Feld(
                 new Position(2f/3f * X_LAYOUT_GROESSE, 2f/3f * Y_LAYOUT_GROESSE),
                 new Position(X_LAYOUT_GROESSE, 2f/3f * Y_LAYOUT_GROESSE),
                 new Position(X_LAYOUT_GROESSE, Y_LAYOUT_GROESSE),
-                new Position(2f/3f * X_LAYOUT_GROESSE, Y_LAYOUT_GROESSE)
-        );
+                new Position(2f/3f * X_LAYOUT_GROESSE, Y_LAYOUT_GROESSE),
+                9);
 
-        ArrayList<DisplayRechtecke> generierteLayoutDisplayQuadrate
+        ArrayList<Feld> generierteLayoutDisplayQuadrate
                 = FeldRechner.displayRechteckeBerechnen(X_LAYOUT_GROESSE, Y_LAYOUT_GROESSE, 3, 3);
 
-        ArrayList<DisplayRechtecke> testLayoutDisplayListe = new ArrayList<>();
+        ArrayList<Feld> testLayoutDisplayListe = new ArrayList<>();
 
         testLayoutDisplayListe.add(lDQ1);
         testLayoutDisplayListe.add(lDQ2);
@@ -304,18 +304,18 @@ public class FeldRechnerTest {
     @Test
     public void DisplayRechteckeBerechnen_1x1_Berechnet() {
 
-        DisplayRechtecke lDQ1 = new DisplayRechtecke(
+        Feld lDQ1 = new Feld(
                 new Position(0,0),
                 new Position(100,0),
                 new Position(100, 100),
-                new Position(0, 100)
-        );
+                new Position(0, 100),
+                1);
 
-        ArrayList<DisplayRechtecke> testListe = new ArrayList<>();
+        ArrayList<Feld> testListe = new ArrayList<>();
 
         testListe.add(lDQ1);
 
-        ArrayList<DisplayRechtecke> generierteQuadrate
+        ArrayList<Feld> generierteQuadrate
                 = FeldRechner.displayRechteckeBerechnen(100, 100, 1, 1);
 
         assertEquals(testListe, generierteQuadrate);
@@ -324,26 +324,26 @@ public class FeldRechnerTest {
     @Test
     public void DisplayRechteckeBerechnen_2x1_Berechnet() {
 
-        DisplayRechtecke lDQ1 = new DisplayRechtecke(
+        Feld lDQ1 = new Feld(
                 new Position(0,0),
                 new Position(50,0),
                 new Position(50, 100),
-                new Position(0, 100)
-        );
+                new Position(0, 100),
+                1);
 
-        DisplayRechtecke lDQ2 = new DisplayRechtecke(
+        Feld lDQ2 = new Feld(
                 new Position(50,0),
                 new Position(100,0),
                 new Position(100, 100),
-                new Position(50, 100)
-        );
+                new Position(50, 100),
+                2);
 
-        ArrayList<DisplayRechtecke> testListe = new ArrayList<>();
+        ArrayList<Feld> testListe = new ArrayList<>();
 
         testListe.add(lDQ1);
         testListe.add(lDQ2);
 
-        ArrayList<DisplayRechtecke> generierteQuadrate
+        ArrayList<Feld> generierteQuadrate
                 = FeldRechner.displayRechteckeBerechnen(100, 100, 2, 1);
 
         assertEquals(testListe.get(0), generierteQuadrate.get(0));
@@ -355,34 +355,34 @@ public class FeldRechnerTest {
     @Test
     public void DisplayRechteckeBerechnen_1x3_Berechnet() {
 
-        DisplayRechtecke lDQ1 = new DisplayRechtecke(
+        Feld lDQ1 = new Feld(
                 new Position(0, 0),
                 new Position(120, 0),
                 new Position(120, 40),
-                new Position(0, 40)
-        );
+                new Position(0, 40),
+                1);
 
-        DisplayRechtecke lDQ2 = new DisplayRechtecke(
+        Feld lDQ2 = new Feld(
                 new Position(0, 40),
                 new Position(120, 40),
                 new Position(120, 80),
-                new Position(0, 80)
-        );
+                new Position(0, 80),
+                2);
 
-        DisplayRechtecke lDQ3 = new DisplayRechtecke(
+        Feld lDQ3 = new Feld(
                 new Position(0, 80),
                 new Position(120, 80),
                 new Position(120, 120),
-                new Position(0, 120)
-        );
+                new Position(0, 120),
+                3);
 
-        ArrayList<DisplayRechtecke> testListe = new ArrayList<>();
+        ArrayList<Feld> testListe = new ArrayList<>();
 
         testListe.add(lDQ1);
         testListe.add(lDQ2);
         testListe.add(lDQ3);
 
-        ArrayList<DisplayRechtecke> generierteQuadrate
+        ArrayList<Feld> generierteQuadrate
                 = FeldRechner.displayRechteckeBerechnen(120, 120, 1, 3);
 
         assertEquals(testListe.get(0), generierteQuadrate.get(0));
@@ -394,34 +394,34 @@ public class FeldRechnerTest {
     @Test
     public void DisplayRechteckeBerechnen_3x1_Berechnet() {
 
-        DisplayRechtecke lDQ1 = new DisplayRechtecke(
+        Feld lDQ1 = new Feld(
                 new Position(0, 0),
                 new Position(40, 0),
                 new Position(40, 120),
-                new Position(0, 120)
-        );
+                new Position(0, 120),
+                1);
 
-        DisplayRechtecke lDQ2 = new DisplayRechtecke(
+        Feld lDQ2 = new Feld(
                 new Position(40, 0),
                 new Position(80, 0),
                 new Position(80, 120),
-                new Position(40, 120)
-        );
+                new Position(40, 120),
+                2);
 
-        DisplayRechtecke lDQ3 = new DisplayRechtecke(
+        Feld lDQ3 = new Feld(
                 new Position(80, 0),
                 new Position(120, 0),
                 new Position(120, 120),
-                new Position(80, 120)
-        );
+                new Position(80, 120),
+                3);
 
-        ArrayList<DisplayRechtecke> testListe = new ArrayList<>();
+        ArrayList<Feld> testListe = new ArrayList<>();
 
         testListe.add(lDQ1);
         testListe.add(lDQ2);
         testListe.add(lDQ3);
 
-        ArrayList<DisplayRechtecke> generierteQuadrate
+        ArrayList<Feld> generierteQuadrate
                 = FeldRechner.displayRechteckeBerechnen(120, 120, 3, 1);
 
         assertEquals(testListe, generierteQuadrate);
@@ -432,4 +432,6 @@ public class FeldRechnerTest {
 
         FeldRechner.displayRechteckeBerechnen(120, 120, -3, 3);
     }
+
+    // TODO: Die Indexierung der Felder testen.
 }

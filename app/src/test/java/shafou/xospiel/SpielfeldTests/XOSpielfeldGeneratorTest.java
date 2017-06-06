@@ -26,7 +26,7 @@ public class XOSpielfeldGeneratorTest {
     @Test(expected = IllegalArgumentException.class)
     public void SpielfeldGeneratorInitialisierung_NegativerParameter_Exception() {
 
-        new XOSpielfeldGenerator(-100, 0);
+        new XOSpielfeldGenerator(-100, 0, 3, 3);
     }
 
     @Test
@@ -37,7 +37,7 @@ public class XOSpielfeldGeneratorTest {
         Linie linie3 = new Linie(new Position(0, 40), new Position(120, 40));
         Linie linie4 = new Linie(new Position(0, 80), new Position(120, 80));
 
-        XOSpielfeldGenerator sG = new XOSpielfeldGenerator(120, 120);
+        XOSpielfeldGenerator sG = new XOSpielfeldGenerator(120, 120, 3, 3);
 
         ArrayList<Linie> xOFeldLinienTest = new ArrayList<>();
         xOFeldLinienTest.add(linie1);
@@ -45,7 +45,7 @@ public class XOSpielfeldGeneratorTest {
         xOFeldLinienTest.add(linie3);
         xOFeldLinienTest.add(linie4);
 
-        ArrayList<Linie> xOFeldLinienGeneriert = sG.feldlinienBerechnen(3, 3);
+        ArrayList<Linie> xOFeldLinienGeneriert = sG.feldlinienBerechnen();
 
         assertEquals(xOFeldLinienTest, xOFeldLinienGeneriert);
     }
@@ -60,7 +60,7 @@ public class XOSpielfeldGeneratorTest {
         Linie linie5 = new Linie(new Position(0, 50), new Position(100, 50));
         Linie linie6 = new Linie(new Position(0, 75), new Position(100, 75));
 
-        XOSpielfeldGenerator sG = new XOSpielfeldGenerator(100, 100);
+        XOSpielfeldGenerator sG = new XOSpielfeldGenerator(100, 100, 4, 4);
 
         ArrayList<Linie> xOFeldLinienTest = new ArrayList<>();
         xOFeldLinienTest.add(linie1);
@@ -70,7 +70,7 @@ public class XOSpielfeldGeneratorTest {
         xOFeldLinienTest.add(linie5);
         xOFeldLinienTest.add(linie6);
 
-        ArrayList<Linie> xOFeldLinienGeneriert = sG.feldlinienBerechnen(4, 4);
+        ArrayList<Linie> xOFeldLinienGeneriert = sG.feldlinienBerechnen();
 
         assertEquals(xOFeldLinienTest, xOFeldLinienGeneriert);
     }
@@ -78,28 +78,28 @@ public class XOSpielfeldGeneratorTest {
     @Test(expected = IllegalArgumentException.class)
     public void XOFeldlinienBerechnen_2x3_Exception(){
 
-        XOSpielfeldGenerator sG = new XOSpielfeldGenerator(120, 120);
-        sG.feldlinienBerechnen(2, 3);
+        XOSpielfeldGenerator sG = new XOSpielfeldGenerator(120, 120, 2, 3);
+        sG.feldlinienBerechnen();
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void ProzentVonLinieAbziehen_NegativerParameter_Exception() {
 
-        XOSpielfeldGenerator sG = new XOSpielfeldGenerator(100, 100);
-        sG.feldLinienBerechnen(3, 3, -10);
+        XOSpielfeldGenerator sG = new XOSpielfeldGenerator(100, 100, 3, 3);
+        sG.feldLinienBerechnen(-10);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void ProzentVonLinieAbziehen_0_Parameter_Exception() {
 
-        XOSpielfeldGenerator sG = new XOSpielfeldGenerator(100, 100);
-        sG.feldLinienBerechnen(0, 3, 3);
+        XOSpielfeldGenerator sG = new XOSpielfeldGenerator(100, 100, 3, 3);
+        sG.feldLinienBerechnen(0);
     }
 
     @Test
     public void ProzentVonLinieAbziehen_10_Prozent_Berechnet() {
 
-        XOSpielfeldGenerator sG = new XOSpielfeldGenerator(120, 120);
+        XOSpielfeldGenerator sG = new XOSpielfeldGenerator(120, 120, 3, 3);
 
         Linie linie1 = new Linie(new Position(40, 12), new Position(40, 108));
         Linie linie2 = new Linie(new Position(80, 12), new Position(80, 108));
@@ -112,7 +112,7 @@ public class XOSpielfeldGeneratorTest {
         xOFeldLinienTest.add(linie3);
         xOFeldLinienTest.add(linie4);
 
-        ArrayList<Linie> xOFeldLinienGeneriert = sG.feldLinienBerechnen(3, 3, 10);
+        ArrayList<Linie> xOFeldLinienGeneriert = sG.feldLinienBerechnen(10);
         assertEquals(xOFeldLinienTest, xOFeldLinienGeneriert);
     }
 
@@ -172,5 +172,16 @@ public class XOSpielfeldGeneratorTest {
 
         double berechneterBetrag = XOSpielfeldGenerator.prozentBerechnen(33, 222);
         assertEquals(73.26, berechneterBetrag, 0.1);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void XOSpielfeldGeneratorInitialisieren_UngleicheSpaltenReihen_Exception() {
+
+        new XOSpielfeldGenerator(120, 120, 3, 4);
+    }
+    @Test(expected = IllegalArgumentException.class)
+    public void XOSpielfeldGeneratorInitialisieren_SpaltenReihenKleiner3_Exception() {
+
+        new XOSpielfeldGenerator(120, 120, 2, 4);
     }
 }

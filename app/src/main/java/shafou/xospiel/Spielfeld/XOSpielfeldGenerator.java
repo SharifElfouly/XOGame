@@ -16,7 +16,7 @@ import shafou.xospiel.SpielLogik.Position;
  * 1) 01.06.2017 ELF Klasse erstellt.
  */
 
-public final class XOSpielfeldGenerator {
+public final class XOSpielfeldGenerator implements SpielfeldGenerator{
 
     /** Breite des Spielfeldes */
     private final float breite;
@@ -24,20 +24,39 @@ public final class XOSpielfeldGenerator {
     /** Höhe des Spielfeldes */
     private final float hoehe;
 
+    /** Anzahl der Spalten des Spielfeldes */
+    private final int spalten;
+
+    /** Anzahl der Reihen des Spielfeldes */
+    private final int reihen;
+
+    /** Beinhaltet die Felder des Spielfeldes */
+    private final ArrayList<Feld> spielfeldFelder;
+
     /**
      * Ein Spielfeld setzt sich aus der Höhe und der Breite zusammen
-     *
      * @param breite Breite des Spielfeldes
      * @param hoehe Hoehe des Spielfeldes
+     * @param spalten Anzahl der Spalten des Spielfeldes
+     * @param reihen Anzahl der Reihen des Spielfeldes
      */
-    public XOSpielfeldGenerator(float breite, float hoehe) {
+    public XOSpielfeldGenerator(float breite, float hoehe, int spalten, int reihen) {
 
-        if(breite <= 0 || hoehe <= 0) {
+        if(breite < 3 || hoehe < 3) {
             throw new IllegalArgumentException("Breite und Höhe müssen größer als 0 sein.");
+        }
+
+        if(spalten!= reihen) {
+
+            throw new IllegalArgumentException("Ein X/O Feld muss die gleiche Anzahl von Reihen und Spalten haben.");
         }
 
         this.breite = breite;
         this.hoehe = hoehe;
+        this.spalten = spalten;
+        this.reihen = reihen;
+
+        spielfeldFelder = FeldRechner.displayRechteckeBerechnen(this.breite, this.hoehe, this.spalten, this.reihen);
     }
 
     /**
@@ -45,11 +64,9 @@ public final class XOSpielfeldGenerator {
      *
      * Gibt eine Liste von Linien zurück.
      *
-     * @param spalten Anzahl der Spalten des Spielfeldes
-     * @param reihen Anzahl der Reihen des Spielfeldes
      * @return Eine Liste von Linien
      */
-    public ArrayList<Linie> feldlinienBerechnen(int spalten, int reihen) {
+    public ArrayList<Linie> feldlinienBerechnen() {
 
         /** Spielfeld muss mindestens 3x3 groß sein */
         if(spalten < 3 || reihen < 3) {
@@ -139,7 +156,7 @@ public final class XOSpielfeldGenerator {
 
     /**
      * Für die Implementierung der Linien Berechnung { @see
-     * {@link XOSpielfeldGenerator#feldlinienBerechnen(int, int)}}
+     * {@link XOSpielfeldGenerator#feldlinienBerechnen()}}
      *
      * Zusätslich können die generierten Linien mit einem Prozentsatz angepasst
      * werden.
@@ -147,12 +164,10 @@ public final class XOSpielfeldGenerator {
      * Beispiel: Bei der Angabe von 10% wird eine Linie auf beiden Seiten um 10%
      * gekürtzt.
      *
-     * @param spalten Anzahl der Spalten des Spielfeldes
-     * @param reihen Anzahl der Reihen des Spielfeldes
      * @param prozent Prozent mit dem die gezeichneten Linien angepasst werden
      * @return Eine Liste von angepassten Linien, die ein X O Spielfeld darstellen
      */
-    public ArrayList<Linie> feldLinienBerechnen(int spalten, int reihen, int prozent) {
+    public ArrayList<Linie> feldLinienBerechnen(int prozent) {
 
         if(prozent <= 0) {
 
@@ -160,7 +175,7 @@ public final class XOSpielfeldGenerator {
         }
 
         /** Nicht angepasste Linien */
-        ArrayList<Linie> xOFeldLinien = feldlinienBerechnen(spalten, reihen);
+        ArrayList<Linie> xOFeldLinien = feldlinienBerechnen();
 
         /** Liste von angepassten Linien */
         ArrayList<Linie> xOFeldLinienAngepasst = new ArrayList<>();
@@ -223,5 +238,19 @@ public final class XOSpielfeldGenerator {
         double prozentQuotient = prozent / 100;
 
         return betrag * prozentQuotient;
+    }
+
+
+    @Override
+    public ArrayList<Feld> getSpielfeldFelder() {
+        return this.spielfeldFelder;
+    }
+
+    public float getBreite() {
+        return breite;
+    }
+
+    public float getHoehe() {
+        return hoehe;
     }
 }

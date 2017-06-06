@@ -6,7 +6,7 @@ import shafou.xospiel.SpielLogik.Position;
 
 /**
  *
- * Diese Klasse stellt Methoden der Berechnungen auf einem Feld dar.
+ * Diese Klasse stellt Methoden der Berechnungen des Spielfeldes dar.
  *
  * @author Sharif Elfouly
  * @version 1.0
@@ -51,20 +51,20 @@ public final class FeldRechner {
     }
 
     /**
-     * Gibt anhand der Anzahl von Spalten und Reihen DisplayRechteck Objekte
+     * Gibt anhand der Anzahl von Spalten und Reihen Feld Objekte
      * zurück.
      *
      * @param spalten Anzahl der Spalten des Spielfeldes
      * @param reihen Anzahl der Zeilen des Spielfeldes
-     * @return Liste von DisplayRechteck Objekten
+     * @return Liste von Feld Objekten
      */
-    public static ArrayList<DisplayRechtecke> displayRechteckeBerechnen(float breite, float hoehe, int spalten, int reihen) {
+    public static ArrayList<Feld> displayRechteckeBerechnen(float breite, float hoehe, int spalten, int reihen) {
 
         /** Gibt die Positionen des Spielfeldes zurück */
         ArrayList<Position> positionen = positionenBerechnen(breite, hoehe, spalten, reihen);
 
-        /** Liste von DisplayRechtecke Objekten */
-        ArrayList<DisplayRechtecke> displayRechtecke
+        /** Liste von Feld Objekten */
+        ArrayList<Feld> feld
                 = new ArrayList<>();
 
         /** Falls eine neue Reihe bearbeitet wird muss dieses separat berechnet werden */
@@ -74,12 +74,12 @@ public final class FeldRechner {
         for(int i = 1; i <= (spalten * reihen); i++) {
 
             /** Initialisierung der LayoutDisplayRechtecke */
-            DisplayRechtecke lDQ = new DisplayRechtecke(
+            Feld lDQ = new Feld(
                     positionen.get(i + neueReihe - 1),
                     positionen.get(i + neueReihe),
                     positionen.get(i + neueReihe + spalten + 1),
-                    positionen.get(i + neueReihe + spalten)
-            );
+                    positionen.get(i + neueReihe + spalten),
+                    i);
 
             /** Falls <code>true</code> wurde eine neue Reihe begonnen */
             if(i % (spalten) == 0) {
@@ -87,9 +87,17 @@ public final class FeldRechner {
                 neueReihe++;
             }
 
-            displayRechtecke.add(lDQ);
+            feld.add(lDQ);
         }
 
-        return displayRechtecke;
+        return feld;
     }
+
+    /**
+     * TODO: Implementieren und testen!
+     */
+    public void getReihenIntervall() {}
+    public void getSpaltenIntervall() {}
+    public void getDiagonaleLinksIntervall() {}
+    public void getDiagonaleRechtsIntervall() {}
 }
