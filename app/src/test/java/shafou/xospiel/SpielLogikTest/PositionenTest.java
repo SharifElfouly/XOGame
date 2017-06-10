@@ -39,6 +39,7 @@ public class PositionenTest {
         } catch(IllegalArgumentException e) {
 
             assertEquals(Position.X_ILLEGAL_ARGUMENT_TEXT, e.getMessage());
+
         }
 
         try {

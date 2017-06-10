@@ -38,7 +38,10 @@ public class Feld {
     /** Position x4 */
     private final Position x4;
 
-    /** Jedes Feld auf dem Spielfeld besitzt eine eindeutige Nummer */
+    /**
+     * Jedes Feld auf dem Spielfeld besitzt eine eindeutige Nummer.
+     * Der Start des Indexes ist 1.
+     */
     private final int index;
 
     /**
@@ -73,6 +76,10 @@ public class Feld {
 
     public Position getX4() {
         return x4;
+    }
+
+    public int getIndex() {
+        return index;
     }
 
     @Override

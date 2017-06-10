@@ -92,12 +92,4 @@ public final class FeldRechner {
 
         return feld;
     }
-
-    /**
-     * TODO: Implementieren und testen!
-     */
-    public void getReihenIntervall() {}
-    public void getSpaltenIntervall() {}
-    public void getDiagonaleLinksIntervall() {}
-    public void getDiagonaleRechtsIntervall() {}
 }

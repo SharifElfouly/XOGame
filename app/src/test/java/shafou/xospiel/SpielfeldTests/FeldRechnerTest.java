@@ -433,5 +433,27 @@ public class FeldRechnerTest {
         FeldRechner.displayRechteckeBerechnen(120, 120, -3, 3);
     }
 
-    // TODO: Die Indexierung der Felder testen.
+    @Test
+    public void FelderIndexierung_3x1_Berechnet() {
+
+        ArrayList<Feld> generierteFelder
+                = FeldRechner.displayRechteckeBerechnen(120, 120, 3, 1);
+
+        for(int i = 1; i < generierteFelder.size(); i++) {
+
+            assertEquals(i, generierteFelder.get(i - 1).getIndex());
+        }
+    }
+
+    @Test
+    public void FelderIndexierung_5x5_Berechnet() {
+
+        ArrayList<Feld> generierteFelder
+                = FeldRechner.displayRechteckeBerechnen(120, 120, 5, 5);
+
+        for(int i = 1; i < generierteFelder.size(); i++) {
+
+            assertEquals(i, generierteFelder.get(i - 1).getIndex());
+        }
+    }
 }

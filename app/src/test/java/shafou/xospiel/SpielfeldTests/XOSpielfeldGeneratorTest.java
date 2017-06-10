@@ -5,6 +5,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 
 import shafou.xospiel.SpielLogik.Position;
+import shafou.xospiel.Spielfeld.Intervall;
 import shafou.xospiel.Spielfeld.Linie;
 import shafou.xospiel.Spielfeld.XOSpielfeldGenerator;
 
@@ -179,6 +180,7 @@ public class XOSpielfeldGeneratorTest {
 
         new XOSpielfeldGenerator(120, 120, 3, 4);
     }
+
     @Test(expected = IllegalArgumentException.class)
     public void XOSpielfeldGeneratorInitialisieren_SpaltenReihenKleiner3_Exception() {
 

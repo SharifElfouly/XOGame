@@ -240,7 +240,6 @@ public final class XOSpielfeldGenerator implements SpielfeldGenerator{
         return betrag * prozentQuotient;
     }
 
-
     @Override
     public ArrayList<Feld> getSpielfeldFelder() {
         return this.spielfeldFelder;
