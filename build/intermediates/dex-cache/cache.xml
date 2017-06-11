@@ -12,15 +12,6 @@
     </item>
     <item
         is-multidex="true"
-        jar="/Users/Shafou/Desktop/XOSpiel/app/build/intermediates/exploded-aar/com.android.support/support-compat/25.0.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="51eba4a4dd73044f90a9d58dd7ca34adbebfcf4e">
-        <dex dex="/Users/Shafou/Desktop/XOSpiel/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-compat-25.0.1_257f82ce191757fe3ef9ef208e56ccd811a167e1/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="/Users/Shafou/Desktop/XOGame/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/25.0.1/jars/classes.jar"
         jumboMode="true"
         optimize="true"
@@ -34,7 +25,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.1"
-        sha1="f7c4258a8410997642b25aaf3c34a4eedb3fea62">
+        sha1="eeceabae00a4af31fca191a6b077aa039c32b371">
         <dex dex="/Users/Shafou/Desktop/XOGame/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_5749e246bc6689a371cdf11b65b1f4b4d4e0f0f3/classes.dex" />
     </item>
     <item
@@ -48,39 +39,12 @@
     </item>
     <item
         is-multidex="true"
-        jar="/Users/Shafou/Desktop/XOSpiel/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/25.0.1/jars/libs/internal_impl-25.0.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="e5343c9d19cb19ff55f6b268c7f3fe8c9d224f6f">
-        <dex dex="/Users/Shafou/Desktop/XOSpiel/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-25.0.1_fff852e9363402fd24f37d2335fbf574cff008e0/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/Shafou/Desktop/XOSpiel/app/build/intermediates/exploded-aar/com.android.support/support-compat/25.0.1/jars/libs/internal_impl-25.0.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="3af8cc51ef7088e56f132780da8c0bd858b6a6ad">
-        <dex dex="/Users/Shafou/Desktop/XOSpiel/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-25.0.1_984da7a8560badab2cb4ab1b38807d7c77cb8f54/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="/Users/Shafou/Desktop/XOGame/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.0.1/jars/classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.1"
         sha1="f7ac4b327fdb9e2ee386f5adc46164927658de4b">
         <dex dex="/Users/Shafou/Desktop/XOGame/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-appcompat-v7-25.0.1_16d79230c41266172e5cc5a6e2908cd72060283a/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/Shafou/Desktop/XOGame/app/build/intermediates/exploded-aar/com.android.support/support-compat/25.0.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="51eba4a4dd73044f90a9d58dd7ca34adbebfcf4e">
-        <dex dex="/Users/Shafou/Desktop/XOGame/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-compat-25.0.1_1ff6fbb74ae579165b6477e694476fbe30ac500a/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -93,21 +57,12 @@
     </item>
     <item
         is-multidex="true"
-        jar="/Users/Shafou/Desktop/XOSpiel/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/25.0.1/jars/libs/internal_impl-25.0.1.jar"
+        jar="/Users/Shafou/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/25.1.0/support-annotations-25.1.0.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.1"
-        sha1="c5b7145fb34779b6639147b8f2f8dd77c0db771b">
-        <dex dex="/Users/Shafou/Desktop/XOSpiel/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-25.0.1_17cefd7af56231d9bbd8f84ecf9717b30b188663/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/Shafou/Desktop/XOSpiel/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.0.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="f7ac4b327fdb9e2ee386f5adc46164927658de4b">
-        <dex dex="/Users/Shafou/Desktop/XOSpiel/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-appcompat-v7-25.0.1_1056272225412c61d7721f6e823495b331947c57/classes.dex" />
+        sha1="64cb6b229a8bdfd907bc8dd46839a0053e4c018d">
+        <dex dex="/Users/Shafou/Desktop/XOGame/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-25.1.0_2cdfbf561944f05e9c057e06465ebf4ba209fd62/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -138,15 +93,6 @@
     </item>
     <item
         is-multidex="true"
-        jar="/Users/Shafou/Desktop/XOSpiel/app/build/intermediates/exploded-aar/com.android.support/support-v4/25.0.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
-        <dex dex="/Users/Shafou/Desktop/XOSpiel/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-25.0.1_3376d5e1ea09e42907cb3d3364c07568f81ae158/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="/Users/Shafou/Desktop/XOGame/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/25.0.1/jars/classes.jar"
         jumboMode="true"
         optimize="true"
@@ -156,66 +102,21 @@
     </item>
     <item
         is-multidex="true"
-        jar="/Users/Shafou/Desktop/XOSpiel/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jar="/Users/Shafou/.gradle/caches/modules-2/files-2.1/com.jakewharton/butterknife-annotations/8.6.0/48efa6f14074e1a6b16e02ac05eba3fc5c7c7ec8/butterknife-annotations-8.6.0.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.1"
-        sha1="b492a09dcb054f401b9aa7a103740116088b648c">
-        <dex dex="/Users/Shafou/Desktop/XOSpiel/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_1d8ea9901a00a965466cafd3dbd55d73e55c3f8a/classes.dex" />
+        sha1="48efa6f14074e1a6b16e02ac05eba3fc5c7c7ec8">
+        <dex dex="/Users/Shafou/Desktop/XOGame/app/build/intermediates/transforms/dex/debug/folders/1000/10/butterknife-annotations-8.6.0_3fc178bfab1990ed76f6249c2e960779e8fde0a5/classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/Users/Shafou/Desktop/XOSpiel/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jar="/Users/Shafou/Desktop/XOGame/app/build/intermediates/exploded-aar/com.android.support/support-compat/25.1.0/jars/classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.1"
-        sha1="976426e301a06dc0f690ca961d25abf7a0c9fc08">
-        <dex dex="/Users/Shafou/Desktop/XOSpiel/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_9af1b8fc1e7209f0ba2dbfa5ba41f0598f6dac85/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/Shafou/Desktop/XOSpiel/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/25.0.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="00d4c8eebf2b681073c72a26bd0849549e51c7cb">
-        <dex dex="/Users/Shafou/Desktop/XOSpiel/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-core-utils-25.0.1_09b9d31462399ab9396d58dd00af21e7ac8a1d72/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/Shafou/Desktop/XOSpiel/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/25.0.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="772bed2d992b67b9d0327f766cc95cd63031dcd3">
-        <dex dex="/Users/Shafou/Desktop/XOSpiel/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-animated-vector-drawable-25.0.1_bf81101207ea14ed5b77783732f3ebbd98221a5e/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/Shafou/Desktop/XOSpiel/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/25.0.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="6a1479afe9f1b3645e1cd9a87318976893472818">
-        <dex dex="/Users/Shafou/Desktop/XOSpiel/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-media-compat-25.0.1_29c0dd3a0a93476a95e3b74a22068c2cb2f9f584/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/Shafou/Desktop/XOGame/app/build/intermediates/exploded-aar/com.android.support/support-compat/25.0.1/jars/libs/internal_impl-25.0.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="3af8cc51ef7088e56f132780da8c0bd858b6a6ad">
-        <dex dex="/Users/Shafou/Desktop/XOGame/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-25.0.1_7b6f60b08185ff9a68d811ba3aea69647e8f8ee2/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/Shafou/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/25.0.1/support-annotations-25.0.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="a09194311f8f89c3e6db09d79f50897a889d615e">
-        <dex dex="/Users/Shafou/Desktop/XOSpiel/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-25.0.1_e715520bad66c2b8274d419f07196ff056b79224/classes.dex" />
+        sha1="ca3c7aa31e2726a400a6e552b93cb9f63c9a1e6d">
+        <dex dex="/Users/Shafou/Desktop/XOGame/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-compat-25.1.0_dad582fa10b357cd3f2c6acee5a6e51d3f03baaf/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -225,15 +126,6 @@
         revision="25.0.1"
         sha1="c5b7145fb34779b6639147b8f2f8dd77c0db771b">
         <dex dex="/Users/Shafou/Desktop/XOGame/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-25.0.1_d2e1f0c261187181c58c8c558e90de25505ebc53/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/Shafou/Desktop/XOSpiel/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/25.0.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="b24e1c688744078e1fa833ffadf696794761bbe5">
-        <dex dex="/Users/Shafou/Desktop/XOSpiel/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-vector-drawable-25.0.1_426d4741d6896876a7564ec3c8472fe6cf2b084a/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -255,48 +147,21 @@
     </item>
     <item
         is-multidex="true"
-        jar="/Users/Shafou/Desktop/XOSpiel/app/build/intermediates/exploded-aar/com.android.support/support-fragment/25.0.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="26c6eef571592c91f29e56fda0bac73321de0c92">
-        <dex dex="/Users/Shafou/Desktop/XOSpiel/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-fragment-25.0.1_53706d5c7913c8b63958fb1e2bd33d3211c356d0/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="/Users/Shafou/Desktop/XOGame/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.1"
-        sha1="bf8308cec98a838ab1c0666edd017c7c59783178">
+        sha1="99135349bc9e4ca378fafdf1f8d590223cc160a1">
         <dex dex="/Users/Shafou/Desktop/XOGame/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_e4deab38a421054ad6b2b06672b85aea96ce3504/classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/Users/Shafou/Desktop/XOSpiel/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/25.0.1/jars/classes.jar"
+        jar="/Users/Shafou/Desktop/XOGame/app/build/intermediates/exploded-aar/com.jakewharton/butterknife/8.6.0/jars/classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.1"
-        sha1="bc7e99e8d0fc279a05aa91378530f467ad62d443">
-        <dex dex="/Users/Shafou/Desktop/XOSpiel/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-core-ui-25.0.1_c1aa5a87c24ae6a04c209488ccc60b8a712fcf61/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/Shafou/Desktop/XOSpiel/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/25.0.1/jars/libs/internal_impl-25.0.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="f83b00041ecfba705603fec40363416c7de69719">
-        <dex dex="/Users/Shafou/Desktop/XOSpiel/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-25.0.1_f924cb82b3ed75ef80f9bde767220db0a1a8bb26/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/Shafou/Desktop/XOSpiel/app/build/intermediates/exploded-aar/com.android.support/support-fragment/25.0.1/jars/libs/internal_impl-25.0.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.1"
-        sha1="c0bd6ffb002a85b5e7cad29f8558d1cc59539679">
-        <dex dex="/Users/Shafou/Desktop/XOSpiel/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-25.0.1_d4a94630f7a56873b93bb22cafaff75cd75034ab/classes.dex" />
+        sha1="be587097e648eabfb7f9eca23ab03369894e2d5d">
+        <dex dex="/Users/Shafou/Desktop/XOGame/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.jakewharton-butterknife-8.6.0_2f39374cfbe73f9f85f567767430e8fd2b8061ca/classes.dex" />
     </item>
 
 </items>

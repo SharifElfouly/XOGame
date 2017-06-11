@@ -3,11 +3,13 @@ package shafou.xospiel.SpielfeldTests;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import shafou.xospiel.SpielLogik.Position;
 import shafou.xospiel.Spielfeld.Feld;
 import shafou.xospiel.Spielfeld.FeldRechner;
 
+import static com.google.common.truth.Truth.assertThat;
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -184,7 +186,7 @@ public class FeldRechnerTest {
                 9);
 
         ArrayList<Feld> generierteLayoutDisplayQuadrate
-                = FeldRechner.displayRechteckeBerechnen(120, 120, 3, 3);
+                = FeldRechner.spielfelderBerechnen(120, 120, 3, 3);
 
         ArrayList<Feld> testLayoutDisplayListe = new ArrayList<>();
 
@@ -274,7 +276,7 @@ public class FeldRechnerTest {
                 9);
 
         ArrayList<Feld> generierteLayoutDisplayQuadrate
-                = FeldRechner.displayRechteckeBerechnen(X_LAYOUT_GROESSE, Y_LAYOUT_GROESSE, 3, 3);
+                = FeldRechner.spielfelderBerechnen(X_LAYOUT_GROESSE, Y_LAYOUT_GROESSE, 3, 3);
 
         ArrayList<Feld> testLayoutDisplayListe = new ArrayList<>();
 
@@ -316,7 +318,7 @@ public class FeldRechnerTest {
         testListe.add(lDQ1);
 
         ArrayList<Feld> generierteQuadrate
-                = FeldRechner.displayRechteckeBerechnen(100, 100, 1, 1);
+                = FeldRechner.spielfelderBerechnen(100, 100, 1, 1);
 
         assertEquals(testListe, generierteQuadrate);
     }
@@ -344,7 +346,7 @@ public class FeldRechnerTest {
         testListe.add(lDQ2);
 
         ArrayList<Feld> generierteQuadrate
-                = FeldRechner.displayRechteckeBerechnen(100, 100, 2, 1);
+                = FeldRechner.spielfelderBerechnen(100, 100, 2, 1);
 
         assertEquals(testListe.get(0), generierteQuadrate.get(0));
         assertEquals(testListe.get(1), generierteQuadrate.get(1));
@@ -383,7 +385,7 @@ public class FeldRechnerTest {
         testListe.add(lDQ3);
 
         ArrayList<Feld> generierteQuadrate
-                = FeldRechner.displayRechteckeBerechnen(120, 120, 1, 3);
+                = FeldRechner.spielfelderBerechnen(120, 120, 1, 3);
 
         assertEquals(testListe.get(0), generierteQuadrate.get(0));
         assertEquals(testListe.get(1), generierteQuadrate.get(1));
@@ -422,7 +424,7 @@ public class FeldRechnerTest {
         testListe.add(lDQ3);
 
         ArrayList<Feld> generierteQuadrate
-                = FeldRechner.displayRechteckeBerechnen(120, 120, 3, 1);
+                = FeldRechner.spielfelderBerechnen(120, 120, 3, 1);
 
         assertEquals(testListe, generierteQuadrate);
     }
@@ -430,14 +432,14 @@ public class FeldRechnerTest {
     @Test(expected = IllegalArgumentException.class)
     public void DisplayRechteckeBerechnen_NegativerParameter_Exception() {
 
-        FeldRechner.displayRechteckeBerechnen(120, 120, -3, 3);
+        FeldRechner.spielfelderBerechnen(120, 120, -3, 3);
     }
 
     @Test
     public void FelderIndexierung_3x1_Berechnet() {
 
         ArrayList<Feld> generierteFelder
-                = FeldRechner.displayRechteckeBerechnen(120, 120, 3, 1);
+                = FeldRechner.spielfelderBerechnen(120, 120, 3, 1);
 
         for(int i = 1; i < generierteFelder.size(); i++) {
 
@@ -449,11 +451,73 @@ public class FeldRechnerTest {
     public void FelderIndexierung_5x5_Berechnet() {
 
         ArrayList<Feld> generierteFelder
-                = FeldRechner.displayRechteckeBerechnen(120, 120, 5, 5);
+                = FeldRechner.spielfelderBerechnen(120, 120, 5, 5);
 
         for(int i = 1; i < generierteFelder.size(); i++) {
 
             assertEquals(i, generierteFelder.get(i - 1).getIndex());
         }
+    }
+
+    @Test public void FelderPositionen_2x2_Bestimmt() {
+
+        Position position1_1 = new Position(1, 1);
+        Position position2_1 = new Position(2, 1);
+        Position position1_2 = new Position(1, 2);
+        Position position2_2 = new Position(2, 2);
+
+        List<Feld> felder;
+        felder = FeldRechner.spielfelderBerechnen(120, 120, 2, 2);
+
+        assertThat(felder.get(0).getPosition()).isEqualTo(position1_1);
+        assertThat(felder.get(1).getPosition()).isEqualTo(position2_1);
+        assertThat(felder.get(2).getPosition()).isEqualTo(position1_2);
+        assertThat(felder.get(3).getPosition()).isEqualTo(position2_2);
+    }
+
+    @Test public void FelderPositionen_2x3_Bestimmt() {
+
+        Position position1_1 = new Position(1, 1);
+        Position position2_1 = new Position(2, 1);
+        Position position1_2 = new Position(1, 2);
+        Position position2_2 = new Position(2, 2);
+        Position position1_3 = new Position(1, 3);
+        Position position3_3 = new Position(2, 3);
+
+        List<Feld> felder;
+        felder = FeldRechner.spielfelderBerechnen(120, 120, 2, 3);
+
+        assertThat(felder.get(0).getPosition()).isEqualTo(position1_1);
+        assertThat(felder.get(1).getPosition()).isEqualTo(position2_1);
+        assertThat(felder.get(2).getPosition()).isEqualTo(position1_2);
+        assertThat(felder.get(3).getPosition()).isEqualTo(position2_2);
+        assertThat(felder.get(4).getPosition()).isEqualTo(position1_3);
+        assertThat(felder.get(5).getPosition()).isEqualTo(position3_3);
+    }
+
+    @Test public void FelderPositionen_3x3_Bestimmt() {
+
+        Position position1_1 = new Position(1, 1);
+        Position position2_1 = new Position(2, 1);
+        Position position3_1 = new Position(3, 1);
+        Position position1_2 = new Position(1, 2);
+        Position position2_2 = new Position(2, 2);
+        Position position3_2 = new Position(3, 2);
+        Position position1_3 = new Position(1, 3);
+        Position position2_3 = new Position(2, 3);
+        Position position3_3 = new Position(3, 3);
+
+        List<Feld> felder;
+        felder = FeldRechner.spielfelderBerechnen(120, 120, 3, 3);
+
+        assertThat(felder.get(0).getPosition()).isEqualTo(position1_1);
+        assertThat(felder.get(1).getPosition()).isEqualTo(position2_1);
+        assertThat(felder.get(2).getPosition()).isEqualTo(position3_1);
+        assertThat(felder.get(3).getPosition()).isEqualTo(position1_2);
+        assertThat(felder.get(4).getPosition()).isEqualTo(position2_2);
+        assertThat(felder.get(5).getPosition()).isEqualTo(position3_2);
+        assertThat(felder.get(6).getPosition()).isEqualTo(position1_3);
+        assertThat(felder.get(7).getPosition()).isEqualTo(position2_3);
+        assertThat(felder.get(8).getPosition()).isEqualTo(position3_3);
     }
 }

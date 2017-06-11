@@ -9,8 +9,6 @@ package shafou.xospiel.SpielLogik;
  *
  * <p>Eine Position ist immutable.
  *
- * TODO: X und Y müssen dynamisch berechnet werden!
- *
  * @author Sharif Elfouly
  * @version 1.0
  *
@@ -25,18 +23,6 @@ public final class Position {
 
     /** Y Koordinate auf dem Spielfeld */
     private final float yPosition;
-
-    /** Maximale X Position */
-    private static final int MAX_X_POSITION = 3;
-
-    /** Maximale Y Position */
-    private static final int MAX_Y_POSITION = 3;
-
-    /** Kleinste X Position */
-    private static final int MIN_X_POSITION = 1;
-
-    /** Kleinste Y Position */
-    private static final int MIN_Y_POSITION = 1;
 
     /** Exception Text bei falscher Angabe der X Koordinate */
     public static final String X_ILLEGAL_ARGUMENT_TEXT = "X Position ist nicht"
@@ -62,33 +48,19 @@ public final class Position {
      */
     public Position(float xPosition, float yPosition) {
 
-//        if(xPosition <= MAX_X_POSITION && xPosition >= MIN_X_POSITION) {
-//
-//            this.xPosition = xPosition;
-//        } else {
-//            throw new IllegalArgumentException(X_ILLEGAL_ARGUMENT_TEXT);
-//        }
-//
-//        if(yPosition <= MAX_Y_POSITION && yPosition >= MIN_Y_POSITION) {
-//
-//            this.yPosition = yPosition;
-//        } else {
-//
-//            throw new IllegalArgumentException(Y_ILLEGAL_ARGUMENT_TEXT);
-//        }
-
         this.xPosition = xPosition;
         this.yPosition = yPosition;
     }
 
-    public float getxPosition() {
+    public float getXPosition() {
         return xPosition;
     }
 
-    public float getyPosition() {
+    public float getYPosition() {
         return yPosition;
     }
 
+    @SuppressWarnings("SimplifiableIfStatement")
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

@@ -6,7 +6,8 @@ import shafou.xospiel.SpielLogik.Position;
 
 /**
  *
- * Diese Klasse stellt Methoden der Berechnungen des Spielfeldes dar.
+ * Diese Klasse stellt Methoden zur Berechnungen der Spielfelder eines
+ * Spielfeldes dar.
  *
  * @author Sharif Elfouly
  * @version 1.0
@@ -51,14 +52,14 @@ public final class FeldRechner {
     }
 
     /**
-     * Gibt anhand der Anzahl von Spalten und Reihen Feld Objekte
+     * Gibt anhand der Anzahl von Spalten und Reihen Felder
      * zurück.
      *
      * @param spalten Anzahl der Spalten des Spielfeldes
      * @param reihen Anzahl der Zeilen des Spielfeldes
      * @return Liste von Feld Objekten
      */
-    public static ArrayList<Feld> displayRechteckeBerechnen(float breite, float hoehe, int spalten, int reihen) {
+    public static ArrayList<Feld> spielfelderBerechnen(float breite, float hoehe, int spalten, int reihen) {
 
         /** Gibt die Positionen des Spielfeldes zurück */
         ArrayList<Position> positionen = positionenBerechnen(breite, hoehe, spalten, reihen);
@@ -69,6 +70,9 @@ public final class FeldRechner {
 
         /** Falls eine neue Reihe bearbeitet wird muss dieses separat berechnet werden */
         int neueReihe = 0;
+
+        int spaltenIndex = 1;
+        int reihenIndex = 1;
 
         /** Iteration über alle Positionen */
         for(int i = 1; i <= (spalten * reihen); i++) {
@@ -86,6 +90,20 @@ public final class FeldRechner {
 
                 neueReihe++;
             }
+
+            if(spaltenIndex > spalten) {
+
+                spaltenIndex = 1;
+            }
+
+            lDQ.setPosition(new Position(spaltenIndex, reihenIndex));
+
+            if(spaltenIndex == spalten) {
+
+                reihenIndex++;
+            }
+
+            spaltenIndex++;
 
             feld.add(lDQ);
         }

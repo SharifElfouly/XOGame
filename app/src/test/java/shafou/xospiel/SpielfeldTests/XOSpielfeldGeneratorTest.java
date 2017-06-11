@@ -5,7 +5,6 @@ import org.junit.Test;
 import java.util.ArrayList;
 
 import shafou.xospiel.SpielLogik.Position;
-import shafou.xospiel.Spielfeld.Intervall;
 import shafou.xospiel.Spielfeld.Linie;
 import shafou.xospiel.Spielfeld.XOSpielfeldGenerator;
 

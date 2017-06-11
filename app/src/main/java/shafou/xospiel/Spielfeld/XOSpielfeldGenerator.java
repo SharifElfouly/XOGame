@@ -19,10 +19,10 @@ import shafou.xospiel.SpielLogik.Position;
 public final class XOSpielfeldGenerator implements SpielfeldGenerator{
 
     /** Breite des Spielfeldes */
-    private final float breite;
+    private float breite;
 
     /** Höhe des Spielfeldes */
-    private final float hoehe;
+    private float hoehe;
 
     /** Anzahl der Spalten des Spielfeldes */
     private final int spalten;
@@ -31,7 +31,7 @@ public final class XOSpielfeldGenerator implements SpielfeldGenerator{
     private final int reihen;
 
     /** Beinhaltet die Felder des Spielfeldes */
-    private final ArrayList<Feld> spielfeldFelder;
+    private ArrayList<Feld> spielfeldFelder;
 
     /**
      * Ein Spielfeld setzt sich aus der Höhe und der Breite zusammen
@@ -42,13 +42,15 @@ public final class XOSpielfeldGenerator implements SpielfeldGenerator{
      */
     public XOSpielfeldGenerator(float breite, float hoehe, int spalten, int reihen) {
 
-        if(breite < 3 || hoehe < 3) {
+        if(breite <= 0 || hoehe <= 0) {
             throw new IllegalArgumentException("Breite und Höhe müssen größer als 0 sein.");
         }
 
-        if(spalten!= reihen) {
+        if(spalten!= reihen || spalten < 3 || reihen < 3) {
 
-            throw new IllegalArgumentException("Ein X/O Feld muss die gleiche Anzahl von Reihen und Spalten haben.");
+            throw new IllegalArgumentException("Ein X/O Feld muss die gleiche" +
+                    " Anzahl von Reihen und Spalten haben und muss mindestens" +
+                    " 3x3 groß sein.");
         }
 
         this.breite = breite;
@@ -56,7 +58,34 @@ public final class XOSpielfeldGenerator implements SpielfeldGenerator{
         this.spalten = spalten;
         this.reihen = reihen;
 
-        spielfeldFelder = FeldRechner.displayRechteckeBerechnen(this.breite, this.hoehe, this.spalten, this.reihen);
+        spielfeldFelder = FeldRechner.spielfelderBerechnen(this.breite, this.hoehe, this.spalten, this.reihen);
+    }
+
+    /**
+     * Ein Spielfeld setzt sich aus den Spalten und Reihen zusammen.
+     * @param spalten Anzahl der Spalten des Spielfeldes
+     * @param reihen Anzahl der Reihen des Spielfeldes
+     */
+    public XOSpielfeldGenerator(int spalten, int reihen) {
+
+        if(spalten!= reihen || spalten < 3 || reihen < 3) {
+
+            throw new IllegalArgumentException("Ein X/O Feld muss die gleiche" +
+                    " Anzahl von Reihen und Spalten haben und muss mindestens" +
+                    " 3x3 groß sein.");
+        }
+
+        this.spalten = spalten;
+        this.reihen = reihen;
+    }
+
+    @Override
+    public ArrayList<Feld> getSpielfeldFelder() {
+        return this.spielfeldFelder;
+    }
+
+    public void berechneSpielfelder() {
+        this.spielfeldFelder = FeldRechner.spielfelderBerechnen(this.breite, this.hoehe, this.spalten, this.reihen);
     }
 
     /**
@@ -105,7 +134,7 @@ public final class XOSpielfeldGenerator implements SpielfeldGenerator{
             Position aktuellePosition = positionen.get(i);
 
             /** Alle Senkrechten Linien haben als Startpunkt die yKoordinate 0 */
-            if(aktuellePosition.getyPosition() == 0) {
+            if(aktuellePosition.getYPosition() == 0) {
 
                 indexSenkrechterLinien++;
 
@@ -117,10 +146,10 @@ public final class XOSpielfeldGenerator implements SpielfeldGenerator{
                 if(indexSenkrechterLinien != anzahlSenkrechteLinien + 1) {
 
                     Position startPosition
-                            = new Position(aktuellePosition.getxPosition(), 0);
+                            = new Position(aktuellePosition.getXPosition(), 0);
                     /** Der Endpunkt wird mithilfe der Höhe berechnet */
                     Position endPosition
-                            = new Position(aktuellePosition.getxPosition(), this.hoehe);
+                            = new Position(aktuellePosition.getXPosition(), this.hoehe);
 
                     Linie senkrechteLinie = new Linie(startPosition, endPosition);
                     xOFeldLinien.add(senkrechteLinie);
@@ -128,7 +157,7 @@ public final class XOSpielfeldGenerator implements SpielfeldGenerator{
             }
 
             /** Alle horizontalen Linien haben als Startpunkt die xKoordinate 0 */
-            if(aktuellePosition.getxPosition() == 0) {
+            if(aktuellePosition.getXPosition() == 0) {
 
                 indexHorizontalerLinien++;
 
@@ -140,10 +169,10 @@ public final class XOSpielfeldGenerator implements SpielfeldGenerator{
                 if(indexHorizontalerLinien != anzahlHorizontaleLinien + 1) {
 
                     Position startPosition
-                            = new Position(0, aktuellePosition.getyPosition());
+                            = new Position(0, aktuellePosition.getYPosition());
                     /** Der Endpunkt wird mithilfe der Breite berechnet */
                     Position endPosition
-                            = new Position(this.breite, aktuellePosition.getyPosition());
+                            = new Position(this.breite, aktuellePosition.getYPosition());
 
                     Linie horizontaleLinie = new Linie(startPosition, endPosition);
                     xOFeldLinien.add(horizontaleLinie);
@@ -187,12 +216,12 @@ public final class XOSpielfeldGenerator implements SpielfeldGenerator{
              * Falls die Y Koordinate eines Startpunktes 0 ist, handelt es sich
              * um eine senkrechte Linie
              */
-            if(linie.getAnfangsPosition().getyPosition() == 0) {
+            if(linie.getAnfangsPosition().getYPosition() == 0) {
 
                 /** Berechnung der neuen Start und Endpunkte der Linie */
-                int anfangsPositionX = (int) linie.getAnfangsPosition().getxPosition();
+                int anfangsPositionX = (int) linie.getAnfangsPosition().getXPosition();
                 int anfangsPositionY = (int) prozentBerechnen(this.hoehe, prozent);
-                int endPositionX = (int) linie.getAnfangsPosition().getxPosition();
+                int endPositionX = (int) linie.getAnfangsPosition().getXPosition();
                 int endPositionY = (int) (this.hoehe - ((int) prozentBerechnen(this.hoehe, prozent)));
 
                 Linie angepassteLinie = new Linie(new Position(anfangsPositionX, anfangsPositionY), new Position(endPositionX, endPositionY));
@@ -203,13 +232,13 @@ public final class XOSpielfeldGenerator implements SpielfeldGenerator{
              * Falls die X Koordinate eines Startpunktes 0 ist, handelt es sich
              * um eine horizontale Linie
              */
-            if(linie.getAnfangsPosition().getxPosition() == 0) {
+            if(linie.getAnfangsPosition().getXPosition() == 0) {
 
                 /** Berechnung der neuen Start und Endpunkte der Linie */
                 int anfangsPositionX = (int) prozentBerechnen(this.breite, prozent);
-                int anfangsPositionY = (int) linie.getAnfangsPosition().getyPosition();
+                int anfangsPositionY = (int) linie.getAnfangsPosition().getYPosition();
                 int endPositionX = (int) (this.breite - ((int) prozentBerechnen(this.breite, prozent)));
-                int endPositionY = (int) linie.getAnfangsPosition().getyPosition();
+                int endPositionY = (int) linie.getAnfangsPosition().getYPosition();
 
                 Linie angepassteLinie = new Linie(new Position(anfangsPositionX, anfangsPositionY), new Position(endPositionX, endPositionY));
                 xOFeldLinienAngepasst.add(angepassteLinie);
@@ -240,9 +269,24 @@ public final class XOSpielfeldGenerator implements SpielfeldGenerator{
         return betrag * prozentQuotient;
     }
 
-    @Override
-    public ArrayList<Feld> getSpielfeldFelder() {
-        return this.spielfeldFelder;
+    public void setBreite(float breite) {
+
+        if(breite <= 0) {
+
+            throw new IllegalArgumentException("Breite muss positiv sein");
+        }
+
+        this.breite = breite;
+    }
+
+    public void setHoehe(float hoehe) {
+
+        if(hoehe <= 0) {
+
+            throw new IllegalArgumentException("Höhe muss positiv sein");
+        }
+
+        this.hoehe = hoehe;
     }
 
     public float getBreite() {

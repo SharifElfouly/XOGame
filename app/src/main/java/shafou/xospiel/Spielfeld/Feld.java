@@ -4,8 +4,7 @@ import shafou.xospiel.SpielLogik.Position;
 
 /**
  *
- * Diese Klasse stellt ein Quadrat aus dem dargestellten Display dar. Ein
- * LayoutDisplay Objekt stellt ein 1/9 des gesamten Layout Displays dar.
+ * Diese Klasse stellt 1 Feld auf dem gesamten Spielfeld dar.
  *
  * Ein Feld wird aus 4 Positionen zusammengestellt.
  * Ein Feld ist immutable.
@@ -17,11 +16,20 @@ import shafou.xospiel.SpielLogik.Position;
  *    |             |
  * x4 --------------- x3
  *
+ * Eih Feld kann eine Position in Relation zum gesamten Spielfeld haben. In
+ * diesem Beispiel hätte das Feld die Position 1/1 oder 2/1.
+ * --------------------
+ * |        |         |
+ * |   1/1  |   2/1   |
+ * |        |         |
+ * --------------------
+ *
  * @author Sharif Elfouly
  * @version 1.0
  *
  * Änderungshistorie:
  * 1) 26.05.2017 ELF Klasse erstellt.
+ * 2) 11.06.2017 ELF Relative Position zum gesamten Spielfeld hinzugefügt.
  */
 
 public class Feld {
@@ -44,6 +52,9 @@ public class Feld {
      */
     private final int index;
 
+    /** Gibt die Position auf dem Feld an */
+    private Position position;
+
     /**
      * Ein LayoutOutDisplay Objekt besteht aus der Fläche zwischen 4 Positionen
      *  @param x1 Position x1
@@ -60,6 +71,14 @@ public class Feld {
         this.x3 = x3;
         this.x4 = x4;
         this.index = index;
+    }
+
+    public void setPosition(Position position) {
+        this.position = position;
+    }
+
+    public Position getPosition() {
+        return position;
     }
 
     public Position getX1() {
@@ -82,16 +101,19 @@ public class Feld {
         return index;
     }
 
+    @SuppressWarnings("SimplifiableIfStatement")
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Feld that = (Feld) o;
+        Feld feld = (Feld) o;
 
-        if (x1 != null ? !x1.equals(that.x1) : that.x1 != null) return false;
-        if (x2 != null ? !x2.equals(that.x2) : that.x2 != null) return false;
-        return x3 != null ? x3.equals(that.x3) : that.x3 == null && (x4 != null ? x4.equals(that.x4) : that.x4 == null);
+        if (index != feld.index) return false;
+        if (x1 != null ? !x1.equals(feld.x1) : feld.x1 != null) return false;
+        if (x2 != null ? !x2.equals(feld.x2) : feld.x2 != null) return false;
+        if (x3 != null ? !x3.equals(feld.x3) : feld.x3 != null) return false;
+        return x4 != null ? x4.equals(feld.x4) : feld.x4 == null;
 
     }
 
@@ -101,6 +123,7 @@ public class Feld {
         result = 31 * result + (x2 != null ? x2.hashCode() : 0);
         result = 31 * result + (x3 != null ? x3.hashCode() : 0);
         result = 31 * result + (x4 != null ? x4.hashCode() : 0);
+        result = 31 * result + index;
         return result;
     }
 }
