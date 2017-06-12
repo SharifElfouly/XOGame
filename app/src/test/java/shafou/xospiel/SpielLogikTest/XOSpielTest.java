@@ -2,14 +2,14 @@ package shafou.xospiel.SpielLogikTest;
 
 import android.app.Activity;
 
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
 
+
+import java.util.List;
 
 import shafou.xospiel.Aktivitaeten.SpielActivity;
 import shafou.xospiel.BuildConfig;

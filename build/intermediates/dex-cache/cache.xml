@@ -25,7 +25,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.1"
-        sha1="eeceabae00a4af31fca191a6b077aa039c32b371">
+        sha1="83bbe4e531ba247d9597ca72d551b32aa0e717f8">
         <dex dex="/Users/Shafou/Desktop/XOGame/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_5749e246bc6689a371cdf11b65b1f4b4d4e0f0f3/classes.dex" />
     </item>
     <item
@@ -54,6 +54,15 @@
         revision="25.0.1"
         sha1="00d4c8eebf2b681073c72a26bd0849549e51c7cb">
         <dex dex="/Users/Shafou/Desktop/XOGame/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-core-utils-25.0.1_fa024fa231c9f706d32f0f457ea0ccf1d076b156/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Shafou/Desktop/XOGame/app/build/intermediates/exploded-aar/com.hanks/htextview-evaporate/0.1.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="e5e755d56abd5a93414981f28bc59b66a5965954">
+        <dex dex="/Users/Shafou/Desktop/XOGame/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.hanks-htextview-evaporate-0.1.1_fac75f544b92e0d42c88fa35d3a01bb017a10d03/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -99,6 +108,15 @@
         revision="25.0.1"
         sha1="6a1479afe9f1b3645e1cd9a87318976893472818">
         <dex dex="/Users/Shafou/Desktop/XOGame/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-media-compat-25.0.1_377b41f1b40c9d6952d3369dea45404cdee32611/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/Shafou/Desktop/XOGame/app/build/intermediates/exploded-aar/com.hanks/htextview-base/0.1.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="25414547d9cc538232894497877a238ba238c03d">
+        <dex dex="/Users/Shafou/Desktop/XOGame/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.hanks-htextview-base-0.1.1_341cefe6d27cf2631b3ba32e352001b3c33d270b/classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -151,7 +169,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.1"
-        sha1="99135349bc9e4ca378fafdf1f8d590223cc160a1">
+        sha1="68fc07b06a075de760435f61c0c4b4e3002c2214">
         <dex dex="/Users/Shafou/Desktop/XOGame/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_e4deab38a421054ad6b2b06672b85aea96ce3504/classes.dex" />
     </item>
     <item

@@ -7,6 +7,7 @@ import android.support.v7.app.AlertDialog;
 import android.view.View;
 
 import java.util.ArrayList;
+import java.util.EnumSet;
 import java.util.List;
 import java.util.Random;
 
@@ -46,6 +47,31 @@ public final class XOSpiel {
     private static int spalten;
 
     private  XOSpiel() {}
+
+    /** Gibt die verfügbaren Spielarten an */
+    public enum Art {
+
+        DREI("3 x 3", 3),
+        VIER("4 x 4", 4),
+        FUENF("5 x 5", 5);
+
+        private final String spielArt;
+        private final int reihenSpalten;
+
+        Art(String spielArt, int reihenSpalten) {
+
+            this.spielArt = spielArt;
+            this.reihenSpalten = reihenSpalten;
+        }
+
+        public int getReihenSpalten() {
+            return reihenSpalten;
+        }
+
+        public String getSpielArt() {
+            return spielArt;
+        }
+    }
 
     /**
      * Das X/O Spiel wurde als Singelton implementiert.

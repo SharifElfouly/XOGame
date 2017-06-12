@@ -31,4 +31,5 @@ dependencies {
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.6.0'
     testCompile "org.robolectric:robolectric:3.3.2"
     testCompile "org.mockito:mockito-core:2.+"
+    compile "com.hanks:htextview-evaporate:0.1.1"
 }
