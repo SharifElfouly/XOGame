@@ -2,7 +2,8 @@
 <resources>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="mainColor">#FF4081</color>
     <color name="gray">#7e7e7e</color>
-    <color name="change_game_mode_btn_clicked">#e53974</color>
+    <color name="change_game_mode_btn_clicked_color">#e53974</color>
+    <color name="white">#FFFFFF</color>
 </resources>
