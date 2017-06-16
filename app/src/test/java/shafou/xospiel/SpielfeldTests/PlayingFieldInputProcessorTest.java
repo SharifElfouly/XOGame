@@ -4,17 +4,17 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 
+import shafou.xospiel.PlayingField.Field;
+import shafou.xospiel.SpielLogik.PlayingFieldInputProcessor;
 import shafou.xospiel.SpielLogik.Position;
-import shafou.xospiel.SpielLogik.SpielfeldInputVerarbeiter;
-import shafou.xospiel.Spielfeld.Feld;
-import shafou.xospiel.Spielfeld.FeldRechner;
-import shafou.xospiel.Spielfeld.XOSpielfeldGenerator;
+import shafou.xospiel.PlayingField.FieldsCalculator;
+import shafou.xospiel.PlayingField.XOPlayingFieldGenerator;
 
 import static org.junit.Assert.assertEquals;
 
 /**
  *
- * Diese Klasse testet die SpielfeldInputVerarbeiter Klasse.
+ * Diese Klasse testet die PlayingFieldInputProcessor Klasse.
  *
  * @author Sharif Elfouly
  * @version 1.0
@@ -23,15 +23,15 @@ import static org.junit.Assert.assertEquals;
  * 1) 05.06.2017 ELF Klasse erstellt.
  */
 
-public class SpielfeldInputVerarbeiterTest {
+public class PlayingFieldInputProcessorTest {
 
     @Test
     public void IstInputAufFeld_NichtAufFeld_False() {
 
         Position inputPosition = new Position(140, 120);
 
-        XOSpielfeldGenerator xOG = new XOSpielfeldGenerator(120, 120, 3, 3);
-        SpielfeldInputVerarbeiter<XOSpielfeldGenerator> sIV = new SpielfeldInputVerarbeiter<>();
+        XOPlayingFieldGenerator xOG = new XOPlayingFieldGenerator(120, 120, 3);
+        PlayingFieldInputProcessor<XOPlayingFieldGenerator> sIV = new PlayingFieldInputProcessor<>();
         sIV.setSpielfeldGenerator(xOG);
         boolean istInputAufFeld = sIV.istEingabeAufFeld(inputPosition);
 
@@ -43,8 +43,8 @@ public class SpielfeldInputVerarbeiterTest {
 
         Position inputPosition = new Position(78, 85);
 
-        XOSpielfeldGenerator xOG = new XOSpielfeldGenerator(120, 120, 3, 3);
-        SpielfeldInputVerarbeiter<XOSpielfeldGenerator> sIV = new SpielfeldInputVerarbeiter<>();
+        XOPlayingFieldGenerator xOG = new XOPlayingFieldGenerator(120, 120, 3);
+        PlayingFieldInputProcessor<XOPlayingFieldGenerator> sIV = new PlayingFieldInputProcessor<>();
         sIV.setSpielfeldGenerator(xOG);
         boolean istInputAufFeld = sIV.istEingabeAufFeld(inputPosition);
 
@@ -56,8 +56,8 @@ public class SpielfeldInputVerarbeiterTest {
 
         Position inputPosition = new Position(-2, 85);
 
-        XOSpielfeldGenerator xOG = new XOSpielfeldGenerator(120, 120, 3, 3);
-        SpielfeldInputVerarbeiter<XOSpielfeldGenerator> sIV = new SpielfeldInputVerarbeiter<>();
+        XOPlayingFieldGenerator xOG = new XOPlayingFieldGenerator(120, 120, 3);
+        PlayingFieldInputProcessor<XOPlayingFieldGenerator> sIV = new PlayingFieldInputProcessor<>();
         sIV.setSpielfeldGenerator(xOG);
         boolean istInputAufFeld = sIV.istEingabeAufFeld(inputPosition);
 
@@ -69,12 +69,12 @@ public class SpielfeldInputVerarbeiterTest {
 
         Position inputPosition = new Position(50, 30);
 
-        XOSpielfeldGenerator xOG = new XOSpielfeldGenerator(120, 120, 3, 3);
-        SpielfeldInputVerarbeiter<XOSpielfeldGenerator> sIV = new SpielfeldInputVerarbeiter<>();
+        XOPlayingFieldGenerator xOG = new XOPlayingFieldGenerator(120, 120, 3);
+        PlayingFieldInputProcessor<XOPlayingFieldGenerator> sIV = new PlayingFieldInputProcessor<>();
         sIV.setSpielfeldGenerator(xOG);
-        Feld spielfeld = sIV.gibSpielfeld(inputPosition);
+        Field spielfeld = sIV.gibSpielfeld(inputPosition);
 
-        ArrayList<Feld> spielfelder = FeldRechner.spielfelderBerechnen(120, 120, 3, 3);
+        ArrayList<Field> spielfelder = FieldsCalculator.getFields(120, 120, 3, 3);
 
         assertEquals(spielfelder.get(1), spielfeld);
     }
@@ -84,12 +84,12 @@ public class SpielfeldInputVerarbeiterTest {
 
         Position inputPosition = new Position(50, 100);
 
-        XOSpielfeldGenerator xOG = new XOSpielfeldGenerator(120, 120, 3, 3);
-        SpielfeldInputVerarbeiter<XOSpielfeldGenerator> sIV = new SpielfeldInputVerarbeiter<>();
+        XOPlayingFieldGenerator xOG = new XOPlayingFieldGenerator(120, 120, 3);
+        PlayingFieldInputProcessor<XOPlayingFieldGenerator> sIV = new PlayingFieldInputProcessor<>();
         sIV.setSpielfeldGenerator(xOG);
-        Feld spielfeld = sIV.gibSpielfeld(inputPosition);
+        Field spielfeld = sIV.gibSpielfeld(inputPosition);
 
-        ArrayList<Feld> spielfelder = FeldRechner.spielfelderBerechnen(120, 120, 3, 3);
+        ArrayList<Field> spielfelder = FieldsCalculator.getFields(120, 120, 3, 3);
 
         assertEquals(spielfelder.get(7), spielfeld);
     }
@@ -99,12 +99,12 @@ public class SpielfeldInputVerarbeiterTest {
 
         Position inputPosition = new Position(80, 80);
 
-        XOSpielfeldGenerator xOG = new XOSpielfeldGenerator(120, 120, 3, 3);
-        SpielfeldInputVerarbeiter<XOSpielfeldGenerator> sIV = new SpielfeldInputVerarbeiter<>();
+        XOPlayingFieldGenerator xOG = new XOPlayingFieldGenerator(120, 120, 3);
+        PlayingFieldInputProcessor<XOPlayingFieldGenerator> sIV = new PlayingFieldInputProcessor<>();
         sIV.setSpielfeldGenerator(xOG);
-        Feld spielfeld = sIV.gibSpielfeld(inputPosition);
+        Field spielfeld = sIV.gibSpielfeld(inputPosition);
 
-        ArrayList<Feld> spielfelder = FeldRechner.spielfelderBerechnen(120, 120, 3, 3);
+        ArrayList<Field> spielfelder = FieldsCalculator.getFields(120, 120, 3, 3);
 
         assertEquals(spielfelder.get(4), spielfeld);
     }

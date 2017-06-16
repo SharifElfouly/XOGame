@@ -1,5 +1,7 @@
 package shafou.xospiel.View;
 
+import android.graphics.ColorMatrix;
+import android.graphics.ColorMatrixColorFilter;
 import android.graphics.drawable.Drawable;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
@@ -39,31 +41,25 @@ public class StatefulButton {
      *
      * @param state Status in dem sich der Button befindet
      * @param button Der Button
-     * @param selected Drawable, der angezeigt werden soll, wenn der Button
+     * @param drawable Drawable, der angezeigt werden soll, wenn der Button
      *                 selektiert ist.
-     * @param notSelected Drawable, der angezeigt wird, wenn der Button nicht
-     *                    selektiert ist.
-     * @param notSelectable Drawable, der angezeigt wird, wenn der Button nicht
-     *                      selektierbar ist.
      */
-    public StatefulButton(State state, ImageButton button, Drawable selected,
-                          Drawable notSelected, Drawable notSelectable) {
+    public StatefulButton(State state, ImageButton button, Drawable drawable) {
 
         this.state = state;
         this.button = button;
-        this.selected = selected;
-        this.notSelected = notSelected;
-        this.notSelectable = notSelectable;
+        this.selected = drawable;
+        this.notSelected = setColorSaturation(drawable, 0.25f);
+        this.notSelectable = makeBlackAndWhite(drawable);
 
-        setButtonSize();
-        updateDrawable();
+        setBackgroundSize();
+        setDrawable();
     }
 
     /** Wird kein Status gesetzt wird dieser auf nicht selektierbar gestellt */
-    public StatefulButton(ImageButton button, Drawable selected,
-                          Drawable notSelected, Drawable notSelectable) {
+    public StatefulButton(ImageButton button, Drawable selected) {
 
-        this(State.NOT_SELECTABLE, button, selected, notSelected, notSelectable);
+        this(State.NOT_SELECTABLE, button, selected);
     }
 
     /** Status die ein Button annehmen kann */
@@ -79,7 +75,7 @@ public class StatefulButton {
      *
      * @param state Der neue Status
      */
-    void setState(State state) {
+    public void setState(State state) {
 
         this.state = state;
 
@@ -87,16 +83,17 @@ public class StatefulButton {
          * Wenn der Status gewächselt wird, muss der Drawable aktualisiert
          * werden
          */
-        updateDrawable();
+        setDrawable();
     }
 
     /**
      * Aktualisiert den Drawable des Buttons.
      */
-    private void updateDrawable() {
+    private void setDrawable() {
 
         switch (state){
-            case SELECTED: button.setImageDrawable(selected);
+            case SELECTED:
+                button.setImageDrawable(selected);
                 break;
             case NOT_SELECTED: button.setImageDrawable(notSelected);
                 break;
@@ -105,9 +102,9 @@ public class StatefulButton {
     }
 
     /**
-     * Setzt die Größe des Buttons.
+     * Setzt die Größe des Button Hintergrund.
      */
-    private void setButtonSize() {
+    private void setBackgroundSize() {
 
         ViewGroup.LayoutParams buttonLayout = button.getLayoutParams();
         buttonLayout.height = 130;
@@ -115,14 +112,44 @@ public class StatefulButton {
         button.setLayoutParams(buttonLayout);
     }
 
+    /**
+     * Erstellt aus dem übergebenen Drawable ein neues Drawable Objekt mit einer
+     * neuer Farb Sättigung.
+     *
+     * @return Neues Drawable
+     */
+    @SuppressWarnings("ConstantConditions")
+    private Drawable setColorSaturation(Drawable drawable, float saturation) {
+
+        Drawable blackAndWhiteDrawable = drawable.getConstantState().newDrawable();
+
+        ColorMatrix cM = new ColorMatrix();
+        cM.setSaturation(saturation);
+
+        ColorMatrixColorFilter cMCF = new ColorMatrixColorFilter(cM);
+        blackAndWhiteDrawable.setColorFilter(cMCF);
+
+        return blackAndWhiteDrawable;
+    }
+
+    /**
+     * Erstellt ein Schwarz Weißes Abbild vom übergebenen Drawable.
+     *
+     * @param drawable Originales Drawable
+     * @return Neues Abbild des übergebenen Drawable.
+     */
+    private Drawable makeBlackAndWhite(Drawable drawable) {
+
+        return setColorSaturation(drawable, 0);
+    }
+
     public ImageButton getButton() {
         return button;
     }
 
-    State getState() {
+    public State getState() {
         return state;
     }
-
 
     @SuppressWarnings("SimplifiableIfStatement")
     @Override

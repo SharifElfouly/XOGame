@@ -4,7 +4,11 @@ package shafou.xospiel.View;
 import java.util.ArrayList;
 import java.util.List;
 
-import static shafou.xospiel.View.StatefulButton.*;
+import shafou.xospiel.SpielLogik.XOGame;
+
+import static shafou.xospiel.View.StatefulButton.State.*;
+import static shafou.xospiel.View.StatefulButton.State.NOT_SELECTABLE;
+import static shafou.xospiel.View.StatefulButton.State.SELECTED;
 
 /**
  *
@@ -35,7 +39,7 @@ public class StatefulButtons {
      */
     public static void setSelected(StatefulButton button) {
 
-        if(button.getState() == State.NOT_SELECTABLE) {
+        if(button.getState() == NOT_SELECTABLE) {
 
             return;
         }
@@ -44,14 +48,88 @@ public class StatefulButtons {
 
             switch (sButton.getState()){
 
-                case SELECTED: sButton.setState(State.NOT_SELECTED);
+                case SELECTED: sButton.setState(NOT_SELECTED);
                     break;
             }
 
-            if(sButton.equals(button) && sButton.getState().equals(State.NOT_SELECTED)) {
+            if(sButton.equals(button) && sButton.getState().equals(NOT_SELECTED)) {
 
-                sButton.setState(State.SELECTED);
+                sButton.setState(SELECTED);
             }
+        }
+    }
+
+    public static void setSelectableButtons(XOGame.Mode spielart) {
+
+        int[] anzahlSteineZumGewinn = spielart.getAnzahlSteineZumGewinn();
+
+        for(int anzahlSteine: anzahlSteineZumGewinn) {
+
+            switch (anzahlSteine){
+
+                case 3:
+                    if(list.get(0).getState() == SELECTED) {
+                        break;
+                    } else {
+
+                        list.get(0).setState(NOT_SELECTED);
+                        break;
+                    }
+                case 4:
+                    if(list.get(1).getState() == SELECTED) {
+                        break;
+                    } else {
+
+                        list.get(1).setState(NOT_SELECTED);
+                        break;
+                    }
+                case 5:
+                    if(list.get(2).getState() == SELECTED) {
+                        break;
+                    } else {
+
+                        list.get(2).setState(NOT_SELECTED);
+                        break;
+                    }
+            }
+        }
+    }
+
+    public static void setNotSelectableButtons(XOGame.Mode spielart) {
+
+        int[] anzahlSteineZumGewinn = spielart.getAnzahlSteineZumGewinn();
+
+        boolean is4In = false;
+        boolean is5In = false;
+
+        for(int anzahlSteine: anzahlSteineZumGewinn) {
+
+            switch (anzahlSteine){
+                case 3:
+                    break;
+                case 4: is4In = true;
+                    break;
+                case 5: is5In = true;
+                    break;
+            }
+        }
+
+        if(!is4In) {
+
+            list.get(0).setState(SELECTED);
+            list.get(1).setState(NOT_SELECTABLE);
+            list.get(2).setState(NOT_SELECTABLE);
+            return;
+        }
+
+        if(!is5In) {
+
+            if(list.get(0).getState() != SELECTED) {
+
+                list.get(1).setState(SELECTED);
+            }
+
+            list.get(2).setState(NOT_SELECTABLE);
         }
     }
 }

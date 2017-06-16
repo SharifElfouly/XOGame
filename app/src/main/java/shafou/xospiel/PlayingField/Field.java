@@ -1,13 +1,13 @@
-package shafou.xospiel.Spielfeld;
+package shafou.xospiel.PlayingField;
 
 import shafou.xospiel.SpielLogik.Position;
 
 /**
  *
- * Diese Klasse stellt 1 Feld auf dem gesamten Spielfeld dar.
+ * Diese Klasse stellt 1 Field auf dem gesamten Spielfeld dar.
  *
- * Ein Feld wird aus 4 Positionen zusammengestellt.
- * Ein Feld ist immutable.
+ * Ein Field wird aus 4 Positionen zusammengestellt.
+ * Ein Field ist immutable.
  *
  * x1 --------------- x2
  *    |             |
@@ -16,8 +16,8 @@ import shafou.xospiel.SpielLogik.Position;
  *    |             |
  * x4 --------------- x3
  *
- * Eih Feld kann eine Position in Relation zum gesamten Spielfeld haben. In
- * diesem Beispiel hätte das Feld die Position 1/1 oder 2/1.
+ * Eih Field kann eine Position in Relation zum gesamten Spielfeld haben. In
+ * diesem Beispiel hätte das Field die Position 1/1 oder 2/1.
  * --------------------
  * |        |         |
  * |   1/1  |   2/1   |
@@ -32,7 +32,7 @@ import shafou.xospiel.SpielLogik.Position;
  * 2) 11.06.2017 ELF Relative Position zum gesamten Spielfeld hinzugefügt.
  */
 
-public class Feld {
+public class Field {
 
     /** Position x1 */
     private final Position x1;
@@ -47,12 +47,12 @@ public class Feld {
     private final Position x4;
 
     /**
-     * Jedes Feld auf dem Spielfeld besitzt eine eindeutige Nummer.
+     * Jedes Field auf dem Spielfeld besitzt eine eindeutige Nummer.
      * Der Start des Indexes ist 1.
      */
     private final int index;
 
-    /** Gibt die Position auf dem Feld an */
+    /** Gibt die Position auf dem Field an */
     private Position position;
 
     /**
@@ -63,8 +63,8 @@ public class Feld {
      * @param x4 Position x4
      * @param index Index des Spielfeldes
      */
-    public Feld(Position x1, Position x2, Position x3,
-                Position x4, int index) {
+    public Field(Position x1, Position x2, Position x3,
+                 Position x4, int index) {
 
         this.x1 = x1;
         this.x2 = x2;
@@ -107,13 +107,13 @@ public class Feld {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Feld feld = (Feld) o;
+        Field field = (Field) o;
 
-        if (index != feld.index) return false;
-        if (x1 != null ? !x1.equals(feld.x1) : feld.x1 != null) return false;
-        if (x2 != null ? !x2.equals(feld.x2) : feld.x2 != null) return false;
-        if (x3 != null ? !x3.equals(feld.x3) : feld.x3 != null) return false;
-        return x4 != null ? x4.equals(feld.x4) : feld.x4 == null;
+        if (index != field.index) return false;
+        if (x1 != null ? !x1.equals(field.x1) : field.x1 != null) return false;
+        if (x2 != null ? !x2.equals(field.x2) : field.x2 != null) return false;
+        if (x3 != null ? !x3.equals(field.x3) : field.x3 != null) return false;
+        return x4 != null ? x4.equals(field.x4) : field.x4 == null;
 
     }
 

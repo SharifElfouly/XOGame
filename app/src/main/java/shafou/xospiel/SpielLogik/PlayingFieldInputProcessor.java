@@ -2,8 +2,8 @@ package shafou.xospiel.SpielLogik;
 
 import java.util.ArrayList;
 
-import shafou.xospiel.Spielfeld.Feld;
-import shafou.xospiel.Spielfeld.SpielfeldGenerator;
+import shafou.xospiel.PlayingField.Field;
+import shafou.xospiel.PlayingField.PlayingFieldGenerator;
 
 /**
  *
@@ -16,18 +16,18 @@ import shafou.xospiel.Spielfeld.SpielfeldGenerator;
  * 1) 05.06.2017 ELF Klasse erstellt.
  */
 
-public final class SpielfeldInputVerarbeiter<T extends SpielfeldGenerator> {
+public final class PlayingFieldInputProcessor<T extends PlayingFieldGenerator> {
 
     /** Beinhaltet die Rechtecke des Spielfeldes */
-    private ArrayList<Feld> spielfelder;
+    private ArrayList<Field> playingFields;
 
     /** Breite des Spielfeldes */
-    private float breite;
+    private float width;
 
     /** Höhe des Spielfeldes */
-    private float hoehe;
+    private float height;
 
-    public SpielfeldInputVerarbeiter() {}
+    public PlayingFieldInputProcessor() {}
 
     /**
      * Gibt an ob der Input des Spielers im Spielfeld ist
@@ -36,8 +36,8 @@ public final class SpielfeldInputVerarbeiter<T extends SpielfeldGenerator> {
      */
     public boolean istEingabeAufFeld(Position inputPosition) {
 
-        return inputPosition.getXPosition() < breite
-                && inputPosition.getYPosition() < hoehe
+        return inputPosition.getXPosition() < width
+                && inputPosition.getYPosition() < height
                 && inputPosition.getXPosition() > 0
                 && inputPosition.getYPosition() > 0;
     }
@@ -48,9 +48,9 @@ public final class SpielfeldInputVerarbeiter<T extends SpielfeldGenerator> {
      * @param inputPosition Position des Inputs
      * @return Das Spielfeld indem der Input war
      */
-    public Feld gibSpielfeld(Position inputPosition) {
+    public Field gibSpielfeld(Position inputPosition) {
 
-        for(Feld spielfeld: spielfelder) {
+        for(Field spielfeld: playingFields) {
 
             if(inputPosition.getXPosition() >= spielfeld.getX1().getXPosition()
                     && inputPosition.getXPosition() <= spielfeld.getX2().getXPosition()
@@ -70,8 +70,8 @@ public final class SpielfeldInputVerarbeiter<T extends SpielfeldGenerator> {
      */
     public void setSpielfeldGenerator(T spielfeldGenerator) {
 
-        this.spielfelder = spielfeldGenerator.getSpielfeldFelder();
-        this.breite = spielfeldGenerator.getBreite();
-        this.hoehe = spielfeldGenerator.getHoehe();
+        this.playingFields = spielfeldGenerator.getPlayingFields();
+        this.width = spielfeldGenerator.getWidth();
+        this.height = spielfeldGenerator.getHeight();
     }
 }

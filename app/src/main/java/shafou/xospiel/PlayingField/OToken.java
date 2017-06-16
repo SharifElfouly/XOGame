@@ -1,9 +1,9 @@
-package shafou.xospiel.Spielfeld;
+package shafou.xospiel.PlayingField;
 
 import android.content.Context;
 /**
  *
- * Diese Klasse stellt ein Y Spielstein dar.
+ * Diese Klasse stellt ein Y Token dar.
  *
  * @author Sharif Elfouly
  * @version 1.0
@@ -12,9 +12,9 @@ import android.content.Context;
  * 1) 24.05.2017 ELF Klasse erstellt.
  */
 
-public class OSpielstein extends Spielstein {
+public class OToken extends Token {
 
-    public OSpielstein(Context context) {
+    public OToken(Context context) {
         super(context);
     }
 }

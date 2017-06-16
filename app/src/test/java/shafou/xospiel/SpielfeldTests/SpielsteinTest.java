@@ -1,26 +1,5 @@
 package shafou.xospiel.SpielfeldTests;
 
-import android.app.Activity;
-import android.graphics.drawable.Drawable;
-import android.os.Build;
-import android.support.annotation.RequiresApi;
-
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.robolectric.Robolectric;
-import org.robolectric.RobolectricTestRunner;
-import org.robolectric.annotation.Config;
-
-import shafou.xospiel.Aktivitaeten.SpielActivity;
-import shafou.xospiel.BuildConfig;
-import shafou.xospiel.R;
-import shafou.xospiel.SpielLogik.Position;
-import shafou.xospiel.Spielfeld.OSpielstein;
-import shafou.xospiel.Spielfeld.Spielstein;
-import shafou.xospiel.Spielfeld.XSpielstein;
-import shafou.xospiel.Spielfeld.Feld;
-
 import static com.google.common.truth.Truth.assertThat;
 
 /**
@@ -40,8 +19,8 @@ import static com.google.common.truth.Truth.assertThat;
 //@Config(constants = BuildConfig.class)
 public class SpielsteinTest {
 
-//    /** Feld eines Spielsteins */
-//    private Feld feld;
+//    /** Field eines Spielsteins */
+//    private Field feld;
 //
 //    /** Aktivität auf der getestet wird */
 //    private Activity activity;
@@ -54,31 +33,31 @@ public class SpielsteinTest {
 //        Position x3 = new Position(40, 40);
 //        Position x4 = new Position(0, 40);
 //
-//        feld = new Feld(x1, x2, x3, x4, 1);
+//        feld = new Field(x1, x2, x3, x4, 1);
 //
-//        activity = Robolectric.setupActivity(SpielActivity.class);
+//        activity = Robolectric.setupActivity(GameMenuActivity.class);
 //    }
 //
 //    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
 //    @Test
 //    public void SpielsteinX_Erstellung_Erstellt() {
 //
-//        Spielstein xSpielstein = new XSpielstein(activity, feld);
+//        Token xSpielstein = new XToken(activity, feld);
 //
 //        Drawable xDrawable = activity.getApplicationContext().getDrawable(R.drawable.x_24dp);
 //        Drawable oDrawable = activity.getApplicationContext().getDrawable(R.drawable.o_24dp);
 //
 //        assert xDrawable != null;
-//        assertThat(xSpielstein.getSpielsteinDrawable().getConstantState()).isEqualTo(xDrawable.getConstantState());
+//        assertThat(xSpielstein.getDrawable().getConstantState()).isEqualTo(xDrawable.getConstantState());
 //        assert oDrawable != null;
-//        assertThat(xSpielstein.getSpielsteinDrawable().getConstantState()).isNotEqualTo(oDrawable.getConstantState());
+//        assertThat(xSpielstein.getDrawable().getConstantState()).isNotEqualTo(oDrawable.getConstantState());
 //    }
 //
 //    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
 //    @Test
 //    public void SpielsteinO_Erstellung_Erstellt() {
 //
-//        Spielstein oSpielstein = new OSpielstein(activity, feld);
+//        Token oSpielstein = new OToken(activity, feld);
 //
 //        Drawable xDrawable = activity.getApplicationContext().getDrawable(R.drawable.x_24dp);
 //        Drawable oDrawable = activity.getApplicationContext().getDrawable(R.drawable.o_24dp);
@@ -86,7 +65,7 @@ public class SpielsteinTest {
 //        Drawable.ConstantState xCSt = xDrawable.getConstantState();
 //        Drawable.ConstantState oCSt = oDrawable.getConstantState();
 //
-//        Drawable.ConstantState oSpielsteinCSt = oSpielstein.getSpielsteinDrawable().getConstantState();
+//        Drawable.ConstantState oSpielsteinCSt = oSpielstein.getDrawable().getConstantState();
 //
 //        assertThat(xCSt).isNotEqualTo(oSpielsteinCSt);
 //        assertThat(oCSt).isEqualTo(oSpielsteinCSt);

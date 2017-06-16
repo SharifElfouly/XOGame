@@ -1,4 +1,4 @@
-package shafou.xospiel.Spielfeld;
+package shafou.xospiel.PlayingField;
 
 import java.util.ArrayList;
 
@@ -16,7 +16,7 @@ import shafou.xospiel.SpielLogik.Position;
  * 1) 03.06.2017 ELF Klasse erstellt.
  */
 
-public final class FeldRechner {
+public final class FieldsCalculator {
 
     /**
      * Gibt anhand der Reihen und Spalten alle Positionen des Spielfeldes zurück
@@ -25,7 +25,7 @@ public final class FeldRechner {
      * @param spalten Anzahl der Spalten auf dem Spielfeld
      * @return Liste mit Positionen auf dem Spielfeld
      */
-    public static ArrayList<Position> positionenBerechnen(float breite, float hoehe, int spalten, int reihen) {
+    public static ArrayList<Position> getPositions(float breite, float hoehe, int spalten, int reihen) {
 
         /** Spalten und Reihen müssen positiv sein */
         if(spalten <= 0 || reihen <= 0) {
@@ -57,15 +57,15 @@ public final class FeldRechner {
      *
      * @param spalten Anzahl der Spalten des Spielfeldes
      * @param reihen Anzahl der Zeilen des Spielfeldes
-     * @return Liste von Feld Objekten
+     * @return Liste von Field Objekten
      */
-    public static ArrayList<Feld> spielfelderBerechnen(float breite, float hoehe, int spalten, int reihen) {
+    public static ArrayList<Field> getFields(float breite, float hoehe, int spalten, int reihen) {
 
         /** Gibt die Positionen des Spielfeldes zurück */
-        ArrayList<Position> positionen = positionenBerechnen(breite, hoehe, spalten, reihen);
+        ArrayList<Position> positionen = getPositions(breite, hoehe, spalten, reihen);
 
-        /** Liste von Feld Objekten */
-        ArrayList<Feld> feld
+        /** Liste von Field Objekten */
+        ArrayList<Field> field
                 = new ArrayList<>();
 
         /** Falls eine neue Reihe bearbeitet wird muss dieses separat berechnet werden */
@@ -78,7 +78,7 @@ public final class FeldRechner {
         for(int i = 1; i <= (spalten * reihen); i++) {
 
             /** Initialisierung der LayoutDisplayRechtecke */
-            Feld lDQ = new Feld(
+            Field lDQ = new Field(
                     positionen.get(i + neueReihe - 1),
                     positionen.get(i + neueReihe),
                     positionen.get(i + neueReihe + spalten + 1),
@@ -105,9 +105,9 @@ public final class FeldRechner {
 
             spaltenIndex++;
 
-            feld.add(lDQ);
+            field.add(lDQ);
         }
 
-        return feld;
+        return field;
     }
 }

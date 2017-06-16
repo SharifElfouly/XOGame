@@ -8,11 +8,11 @@ import java.util.List;
 import shafou.xospiel.SpielLogik.Position;
 
 import static com.google.common.truth.Truth.assertThat;
-import static shafou.xospiel.SpielLogik.Spielstand.hatGewonnen;
+import static shafou.xospiel.SpielLogik.Standings.hatGewonnen;
 
 /**
  *
- * Diese Klasse testet die Spielstand Klasse
+ * Diese Klasse testet die Standings Klasse
  *
  * @author Sharif Elfouly
  * @version 1.0
@@ -21,7 +21,7 @@ import static shafou.xospiel.SpielLogik.Spielstand.hatGewonnen;
  * 1) 10.06.2017 ELF Klasse erstellt.
  */
 
-public class SpielstandTest {
+public class StandingsTest {
 
     @Test
     public void HatGewonnen_Reihe_3ZumSieg_Gewonnen() {

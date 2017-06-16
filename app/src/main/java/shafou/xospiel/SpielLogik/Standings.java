@@ -5,9 +5,9 @@ import java.util.List;
 
 /**
  *
- * <p>Diese Klasse repräsentiere den Spielstand des aktuellen Spiels.
+ * <p>Diese Klasse repräsentiere den Standings des aktuellen Spiels.
  *
- * Ein Spielstand ist ein Singelton. Zur Laufzeit existiert nur ein Spielstand
+ * Ein Standings ist ein Singelton. Zur Laufzeit existiert nur ein Standings
  * Objekt.
  *
  * @author Sharif Elfouly
@@ -18,7 +18,7 @@ import java.util.List;
  * 1) 25.05.2017 ELF Klasse Spiel Logik hinzugefügt.
  */
 
-public class Spielstand {
+public class Standings {
 
     /**
      * Gibt an ob die bereits gespielten Positionen zum Gewinn führen.
@@ -41,8 +41,9 @@ public class Spielstand {
 
         if(anzahlPositionenZumGewinn < 3) {
 
-            throw new IllegalArgumentException("Die minimale Anzahl zum " +
-                    "gewinnen beträgt 3.");
+//            throw new IllegalArgumentException("Die minimale Anzahl zum " +
+//                    "gewinnen beträgt 3.");
+            return false;
         }
 
         /** Steigung einer Reihe */

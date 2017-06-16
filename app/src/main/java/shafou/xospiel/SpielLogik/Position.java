@@ -19,10 +19,10 @@ package shafou.xospiel.SpielLogik;
 public final class Position {
 
     /** X Koordinate auf dem Spielfeld */
-    private final float xPosition;
+    private final float x;
 
     /** Y Koordinate auf dem Spielfeld */
-    private final float yPosition;
+    private final float y;
 
     /** Exception Text bei falscher Angabe der X Koordinate */
     public static final String X_ILLEGAL_ARGUMENT_TEXT = "X Position ist nicht"
@@ -43,21 +43,21 @@ public final class Position {
      * Die Initialisierung wird bereits bei einem Fehler der X Koordinate
      * abgebrochen.
      *
-     * @param xPosition X Koordinate
-     * @param yPosition Y Koordinate
+     * @param x X Koordinate
+     * @param y Y Koordinate
      */
-    public Position(float xPosition, float yPosition) {
+    public Position(float x, float y) {
 
-        this.xPosition = xPosition;
-        this.yPosition = yPosition;
+        this.x = x;
+        this.y = y;
     }
 
     public float getXPosition() {
-        return xPosition;
+        return x;
     }
 
     public float getYPosition() {
-        return yPosition;
+        return y;
     }
 
     @SuppressWarnings("SimplifiableIfStatement")
@@ -68,15 +68,15 @@ public final class Position {
 
         Position position = (Position) o;
 
-        if (Float.compare(position.xPosition, xPosition) != 0) return false;
-        return Float.compare(position.yPosition, yPosition) == 0;
+        if (Float.compare(position.x, x) != 0) return false;
+        return Float.compare(position.y, y) == 0;
 
     }
 
     @Override
     public int hashCode() {
-        int result = (xPosition != +0.0f ? Float.floatToIntBits(xPosition) : 0);
-        result = 31 * result + (yPosition != +0.0f ? Float.floatToIntBits(yPosition) : 0);
+        int result = (x != +0.0f ? Float.floatToIntBits(x) : 0);
+        result = 31 * result + (y != +0.0f ? Float.floatToIntBits(y) : 0);
         return result;
     }
 }

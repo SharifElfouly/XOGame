@@ -1,4 +1,4 @@
-package shafou.xospiel.Spielfeld;
+package shafou.xospiel.PlayingField;
 
 import java.util.ArrayList;
 
@@ -14,11 +14,11 @@ import java.util.ArrayList;
  * 1) 06.05.2017 ELF Interface erstellt.
  */
 
-public interface SpielfeldGenerator {
+public interface PlayingFieldGenerator {
 
-    ArrayList<Feld> getSpielfeldFelder();
+    ArrayList<Field> getPlayingFields();
 
-    float getBreite();
+    float getWidth();
 
-    float getHoehe();
+    float getHeight();
 }
