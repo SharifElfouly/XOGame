@@ -1,3 +1,2 @@
 # XOGame
-Ein Dynamisch aufgebautes X und O Spiel.
-Das ganze Projekt wurde im TDD Style programmiert.
+A X/O game that just makes fun to play!
