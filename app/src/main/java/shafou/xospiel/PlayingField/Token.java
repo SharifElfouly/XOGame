@@ -7,24 +7,23 @@ import shafou.xospiel.R;
 
 /**
  *
- * Diese Klasse stellt ein Token dar.
+ * This class represents a token.
  *
- * <p>Ein Token hat eine Drawable Referenz um den Token zeichnen zu
- * können.
+ * <p>A token has a drawable, to be drawn on the playing field.
  *
  * @author Sharif Elfouly
  * @version 1.0
  *
- * Änderungshistorie:
- * 1) 23.05.2017 ELF Klasse erstellt.
+ * Change log:
+ * 1) 23.05.2017 ELF Class created.
  */
 
 public abstract class Token {
 
-    /** Gibt die Position des Spielsteins auf dem Spielfeld an */
+    /** Field on the token is on */
     private Field field;
 
-    /** Gibt die Form des Spielsteins an */
+    /** The drawable of the token to be drawn with */
     private final Drawable drawable;
 
     Token(Context context) {

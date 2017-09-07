@@ -3,6 +3,7 @@ package shafou.xospiel.SpielLogik;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
 
@@ -22,7 +23,7 @@ import shafou.xospiel.View.XOPlayingField;
  * @author Sharif Elfouly
  * @version 1.0
  *
- * Änderungshistorie:
+ * Change log:
  * 1) 11.06.2017 ELF Klasse erstellt.
  */
 
@@ -64,14 +65,25 @@ public final class XOGame {
         FUENF("5 x 5", 5);
 
         private final String name;
-        private final int reihenSpalten;
-        private final int[] anzahlSteineZumGewinn;
+        private final int columnsAndRows;
+        private final int[] tokens;
 
-        Mode(String name, int reihenSpalten) {
+        Mode(String name, int columnsAndRows) {
 
             this.name = name;
-            this.reihenSpalten = reihenSpalten;
-            this.anzahlSteineZumGewinn = berechneAnzahlSteineZumGewinn();
+            this.columnsAndRows = columnsAndRows;
+            this.tokens = berechneAnzahlSteineZumGewinn();
+        }
+
+        /**
+         * @return The smallest amount of tokens to win.
+         */
+        @SuppressWarnings("LoopStatementThatDoesntLoop")
+        public static int getMinimumTokensToWin() {
+
+            Mode[] gameModes = Mode.values();
+
+            return gameModes[0].getColumnsAndRows();
         }
 
         /**
@@ -82,9 +94,9 @@ public final class XOGame {
          */
         public int[] berechneAnzahlSteineZumGewinn() {
 
-            int[] gewinnMoeglichkeiten = new int[reihenSpalten - 2];
+            int[] gewinnMoeglichkeiten = new int[columnsAndRows - 2];
 
-            for(int i = 0; i < reihenSpalten - 2; i++) {
+            for(int i = 0; i < columnsAndRows - 2; i++) {
 
                 gewinnMoeglichkeiten[i] = MINIMALE_ANZAHL_ZUM_GEWINN + i;
             }
@@ -109,12 +121,12 @@ public final class XOGame {
             return gameModeNames;
         }
 
-        public int[] getAnzahlSteineZumGewinn() {
-            return anzahlSteineZumGewinn;
+        public int[] getTokens() {
+            return tokens;
         }
 
-        public int getReihenSpalten() {
-            return reihenSpalten;
+        public int getColumnsAndRows() {
+            return columnsAndRows;
         }
 
         public String getName() {
@@ -139,7 +151,7 @@ public final class XOGame {
             XOGame.context = context;
             xOSpielView = new XOPlayingField(context, columnsAndRows);
             gespielteZuege = new ArrayList<>();
-            XOGame.spalten = spalten;
+            XOGame.spalten = columnsAndRows;
         }
 
         return xOGame;
@@ -232,10 +244,10 @@ public final class XOGame {
         List<Position> gespieltePositionen = new ArrayList<>();
         for(Turn turn : gespielteZuege) {
 
-            gespieltePositionen.add(turn.getField().getPosition());
+            gespieltePositionen.add(turn.getField().getPositionOnPlayingField());
         }
 
-        return Standings.hatGewonnen(gespieltePositionen, spalten);
+        return Standings.hasWon(gespieltePositionen, spalten);
     }
 
 

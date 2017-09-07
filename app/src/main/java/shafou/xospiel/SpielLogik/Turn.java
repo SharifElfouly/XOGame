@@ -7,64 +7,62 @@ import shafou.xospiel.PlayingField.Token;
 
 /**
  *
- * <p>Diese Klasse stellt einen Turn im Spiel dar.
+ * <p>This class represents a turn in the game.
  *
- * Ein Turn ist immutable.
+ * A Turn is immutable.
  *
  * @author Sharif Elfouly
  * @version 1.0
  *
- * Änderungshistorie:
- * 1) 24.05.2017 ELF Klasse erstellt.
+ * Change log:
+ * 1) 24.05.2017 ELF Class created.
  */
 
 public class Turn {
 
-    /**
-     * Gibt die Nummer des Zuges zurück. Die zugNummer hat einen Wert zwischen
-     * [n und m].
-     */
-    private int zugNummer;
+    /** Holds the number of the turn. */
+    private int turnNumber;
 
-    /** Ist der im jeweiligen Turn gespielte Token */
+    /** The token that is played this turn */
     private final Token token;
 
-    /** Das Field auf dem sich der Token befindet */
+    /** The field the token is played on */
     private final Field field;
 
     /**
-     * Ein Turn besteht aus der jewiligen Turn Nummer und dem gespielten
-     * Token.
+     * A turn consists of a token and a field on which the token is played on.
      *
-     * @param token Der gespielte Token
-     * @param field Field auf dem der Token gespielt wurde
+     * @param token The played token
+     * @param field The field the token is played on
      */
     public Turn(Token token, Field field) {
+
         this.token = token;
         this.field = field;
     }
 
     /**
-     * Zeichnet den Token auf das zugehörige Spielfeld.
+     * Draws the token on its field
      *
-     * @param canvas Spielfeld
+     * @param canvas playing field
      */
     public void draw(Canvas canvas) {
 
         Position x1 = this.field.getX1();
         Position x3 = this.field.getX3();
 
-        int linksObenX = (int) x1.getXPosition();
-        int linksObenY = (int) x1.getYPosition();
-        int rechtsUntenX = (int) x3.getXPosition();
-        int rechtsUntenY = (int) x3.getYPosition();
+        int topLeftX = (int) x1.getXPosition();
+        int topLeftY = (int) x1.getYPosition();
+        int bottomRightX = (int) x3.getXPosition();
+        int bottomRightY = (int) x3.getYPosition();
 
         this.token.getDrawable().setBounds(
-                linksObenX,
-                linksObenY,
-                rechtsUntenX,
-                rechtsUntenY
+                topLeftX,
+                topLeftY,
+                bottomRightX,
+                bottomRightY
         );
+
         this.token.getDrawable().draw(canvas);
     }
 
@@ -78,31 +76,22 @@ public class Turn {
     }
 
     /** Gibt die Nummer des gespielten Turn zurück */
-    public int getZugNummer() {
-        return zugNummer;
+    public int getTurnNumber() {
+        return turnNumber;
     }
 
     /** Setzt die Nummer des Zuges */
-    public void setZugNummer(int zugNummer) {
-        this.zugNummer = zugNummer;
+    public void setTurnNumber(int turnNumber) {
+        this.turnNumber = turnNumber;
     }
 
     @Override
-    public String toString() { 
-
-        if(zugNummer == 0) {
-
-            return "Dieser ist der Turn wurde noch nicht gespielt."
-                    + "\n"
-                    + this.token.toString();
-
-        } else {
-
-            return "Dieser ist der Turn Nr. "
-                    + this.zugNummer
-                    + "\n"
-                    + this.token.toString();
-        }
+    public String toString() {
+        return "Turn{" +
+                "field=" + field +
+                ", turnNumber=" + turnNumber +
+                ", token=" + token +
+                '}';
     }
 
     @Override

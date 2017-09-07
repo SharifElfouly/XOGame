@@ -13,11 +13,19 @@ import static org.junit.Assert.*;
  * @author Sharif Elfouly
  * @version 1.0
  *
- * Änderungshistorie:
+ * Change log:
  * 1) 23.05.2017 ELF Klasse erstellt.
  */
 
 public class PositionenTest {
+
+    /** Exception Text bei falscher Angabe der X Koordinate */
+    public static final String X_ILLEGAL_ARGUMENT_TEXT = "X Position ist nicht"
+            + " im vorgesehenen Intervall";
+
+    /** Exception Text bei falscher Angabe der Y Koordinate */
+    public static final String Y_ILLEGAL_ARGUMENT_TEXT = "Y Position ist nicht"
+            + " im vorgesehenen Intervall";
 
     /**
      * Testet die Initialisierung einer Position.
@@ -30,7 +38,7 @@ public class PositionenTest {
             new Position(6, 1);
         } catch(IllegalArgumentException e) {
 
-            assertEquals(Position.X_ILLEGAL_ARGUMENT_TEXT, e.getMessage());
+            assertEquals(X_ILLEGAL_ARGUMENT_TEXT, e.getMessage());
         }
 
         try {
@@ -38,7 +46,7 @@ public class PositionenTest {
             new Position(-1, 1);
         } catch(IllegalArgumentException e) {
 
-            assertEquals(Position.X_ILLEGAL_ARGUMENT_TEXT, e.getMessage());
+            assertEquals(X_ILLEGAL_ARGUMENT_TEXT, e.getMessage());
 
         }
 
@@ -47,7 +55,7 @@ public class PositionenTest {
             new Position(1, 10);
         } catch(IllegalArgumentException e) {
 
-            assertEquals(Position.Y_ILLEGAL_ARGUMENT_TEXT, e.getMessage());
+            assertEquals(Y_ILLEGAL_ARGUMENT_TEXT, e.getMessage());
         }
 
         try {
@@ -55,7 +63,7 @@ public class PositionenTest {
             new Position(6, -90);
         } catch(IllegalArgumentException e) {
 
-            assertEquals(Position.X_ILLEGAL_ARGUMENT_TEXT, e.getMessage());
+            assertEquals(X_ILLEGAL_ARGUMENT_TEXT, e.getMessage());
         }
 
         try {
@@ -63,7 +71,7 @@ public class PositionenTest {
             new Position(0, 0);
         } catch(IllegalArgumentException e) {
 
-            assertEquals(Position.X_ILLEGAL_ARGUMENT_TEXT, e.getMessage());
+            assertEquals(X_ILLEGAL_ARGUMENT_TEXT, e.getMessage());
         }
 
         try {
@@ -71,7 +79,7 @@ public class PositionenTest {
             new Position(0, 2);
         } catch(IllegalArgumentException e) {
 
-            assertEquals(Position.X_ILLEGAL_ARGUMENT_TEXT, e.getMessage());
+            assertEquals(X_ILLEGAL_ARGUMENT_TEXT, e.getMessage());
         }
 
         try {
@@ -79,7 +87,7 @@ public class PositionenTest {
             new Position(2, 0);
         } catch(IllegalArgumentException e) {
 
-            assertEquals(Position.Y_ILLEGAL_ARGUMENT_TEXT, e.getMessage());
+            assertEquals(Y_ILLEGAL_ARGUMENT_TEXT, e.getMessage());
         }
 
         /** Position Initialisierung zwischen den vorgegebenen Intervallen */

@@ -8,4 +8,9 @@
         <item name="colorAccent">@color/mainColor</item>
     </style>
 
+    <style name="MyButton" parent="Theme.AppCompat.Light">
+        <item name="colorButtonNormal">@color/mainColor</item>
+        <item name="colorControlHighlight">@color/change_game_mode_btn_clicked_color</item>
+    </style>
+
 </resources>

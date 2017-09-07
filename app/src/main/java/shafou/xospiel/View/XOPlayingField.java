@@ -7,10 +7,8 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
-import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.RelativeLayout;
 
 import java.util.List;
 
@@ -63,7 +61,7 @@ public class XOPlayingField extends View {
         blackPaint.setStyle(Paint.Style.FILL_AND_STROKE);
 
         xOG = new XOPlayingFieldGenerator(3);
-        inputVerarbeiter = new PlayingFieldInputProcessor<>();
+        inputVerarbeiter = new PlayingFieldInputProcessor<>(xOG);
         ButterKnife.bind(this);
     }
 
@@ -76,28 +74,19 @@ public class XOPlayingField extends View {
         blackPaint.setStyle(Paint.Style.FILL_AND_STROKE);
 
         xOG = new XOPlayingFieldGenerator(columnsAndRows);
-        inputVerarbeiter = new PlayingFieldInputProcessor<>();
+        inputVerarbeiter = new PlayingFieldInputProcessor<>(xOG);
         ButterKnife.bind(this);
-    }
-
-    public float get20ProzentOfLayoutHoehe() {
-
-        View lf = LayoutInflater.from(context).inflate(R.layout.game_menu, null, false);
-        RelativeLayout rL = (RelativeLayout) lf.findViewById(R.id.activity_spiel);
-
-        float layoutHeight = rL.getHeight();
-        return (layoutHeight / 100) * 20;
     }
 
     @Override
     public void onDraw(Canvas canvas) {
 
         xOG.setWidth(getWidth());
-        xOG.setHeight(get20ProzentOfLayoutHoehe());
+        xOG.setHeight(getHeight());
         xOG.berechneSpielfelder();
-        inputVerarbeiter.setSpielfeldGenerator(xOG);
+        inputVerarbeiter = new PlayingFieldInputProcessor<>(xOG);
 
-        List<Line> spielfeldLinien = xOG.feldLinienBerechnen(5);
+        List<Line> spielfeldLinien = xOG.calculatesLines(5);
 
         for(Line spielfeldLine : spielfeldLinien) {
 
@@ -137,7 +126,7 @@ public class XOPlayingField extends View {
 
         if(inputVerarbeiter != null) {
 
-            spielfeld = inputVerarbeiter.gibSpielfeld(new Position(x, y));
+            spielfeld = inputVerarbeiter.getField(new Position(x, y));
         }
 
         if(spielfeld != null) {
@@ -157,8 +146,8 @@ public class XOPlayingField extends View {
     public XOPlayingField restart(int columnsAndRows) {
 
         invalidate();
-        inputVerarbeiter = new PlayingFieldInputProcessor<>();
         xOG = new XOPlayingFieldGenerator(columnsAndRows);
+        inputVerarbeiter = new PlayingFieldInputProcessor<>(xOG);
         return this;
     }
 

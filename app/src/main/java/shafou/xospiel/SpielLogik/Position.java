@@ -2,50 +2,24 @@ package shafou.xospiel.SpielLogik;
 
 /**
  *
- * Diese Klasse stellt die Position auf dem Spielfeld dar.
+ * This class represents a position.
+ * A position consists of a X and Y coordinate.
  *
- * <p>Die X und Y Koordinaten werden niemals von außen gesetzt, daher werden
- * keine Setter benötigt.
- *
- * <p>Eine Position ist immutable.
+ * A position is immutable.
  *
  * @author Sharif Elfouly
  * @version 1.0
  *
- * Änderungshistorie:
- * 23.05.2017 ELF Klasse angelegt.
+ * Change log:
+ * 23.05.2017 ELF Class created.
  */
 
 public final class Position {
 
-    /** X Koordinate auf dem Spielfeld */
     private final float x;
 
-    /** Y Koordinate auf dem Spielfeld */
     private final float y;
 
-    /** Exception Text bei falscher Angabe der X Koordinate */
-    public static final String X_ILLEGAL_ARGUMENT_TEXT = "X Position ist nicht"
-            + " im vorgesehenen Intervall";
-
-    /** Exception Text bei falscher Angabe der Y Koordinate */
-    public static final String Y_ILLEGAL_ARGUMENT_TEXT = "Y Position ist nicht"
-            + " im vorgesehenen Intervall";
-
-    /**
-     * Eine Position auf dem Spielfeld besteht aus einer X und einer Y
-     * Koordinate.
-     *
-     * Eine Exception wird aufgerufen falls sich die X Koordinate nicht in den
-     * Intervallen MAX_X_POSITION und MIN_X_POSITION befindet. Das gleiche gilt
-     * für die Y Koordinate und deren korrespondierenden Intervall.
-     *
-     * Die Initialisierung wird bereits bei einem Fehler der X Koordinate
-     * abgebrochen.
-     *
-     * @param x X Koordinate
-     * @param y Y Koordinate
-     */
     public Position(float x, float y) {
 
         this.x = x;

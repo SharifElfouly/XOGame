@@ -88,11 +88,22 @@
     <ViewAnimator
         android:id="@+id/playing_fields_view_animator"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="16dp"
         android:layout_below="@+id/linearLayout"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="18dp">
+        >
 
     </ViewAnimator>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Start"
+        android:theme="@style/MyButton"
+        android:textColor="@color/white"
+        android:id="@+id/start_btn"
+        android:layout_below="@+id/playing_fields_view_animator"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="12dp"/>
 
 </RelativeLayout>

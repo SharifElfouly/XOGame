@@ -4,6 +4,7 @@ import android.app.Activity;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mockito;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
@@ -14,12 +15,14 @@ import shafou.xospiel.BuildConfig;
 import shafou.xospiel.PlayingField.Field;
 import shafou.xospiel.PlayingField.Token;
 import shafou.xospiel.PlayingField.XToken;
+import shafou.xospiel.SpielLogik.Position;
 import shafou.xospiel.SpielLogik.Turn;
 import shafou.xospiel.SpielLogik.XOGame;
 import shafou.xospiel.PlayingField.OToken;
 
 import static com.google.common.truth.Truth.assertThat;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 /**
  *
@@ -28,7 +31,7 @@ import static org.mockito.Mockito.mock;
  * @author Sharif Elfouly
  * @version 1.0
  *
- * Änderungshistorie:
+ * Change log:
  * 1) 11.06.2017 ELF Klasse erstellt.
  */
 
@@ -51,6 +54,7 @@ public class XOGameTest {
         Token tokenO = new OToken(activity);
 
         Field mockedField = mock(Field.class);
+        when(mockedField.getPositionOnPlayingField()).thenReturn(new Position(1, 0));
 
         Turn turn1 = new Turn(tokenX, mockedField);
         Turn turn2 = new Turn(tokenO, mockedField);
@@ -74,6 +78,7 @@ public class XOGameTest {
         Token tokenX2 = new XToken(activity);
 
         Field mockedField = mock(Field.class);
+        when(mockedField.getPositionOnPlayingField()).thenReturn(new Position(1, 0));
 
         Turn turn1 = new Turn(tokenX1, mockedField);
         Turn turn2 = new Turn(tokenO1, mockedField);
@@ -99,6 +104,7 @@ public class XOGameTest {
         Token tokenX2 = new XToken(activity);
 
         Field mockedField = mock(Field.class);
+        when(mockedField.getPositionOnPlayingField()).thenReturn(new Position(1, 0));
 
         Turn turn1 = new Turn(tokenX1, mockedField);
         Turn turn2 = new Turn(tokenO1, mockedField);
@@ -125,6 +131,7 @@ public class XOGameTest {
         Token tokenO2 = new OToken(activity);
 
         Field mockedField = mock(Field.class);
+        when(mockedField.getPositionOnPlayingField()).thenReturn(new Position(1, 0));
 
         Turn turn1 = new Turn(tokenX1, mockedField);
         Turn turn2 = new Turn(tokenO1, mockedField);
@@ -180,5 +187,13 @@ public class XOGameTest {
         assertThat(actualGewinnMoeglichkeit[0]).isSameAs(expectedGewinnMoeglichkeit[0]);
         assertThat(actualGewinnMoeglichkeit[1]).isSameAs(expectedGewinnMoeglichkeit[1]);
         assertThat(actualGewinnMoeglichkeit[2]).isSameAs(expectedGewinnMoeglichkeit[2]);
+    }
+
+    @Test public void GetMinimumTokensToWin_3_Returned() {
+
+        XOGame.Mode[] gameModes = XOGame.Mode.values();
+        int expectedTokens = gameModes[0].getColumnsAndRows();
+
+        assertThat(XOGame.Mode.getMinimumTokensToWin()).isSameAs(expectedTokens);
     }
 }

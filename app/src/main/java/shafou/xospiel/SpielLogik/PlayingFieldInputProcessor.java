@@ -1,25 +1,28 @@
 package shafou.xospiel.SpielLogik;
 
-import java.util.ArrayList;
+import android.support.annotation.Nullable;
+
+import java.util.List;
 
 import shafou.xospiel.PlayingField.Field;
 import shafou.xospiel.PlayingField.PlayingFieldGenerator;
 
 /**
  *
- * Diese Klasse verwaltet die Spieler Inputs auf dem Spielfeld.
+ * This class represents a input processor of the playing field. Every management
+ * of an interaction with the field should be implemented here.
  *
  * @author Sharif Elfouly
  * @version 1.0
  *
- * Änderungshistorie:
- * 1) 05.06.2017 ELF Klasse erstellt.
+ * Change log:
+ * 1) 05.06.2017 ELF Class created.
  */
 
 public final class PlayingFieldInputProcessor<T extends PlayingFieldGenerator> {
 
-    /** Beinhaltet die Rechtecke des Spielfeldes */
-    private ArrayList<Field> playingFields;
+    /** Contains the fields of the playing field */
+    private List<Field> playingFields;
 
     /** Breite des Spielfeldes */
     private float width;
@@ -27,14 +30,25 @@ public final class PlayingFieldInputProcessor<T extends PlayingFieldGenerator> {
     /** Höhe des Spielfeldes */
     private float height;
 
-    public PlayingFieldInputProcessor() {}
+    /**
+     * Creates a new Input Processor for a specific playing field generator.
+     *
+     * @param playingFieldGenerator Playing field generator
+     */
+    public PlayingFieldInputProcessor(T playingFieldGenerator) {
+
+        this.playingFields = playingFieldGenerator.getPlayingFields();
+        this.width = playingFieldGenerator.getWidth();
+        this.height = playingFieldGenerator.getHeight();
+    }
 
     /**
-     * Gibt an ob der Input des Spielers im Spielfeld ist
-     * @param inputPosition Position des Inputs des Spielers
-     * @return <code>true</code> falls sich der Input auf dem Spielfeld befindet.
+     * Checks if the position of the input is on the playing field at all.
+     *
+     * @param inputPosition position of the input
+     * @return <code>true</code> if the input is on the field
      */
-    public boolean istEingabeAufFeld(Position inputPosition) {
+    public boolean isInputOnField(Position inputPosition) {
 
         return inputPosition.getXPosition() < width
                 && inputPosition.getYPosition() < height
@@ -43,35 +57,26 @@ public final class PlayingFieldInputProcessor<T extends PlayingFieldGenerator> {
     }
 
     /**
-     * Gibt das Spielfeld an, in dem der User Input stattgefunden hat.
+     * Calculates on which field of the playing field the input happened.
      *
-     * @param inputPosition Position des Inputs
-     * @return Das Spielfeld indem der Input war
+     * @param inputPosition position of the input
+     * @return One field of the playing field fields
      */
-    public Field gibSpielfeld(Position inputPosition) {
+    @Nullable public Field getField(Position inputPosition) {
 
-        for(Field spielfeld: playingFields) {
+        /** Iterate over all fields */
+        for(Field field: playingFields) {
+            
+            /** checks if the input is in the area of a field */
+            if(inputPosition.getXPosition() >= field.getX1().getXPosition()
+                    && inputPosition.getXPosition() <= field.getX2().getXPosition()
+                    && inputPosition.getYPosition() >= field.getX1().getYPosition()
+                    && inputPosition.getYPosition() <= field.getX4().getYPosition()) {
 
-            if(inputPosition.getXPosition() >= spielfeld.getX1().getXPosition()
-                    && inputPosition.getXPosition() <= spielfeld.getX2().getXPosition()
-                    && inputPosition.getYPosition() >= spielfeld.getX1().getYPosition()
-                    && inputPosition.getYPosition() <= spielfeld.getX4().getYPosition()) {
-
-                return spielfeld;
+                return field;
             }
         }
 
         return null;
-    }
-
-    /**
-     * Setzt den Spielfeld Generator
-     * @param spielfeldGenerator Spielfeld Generator
-     */
-    public void setSpielfeldGenerator(T spielfeldGenerator) {
-
-        this.playingFields = spielfeldGenerator.getPlayingFields();
-        this.width = spielfeldGenerator.getWidth();
-        this.height = spielfeldGenerator.getHeight();
     }
 }

@@ -11,7 +11,7 @@ import static com.google.common.truth.Truth.assertThat;
  * @author Sharif Elfouly
  * @version 1.0
  *
- * Änderungshistorie:
+ * Change log:
  * 1) 11.06.2017 ELF Klasse erstellt.
  */
 

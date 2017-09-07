@@ -1,59 +1,62 @@
 package shafou.xospiel.PlayingField;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import shafou.xospiel.SpielLogik.Position;
 
 /**
  *
- * Diese Klasse stellt Methoden zur Verfügung, um ein X O Spielfeld beliebiger
- * Größe zu erstellen.
+ * This class is used to generate X/O playing fields.
  *
  * @author Sharif Elfouly
  * @version 1.0
  *
- * Änderungshistorie:
- * 1) 01.06.2017 ELF Klasse erstellt.
+ * Change log:
+ * 1) 01.06.2017 ELF Class created erstellt.
  */
 
 public final class XOPlayingFieldGenerator implements PlayingFieldGenerator {
 
-    /** Breite des Spielfeldes */
     private float width;
 
-    /** Höhe des Spielfeldes */
     private float height;
 
-    /** Anzahl der Spalten des Spielfeldes */
-    private final int columnsAndRows;
+    /** Amount of columns and rows of the playing field */
+    private int columnsAndRows;
 
-    /** Beinhaltet die Felder des Spielfeldes */
-    private ArrayList<Field> playingFields;
+    /** Playing field fields */
+    private List<Field> playingFields;
 
     /**
-     * Ein Spielfeld setzt sich aus der Höhe und der Breite zusammen
-     * @param width Breite des Spielfeldes
-     * @param height Hoehe des Spielfeldes
-     * @param columnsAndRows
+     * A playing field is calculated for a specific width height and columns and
+     * rows.
+     *
+     * @param width Playing field width
+     * @param height Playing field height
+     * @param columnsAndRows Amount of columns and rows of the playing field
      */
     public XOPlayingFieldGenerator(float width, float height, int columnsAndRows) {
 
         if(width <= 0 || height <= 0) {
-            throw new IllegalArgumentException("Breite und Höhe müssen größer als 0 sein.");
+            throw new IllegalArgumentException("Columns and Rows must be positive.");
         }
 
         if(columnsAndRows < 3) {
 
-            throw new IllegalArgumentException("Ein X/O Field muss die gleiche" +
-                    " Anzahl von Reihen und Spalten haben und muss mindestens" +
-                    " 3x3 groß sein.");
+            throw new IllegalArgumentException("The minimum amount of columns " +
+                    "and rows required is 3.");
         }
 
         this.width = width;
         this.height = height;
         this.columnsAndRows = columnsAndRows;
 
-        playingFields = FieldsCalculator.getFields(this.width, this.height, this.columnsAndRows, this.columnsAndRows);
+        /** Playing fields on the field */
+        playingFields = FieldsCalculator.getFields(this.width,
+                this.height,
+                this.columnsAndRows,
+                this.columnsAndRows);
     }
 
     /**
@@ -72,8 +75,27 @@ public final class XOPlayingFieldGenerator implements PlayingFieldGenerator {
         this.columnsAndRows = columnsAndRows;
     }
 
+//    /**
+//     * Instantiates a new X/O playing field generator with new columns and rows.
+//     *
+//     * @param columnsAndRows Amount of columns and rows of the playing field
+//     * @return Updated XOPlayingFieldGenerator Instance
+//     */
+//    public XOPlayingFieldGenerator reInstantiateXOGenerator(int columnsAndRows) {
+//
+//        this.columnsAndRows = columnsAndRows;
+//
+//        if(width == 0F || height == 0F) {
+//
+//            throw new IllegalAccessError("The playing field can only be restarted" +
+//                    "if a playing field was instantiated before.");
+//        }
+//
+//        return new XOPlayingFieldGenerator(width, height, columnsAndRows);
+//    }
+
     @Override
-    public ArrayList<Field> getPlayingFields() {
+    public List<Field> getPlayingFields() {
         return this.playingFields;
     }
 
@@ -89,10 +111,10 @@ public final class XOPlayingFieldGenerator implements PlayingFieldGenerator {
      *
      * @return Eine Liste von Linien
      */
-    public ArrayList<Line> feldlinienBerechnen() {
+    public ArrayList<Line> calculatesLines() {
 
         /** Gibt die Positionen des Spielfeldes zurück */
-        ArrayList<Position> positionen = FieldsCalculator.getPositions(this.width,
+        List<Position> positionen = FieldsCalculator.getPositions(this.width,
                 this.height, columnsAndRows, columnsAndRows);
 
         int columns = columnsAndRows;
@@ -176,7 +198,7 @@ public final class XOPlayingFieldGenerator implements PlayingFieldGenerator {
 
     /**
      * Für die Implementierung der Linien Berechnung { @see
-     * {@link XOPlayingFieldGenerator#feldlinienBerechnen()}}
+     * {@link XOPlayingFieldGenerator#calculatesLines()}}
      *
      * Zusätslich können die generierten Linien mit einem Prozentsatz angepasst
      * werden.
@@ -187,7 +209,7 @@ public final class XOPlayingFieldGenerator implements PlayingFieldGenerator {
      * @param prozent Prozent mit dem die gezeichneten Linien angepasst werden
      * @return Eine Liste von angepassten Linien, die ein X O Spielfeld darstellen
      */
-    public ArrayList<Line> feldLinienBerechnen(int prozent) {
+    public ArrayList<Line> calculatesLines(int prozent) {
 
         if(prozent <= 0) {
 
@@ -195,7 +217,7 @@ public final class XOPlayingFieldGenerator implements PlayingFieldGenerator {
         }
 
         /** Nicht angepasste Linien */
-        ArrayList<Line> xOFeldLinien = feldlinienBerechnen();
+        ArrayList<Line> xOFeldLinien = calculatesLines();
 
         /** Liste von angepassten Linien */
         ArrayList<Line> xOFeldLinienAngepasst = new ArrayList<>();
@@ -211,9 +233,9 @@ public final class XOPlayingFieldGenerator implements PlayingFieldGenerator {
 
                 /** Berechnung der neuen Start und Endpunkte der Line */
                 int anfangsPositionX = (int) line.getStart().getXPosition();
-                int anfangsPositionY = (int) prozentBerechnen(this.height, prozent);
+                int anfangsPositionY = (int) calculatePercentage(this.height, prozent);
                 int endPositionX = (int) line.getStart().getXPosition();
-                int endPositionY = (int) (this.height - ((int) prozentBerechnen(this.height, prozent)));
+                int endPositionY = (int) (this.height - ((int) calculatePercentage(this.height, prozent)));
 
                 Line angepassteLine = new Line(new Position(anfangsPositionX, anfangsPositionY), new Position(endPositionX, endPositionY));
                 xOFeldLinienAngepasst.add(angepassteLine);
@@ -226,9 +248,9 @@ public final class XOPlayingFieldGenerator implements PlayingFieldGenerator {
             if(line.getStart().getXPosition() == 0) {
 
                 /** Berechnung der neuen Start und Endpunkte der Line */
-                int anfangsPositionX = (int) prozentBerechnen(this.width, prozent);
+                int anfangsPositionX = (int) calculatePercentage(this.width, prozent);
                 int anfangsPositionY = (int) line.getStart().getYPosition();
-                int endPositionX = (int) (this.width - ((int) prozentBerechnen(this.width, prozent)));
+                int endPositionX = (int) (this.width - ((int) calculatePercentage(this.width, prozent)));
                 int endPositionY = (int) line.getStart().getYPosition();
 
                 Line angepassteLine = new Line(new Position(anfangsPositionX, anfangsPositionY), new Position(endPositionX, endPositionY));
@@ -246,7 +268,7 @@ public final class XOPlayingFieldGenerator implements PlayingFieldGenerator {
      * @param prozent Prozent
      * @return Prozentsatz
      */
-    public static double prozentBerechnen(double betrag, double prozent) {
+    public static double calculatePercentage(double betrag, double prozent) {
 
         /** Betrag und Prozent müssen positiv sein */
         if(betrag <= 0 || prozent <= 0) {

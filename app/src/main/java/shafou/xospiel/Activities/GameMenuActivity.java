@@ -1,11 +1,14 @@
 package shafou.xospiel.Activities;
 
-import android.app.Activity;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ViewAnimator;
@@ -40,11 +43,11 @@ import static shafou.xospiel.View.StatefulButton.State.SELECTED;
  * @author Sharif Elfouly
  * @version 1.0
  *
- * Änderungshistorie:
+ * Change log:
  * 1) 11.06.2017 ELF Class created.
  */
 
-public class GameMenuActivity extends Activity {
+public class GameMenuActivity extends AppCompatActivity {
 
     /** Buttons to change the game mode */
     @BindView(R.id.change_mode_left_btn) Button changeGameModeLeftBtn;
@@ -58,15 +61,17 @@ public class GameMenuActivity extends Activity {
     @BindView(R.id.four_tokens_btn) ImageButton fourTokensBtn;
     @BindView(R.id.five_tokens_btn) ImageButton fiveTokensBtn;
 
+    @BindView(R.id.start_btn) Button startBtn;
+
     /** Drawables of the tokens required to win buttons */
     @BindDrawable(R.drawable.three) Drawable drawableThree;
     @BindDrawable(R.drawable.four) Drawable drawableFour;
     @BindDrawable(R.drawable.five) Drawable drawableFive;
 
     /** This view animator holds X/O playing field previews */
-    @BindView(R.id.playing_fields_view_animator) ViewAnimator playingFieldsViewAnimator;
+    @BindView(R.id.playing_fields_view_animator) ViewAnimator gameModePreviewViewAnimator;
 
-    /** Index of the game mode shown in the TextView */
+    /** Current index of the game mode */
     private int gameModeIndex = 0;
 
     /** Stateful buttons that indicate how many tokens are required to win */
@@ -75,25 +80,27 @@ public class GameMenuActivity extends Activity {
     private StatefulButton sFiveTokensBtn;
 
     /** All game modes */
-    final XOGame.Mode[] gameModes = XOGame.Mode.values();
+    private final XOGame.Mode[] gameModes = XOGame.Mode.values();
 
     /** All game mode names */
-    final List<String> gameModeNames = XOGame.Mode.getModeNames();
+    private final List<String> gameModeNames = XOGame.Mode.getModeNames();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        makeActivityFullscreen();
+        setFullscreen();
 
         setContentView(R.layout.game_menu);
         ButterKnife.bind(this);
 
-        addViewsToViewAnimator();
+        initStartBtn();
 
-        setUpChangeGameModeLeftBtn();
+        addPreviewsToViewAnimator();
 
-        setUpChangeGameModeRightBtn();
+        decreaseGameModeBtn();
+
+        increaseGameModeBtn();
 
         /** Set the game mode to the first one */
         gameModeTV.setText(gameModeNames.get(0));
@@ -121,11 +128,10 @@ public class GameMenuActivity extends Activity {
     }
 
     /**
-     * Sets the activity to fullscreen
+     * Sets activity to fullscreen.
      */
-    private void makeActivityFullscreen() {
+    private void setFullscreen() {
 
-        /** Sets the activity to fullscreen */
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -133,12 +139,15 @@ public class GameMenuActivity extends Activity {
 
     /**
      * Adds all X/O playing field previews to the view animator.
+     * For every game mode a preview of the playing field is added.
      */
-    private void addViewsToViewAnimator() {
+    private void addPreviewsToViewAnimator() {
 
-        playingFieldsViewAnimator.addView(new XOPlayingField(this, 3));
-        playingFieldsViewAnimator.addView(new XOPlayingField(this, 4));
-        playingFieldsViewAnimator.addView(new XOPlayingField(this, 5));
+        for(XOGame.Mode gameMode: gameModes) {
+
+            XOPlayingField xOPF = new XOPlayingField(this, gameMode.getColumnsAndRows());
+            gameModePreviewViewAnimator.addView(xOPF);
+        }
     }
 
     /**
@@ -149,7 +158,7 @@ public class GameMenuActivity extends Activity {
      *  - Sets the button to not selectable if necessary
      *  - Shows the new X/O playing field preview if available
      */
-    private void setUpChangeGameModeLeftBtn() {
+    private void decreaseGameModeBtn() {
 
         changeGameModeLeftBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -159,9 +168,34 @@ public class GameMenuActivity extends Activity {
                 setGameModeIndex(gameModeNames.size());
                 gameModeTV.animateText(gameModeNames.get(gameModeIndex));
                 StatefulButtons.setNotSelectableButtons(gameModes[gameModeIndex]);
-                playingFieldsViewAnimator.showPrevious();
+                setLeftToRightPreviewAnimation();
+                gameModePreviewViewAnimator.showPrevious();
             }
         });
+    }
+
+    /**
+     * Sets the animation of the game mode preview for a left change.
+     */
+    private void setLeftToRightPreviewAnimation() {
+
+        Animation leftIn = AnimationUtils.loadAnimation(this, R.anim.left_in);
+        Animation rightOut = AnimationUtils.loadAnimation(this, R.anim.right_out);
+
+        gameModePreviewViewAnimator.setInAnimation(leftIn);
+        gameModePreviewViewAnimator.setOutAnimation(rightOut);
+    }
+
+    /**
+     * Sets the animation of the game mode preview for a right change.
+     */
+    private void setRightToLeftPreviewAnimation() {
+
+        Animation leftOut = AnimationUtils.loadAnimation(this, R.anim.left_out);
+        Animation rightIn = AnimationUtils.loadAnimation(this, R.anim.right_in);
+
+        gameModePreviewViewAnimator.setOutAnimation(leftOut);
+        gameModePreviewViewAnimator.setInAnimation(rightIn);
     }
 
     /**
@@ -172,7 +206,7 @@ public class GameMenuActivity extends Activity {
      *  - Sets the button to selectable if necessary
      *  - Shows the new X/O playing field preview if available
      */
-    private void setUpChangeGameModeRightBtn() {
+    private void increaseGameModeBtn() {
 
         changeGameModeRightBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -182,7 +216,8 @@ public class GameMenuActivity extends Activity {
                 setGameModeIndex(gameModeNames.size());
                 gameModeTV.animateText(gameModeNames.get(gameModeIndex));
                 StatefulButtons.setSelectableButtons(gameModes[gameModeIndex]);
-                playingFieldsViewAnimator.showNext();
+                setRightToLeftPreviewAnimation();
+                gameModePreviewViewAnimator.showNext();
             }
         });
     }
@@ -193,16 +228,13 @@ public class GameMenuActivity extends Activity {
      */
     private void setUpGameTokensBtns() {
 
-        /** 3 tokens stateful btn */
-        sThreeTokensBtn = new StatefulButton(SELECTED,
-                threeTokensBtn, drawableThree);
+        /** 3 tokens stateful btn is default selected */
+        sThreeTokensBtn = new StatefulButton(SELECTED, threeTokensBtn,
+                drawableThree);
 
-        /** 4 tokens stateful btn */
         sFourTokensBtn = new StatefulButton(fourTokensBtn, drawableFour);
 
-        /** 5 tokens stateful btn */
-        sFiveTokensBtn = new StatefulButton(fiveTokensBtn,
-                drawableFive);
+        sFiveTokensBtn = new StatefulButton(fiveTokensBtn, drawableFive);
 
         /** Add all stateful buttons for management to stateful buttons */
         StatefulButtons.add(sThreeTokensBtn);
@@ -229,5 +261,27 @@ public class GameMenuActivity extends Activity {
                 StatefulButtons.setSelected(sFiveTokensBtn);
             }
         });
+    }
+
+    /**
+     * Init start btn
+     */
+    private void initStartBtn() {
+
+        startBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startGame();
+            }
+        });
+    }
+
+    /**
+     * Starts the game
+     */
+    private void startGame() {
+
+        Intent gameActivity = new Intent(this, GameActivity.class);
+        startActivity(gameActivity);
     }
 }

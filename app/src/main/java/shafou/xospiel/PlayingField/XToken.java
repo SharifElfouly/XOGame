@@ -4,13 +4,13 @@ import android.content.Context;
 
 /**
  *
- * Diese Klasse stellt ein X Token dar.
+ * This class represents an X Token.
  *
  * @author Sharif Elfouly
  * @version 1.0
  *
- * Änderungshistorie:
- * 1) 24.05.2017 ELF Klasse erstellt.
+ * Change log:
+ * 1) 24.05.2017 ELF Class created.
  */
 
 public class XToken extends Token {

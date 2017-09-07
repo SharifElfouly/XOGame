@@ -1,49 +1,51 @@
 package shafou.xospiel.PlayingField;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import shafou.xospiel.SpielLogik.Position;
 
 /**
  *
- * Diese Klasse stellt Methoden zur Berechnungen der Spielfelder eines
- * Spielfeldes dar.
+ * This class has methods to calculate positions and fields of a playing field.
  *
  * @author Sharif Elfouly
  * @version 1.0
  *
- * Änderungshistorie:
- * 1) 03.06.2017 ELF Klasse erstellt.
+ * Change log:
+ * 1) 03.06.2017 ELF Class created.
  */
 
 public final class FieldsCalculator {
 
     /**
-     * Gibt anhand der Reihen und Spalten alle Positionen des Spielfeldes zurück
+     * Calculates from the given rows and columns all positions on the whole
+     * field with a specific height and width.
      *
-     * @param reihen Anzahl der Reihen auf dem Spielfeld
-     * @param spalten Anzahl der Spalten auf dem Spielfeld
-     * @return Liste mit Positionen auf dem Spielfeld
+     * @param width Width of the whole field
+     * @param height Height of the whole field
+     * @param columns Columns on the field
+     * @param rows Rows on the filed
+     * @return List of all positions on the field
      */
-    public static ArrayList<Position> getPositions(float breite, float hoehe, int spalten, int reihen) {
+    public static List<Position> getPositions(float width, float height, int columns, int rows) {
 
-        /** Spalten und Reihen müssen positiv sein */
-        if(spalten <= 0 || reihen <= 0) {
+        /** Rows and columns must be positiv */
+        if(columns <= 0 || rows <= 0) {
 
-            throw new IllegalArgumentException("Spalten und Reihen müssen " +
-                    "positiv sein!");
+            throw new IllegalArgumentException("Rows and columns must be positiv");
         }
 
-        /** Liste mit den errechneten Positionen */
-        ArrayList<Position> positionen = new ArrayList<>();
+        /** List of the calculated positions */
+        List<Position> positionen = new ArrayList<>();
 
-        /** Iteration über alle Reihen und Spalten */
-        for(int r = 0; r <= reihen; r++) {
-            for(int s = 0; s <= spalten; s++) {
+        /** Iteration over all columns and rows */
+        for(int r = 0; r <= rows; r++) {
+            for(int s = 0; s <= columns; s++) {
 
-                /** Berechnung aller Positionen der aufzubauenden Rechtecke */
+                /** Calculation of the specific position */
                 Position position
-                        = new Position(((float) s / (float) spalten) * breite, ((float)r / (float)reihen) * hoehe);
+                        = new Position(((float) s / (float) columns) * width, ((float)r / (float)rows) * height);
                 positionen.add(position);
             }
         }
@@ -52,62 +54,69 @@ public final class FieldsCalculator {
     }
 
     /**
-     * Gibt anhand der Anzahl von Spalten und Reihen Felder
-     * zurück.
+     * Calculates all fields on the whole field from the positions calculated
+     * {@link FieldsCalculator#getPositions(float, float, int, int)}.
      *
-     * @param spalten Anzahl der Spalten des Spielfeldes
-     * @param reihen Anzahl der Zeilen des Spielfeldes
-     * @return Liste von Field Objekten
+     * @param width Width of the whole field
+     * @param height Height of the whole field
+     * @param columns Columns on the field
+     * @param rows Rows on the field
+     * @return List of all fields in the whole field
      */
-    public static ArrayList<Field> getFields(float breite, float hoehe, int spalten, int reihen) {
+    public static List<Field> getFields(float width, float height, int columns, int rows) {
 
-        /** Gibt die Positionen des Spielfeldes zurück */
-        ArrayList<Position> positionen = getPositions(breite, hoehe, spalten, reihen);
+        /** Get all positions on the field */
+        List<Position> positionen = getPositions(width, height, columns, rows);
 
-        /** Liste von Field Objekten */
-        ArrayList<Field> field
-                = new ArrayList<>();
+        /** List of all fields in the whole field */
+        List<Field> fields = new ArrayList<>();
 
-        /** Falls eine neue Reihe bearbeitet wird muss dieses separat berechnet werden */
-        int neueReihe = 0;
+        /** Keeps tracks of new rows */
+        int newRow = 0;
 
-        int spaltenIndex = 1;
-        int reihenIndex = 1;
+        /** Holds the index of the current Column */
+        int columnIndex = 1;
 
-        /** Iteration über alle Positionen */
-        for(int i = 1; i <= (spalten * reihen); i++) {
+        /** Holds the index of the current Row */
+        int rowIndex = 1;
 
-            /** Initialisierung der LayoutDisplayRechtecke */
-            Field lDQ = new Field(
-                    positionen.get(i + neueReihe - 1),
-                    positionen.get(i + neueReihe),
-                    positionen.get(i + neueReihe + spalten + 1),
-                    positionen.get(i + neueReihe + spalten),
+        /** Iteration over all positions of the field */
+        for(int i = 1; i <= (columns * rows); i++) {
+
+            /** Calculates a field */
+            Field field = new Field(
+                    positionen.get(i + newRow - 1),
+                    positionen.get(i + newRow),
+                    positionen.get(i + newRow + columns + 1),
+                    positionen.get(i + newRow + columns),
                     i);
 
-            /** Falls <code>true</code> wurde eine neue Reihe begonnen */
-            if(i % (spalten) == 0) {
+            /** Is true if a new row is started */
+            if(i % (columns) == 0) {
 
-                neueReihe++;
+                newRow++;
             }
 
-            if(spaltenIndex > spalten) {
+            /** Resets the column index */
+            if(columnIndex > columns) {
 
-                spaltenIndex = 1;
+                columnIndex = 1;
             }
 
-            lDQ.setPosition(new Position(spaltenIndex, reihenIndex));
+            /** Sets the raltive position on the whole field */
+            field.setPositionOnPlayingField(new Position(columnIndex, rowIndex));
 
-            if(spaltenIndex == spalten) {
+            /** Is true if the end of a row is reached */
+            if(columnIndex == columns) {
 
-                reihenIndex++;
+                rowIndex++;
             }
 
-            spaltenIndex++;
+            columnIndex++;
 
-            field.add(lDQ);
+            fields.add(field);
         }
 
-        return field;
+        return fields;
     }
 }

@@ -3,12 +3,12 @@ package shafou.xospiel.PlayingField;
 import android.content.Context;
 /**
  *
- * Diese Klasse stellt ein Y Token dar.
+ * This class represents an O Token.
  *
  * @author Sharif Elfouly
  * @version 1.0
  *
- * Änderungshistorie:
+ * Change log:
  * 1) 24.05.2017 ELF Klasse erstellt.
  */
 

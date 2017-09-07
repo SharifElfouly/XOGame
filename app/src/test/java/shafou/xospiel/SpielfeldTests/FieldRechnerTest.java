@@ -29,7 +29,7 @@ import static org.junit.Assert.assertEquals;
  * @author Sharif Elfouly
  * @version 1.0
  *
- * Änderungshistorie:
+ * Change log:
  * 1) 03.05.2017 ELF Klasse erstellt.
  */
 
@@ -38,9 +38,9 @@ public class FieldRechnerTest {
     @Test
     public void PositionenBerechnen_3x3_Berechnet() {
 
-        ArrayList<Position> generiertePositionen = FieldsCalculator.getPositions(120, 120, 3, 3);
+        List<Position> generiertePositionen = FieldsCalculator.getPositions(120, 120, 3, 3);
 
-        ArrayList<Position> testPositionen = new ArrayList<>();
+        List<Position> testPositionen = new ArrayList<>();
         testPositionen.add(new Position(0, 0));
         testPositionen.add(new Position(40, 0));
         testPositionen.add(new Position(80, 0));
@@ -64,9 +64,9 @@ public class FieldRechnerTest {
     @Test
     public void PositionenBerechnen_1x1_Berechnet() {
 
-        ArrayList<Position> generiertePositionen = FieldsCalculator.getPositions(120, 120, 1, 1);
+        List<Position> generiertePositionen = FieldsCalculator.getPositions(120, 120, 1, 1);
 
-        ArrayList<Position> testPositionen = new ArrayList<>();
+        List<Position> testPositionen = new ArrayList<>();
         testPositionen.add(new Position(0, 0));
         testPositionen.add(new Position(120, 0));
         testPositionen.add(new Position(0, 120));
@@ -78,9 +78,9 @@ public class FieldRechnerTest {
     @Test
     public void PositionenBerechnen_1x2_Berechnet() {
 
-        ArrayList<Position> generiertePositionen = FieldsCalculator.getPositions(120, 120, 1, 2);
+        List<Position> generiertePositionen = FieldsCalculator.getPositions(120, 120, 1, 2);
 
-        ArrayList<Position> testPositionen = new ArrayList<>();
+        List<Position> testPositionen = new ArrayList<>();
         testPositionen.add(new Position(0, 0));
         testPositionen.add(new Position(120, 0));
         testPositionen.add(new Position(0, 60));
@@ -94,9 +94,9 @@ public class FieldRechnerTest {
     @Test
     public void PositionenBerechnen_2x1_Berechnet() {
 
-        ArrayList<Position> generiertePositionen = FieldsCalculator.getPositions(120, 120, 2, 1);
+        List<Position> generiertePositionen = FieldsCalculator.getPositions(120, 120, 2, 1);
 
-        ArrayList<Position> testPositionen = new ArrayList<>();
+        List<Position> testPositionen = new ArrayList<>();
         testPositionen.add(new Position(0, 0));
         testPositionen.add(new Position(60, 0));
         testPositionen.add(new Position(120, 0));
@@ -185,7 +185,7 @@ public class FieldRechnerTest {
                 new Position(80,120),
                 9);
 
-        ArrayList<Field> generierteLayoutDisplayQuadrate
+        List<Field> generierteLayoutDisplayQuadrate
                 = FieldsCalculator.getFields(120, 120, 3, 3);
 
         ArrayList<Field> testLayoutDisplayListe = new ArrayList<>();
@@ -275,7 +275,7 @@ public class FieldRechnerTest {
                 new Position(2f/3f * X_LAYOUT_GROESSE, Y_LAYOUT_GROESSE),
                 9);
 
-        ArrayList<Field> generierteLayoutDisplayQuadrate
+        List<Field> generierteLayoutDisplayQuadrate
                 = FieldsCalculator.getFields(X_LAYOUT_GROESSE, Y_LAYOUT_GROESSE, 3, 3);
 
         ArrayList<Field> testLayoutDisplayListe = new ArrayList<>();
@@ -317,7 +317,7 @@ public class FieldRechnerTest {
 
         testListe.add(lDQ1);
 
-        ArrayList<Field> generierteQuadrate
+        List<Field> generierteQuadrate
                 = FieldsCalculator.getFields(100, 100, 1, 1);
 
         assertEquals(testListe, generierteQuadrate);
@@ -345,7 +345,7 @@ public class FieldRechnerTest {
         testListe.add(lDQ1);
         testListe.add(lDQ2);
 
-        ArrayList<Field> generierteQuadrate
+        List<Field> generierteQuadrate
                 = FieldsCalculator.getFields(100, 100, 2, 1);
 
         assertEquals(testListe.get(0), generierteQuadrate.get(0));
@@ -384,7 +384,7 @@ public class FieldRechnerTest {
         testListe.add(lDQ2);
         testListe.add(lDQ3);
 
-        ArrayList<Field> generierteQuadrate
+        List<Field> generierteQuadrate
                 = FieldsCalculator.getFields(120, 120, 1, 3);
 
         assertEquals(testListe.get(0), generierteQuadrate.get(0));
@@ -423,7 +423,7 @@ public class FieldRechnerTest {
         testListe.add(lDQ2);
         testListe.add(lDQ3);
 
-        ArrayList<Field> generierteQuadrate
+        List<Field> generierteQuadrate
                 = FieldsCalculator.getFields(120, 120, 3, 1);
 
         assertEquals(testListe, generierteQuadrate);
@@ -438,7 +438,7 @@ public class FieldRechnerTest {
     @Test
     public void FelderIndexierung_3x1_Berechnet() {
 
-        ArrayList<Field> generierteFelder
+        List<Field> generierteFelder
                 = FieldsCalculator.getFields(120, 120, 3, 1);
 
         for(int i = 1; i < generierteFelder.size(); i++) {
@@ -450,7 +450,7 @@ public class FieldRechnerTest {
     @Test
     public void FelderIndexierung_5x5_Berechnet() {
 
-        ArrayList<Field> generierteFelder
+        List<Field> generierteFelder
                 = FieldsCalculator.getFields(120, 120, 5, 5);
 
         for(int i = 1; i < generierteFelder.size(); i++) {
@@ -469,10 +469,10 @@ public class FieldRechnerTest {
         List<Field> felder;
         felder = FieldsCalculator.getFields(120, 120, 2, 2);
 
-        assertThat(felder.get(0).getPosition()).isEqualTo(position1_1);
-        assertThat(felder.get(1).getPosition()).isEqualTo(position2_1);
-        assertThat(felder.get(2).getPosition()).isEqualTo(position1_2);
-        assertThat(felder.get(3).getPosition()).isEqualTo(position2_2);
+        assertThat(felder.get(0).getPositionOnPlayingField()).isEqualTo(position1_1);
+        assertThat(felder.get(1).getPositionOnPlayingField()).isEqualTo(position2_1);
+        assertThat(felder.get(2).getPositionOnPlayingField()).isEqualTo(position1_2);
+        assertThat(felder.get(3).getPositionOnPlayingField()).isEqualTo(position2_2);
     }
 
     @Test public void FelderPositionen_2x3_Bestimmt() {
@@ -487,12 +487,12 @@ public class FieldRechnerTest {
         List<Field> felder;
         felder = FieldsCalculator.getFields(120, 120, 2, 3);
 
-        assertThat(felder.get(0).getPosition()).isEqualTo(position1_1);
-        assertThat(felder.get(1).getPosition()).isEqualTo(position2_1);
-        assertThat(felder.get(2).getPosition()).isEqualTo(position1_2);
-        assertThat(felder.get(3).getPosition()).isEqualTo(position2_2);
-        assertThat(felder.get(4).getPosition()).isEqualTo(position1_3);
-        assertThat(felder.get(5).getPosition()).isEqualTo(position3_3);
+        assertThat(felder.get(0).getPositionOnPlayingField()).isEqualTo(position1_1);
+        assertThat(felder.get(1).getPositionOnPlayingField()).isEqualTo(position2_1);
+        assertThat(felder.get(2).getPositionOnPlayingField()).isEqualTo(position1_2);
+        assertThat(felder.get(3).getPositionOnPlayingField()).isEqualTo(position2_2);
+        assertThat(felder.get(4).getPositionOnPlayingField()).isEqualTo(position1_3);
+        assertThat(felder.get(5).getPositionOnPlayingField()).isEqualTo(position3_3);
     }
 
     @Test public void FelderPositionen_3x3_Bestimmt() {
@@ -510,14 +510,14 @@ public class FieldRechnerTest {
         List<Field> felder;
         felder = FieldsCalculator.getFields(120, 120, 3, 3);
 
-        assertThat(felder.get(0).getPosition()).isEqualTo(position1_1);
-        assertThat(felder.get(1).getPosition()).isEqualTo(position2_1);
-        assertThat(felder.get(2).getPosition()).isEqualTo(position3_1);
-        assertThat(felder.get(3).getPosition()).isEqualTo(position1_2);
-        assertThat(felder.get(4).getPosition()).isEqualTo(position2_2);
-        assertThat(felder.get(5).getPosition()).isEqualTo(position3_2);
-        assertThat(felder.get(6).getPosition()).isEqualTo(position1_3);
-        assertThat(felder.get(7).getPosition()).isEqualTo(position2_3);
-        assertThat(felder.get(8).getPosition()).isEqualTo(position3_3);
+        assertThat(felder.get(0).getPositionOnPlayingField()).isEqualTo(position1_1);
+        assertThat(felder.get(1).getPositionOnPlayingField()).isEqualTo(position2_1);
+        assertThat(felder.get(2).getPositionOnPlayingField()).isEqualTo(position3_1);
+        assertThat(felder.get(3).getPositionOnPlayingField()).isEqualTo(position1_2);
+        assertThat(felder.get(4).getPositionOnPlayingField()).isEqualTo(position2_2);
+        assertThat(felder.get(5).getPositionOnPlayingField()).isEqualTo(position3_2);
+        assertThat(felder.get(6).getPositionOnPlayingField()).isEqualTo(position1_3);
+        assertThat(felder.get(7).getPositionOnPlayingField()).isEqualTo(position2_3);
+        assertThat(felder.get(8).getPositionOnPlayingField()).isEqualTo(position3_3);
     }
 }

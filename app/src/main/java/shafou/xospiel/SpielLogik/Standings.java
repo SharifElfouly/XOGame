@@ -5,105 +5,95 @@ import java.util.List;
 
 /**
  *
- * <p>Diese Klasse repräsentiere den Standings des aktuellen Spiels.
+ * <p>This class has methods to analyze a current game.
  *
- * Ein Standings ist ein Singelton. Zur Laufzeit existiert nur ein Standings
- * Objekt.
  *
  * @author Sharif Elfouly
  * @version 1.0
  *
- * Änderungshistorie:
- * 1) 24.05.2017 ELF Klasse erstellt.
- * 1) 25.05.2017 ELF Klasse Spiel Logik hinzugefügt.
+ * Change log:
+ * 1) 24.05.2017 ELF Class created.
+ * 1) 25.05.2017 ELF Logic implemented.
  */
 
 public class Standings {
 
+    /** Steigung einer Reihe */
+    private static final int gRX = 1;
+    private static final int gRY = 0;
+
+    /** Steigung einer Spalte */
+    private static final int gSX = 0;
+    private static final int gSY = 1;
+
+    /** Steigung einer rechten Diagonalen */
+    private static final int gDrX = 1;
+    private static final int gDrY = 1;
+
+    /** Steigung einer linken Diagonale */
+    private static final int gDlX = -1;
+    private static final int gDlY = 1;
+
     /**
-     * Gibt an ob die bereits gespielten Positionen zum Gewinn führen.
+     * Calculates if the positions played win a game.
      *
-     * @param gespieltePositionen Bereits gespielte Positionen
-     * @param anzahlPositionenZumGewinn Anzahl von Positionen zum Gewinn
-     * @return <code>true</code> falls die Anzahl zum Gewinnen Benötigter
-     * Positionen gefunden wurde.
+     * @param playedPositions Played positions
+     * @param tokensToWin Tokens to win this game
+     * @return <code>true</code> if the played positions win this game
      */
-    public static boolean hatGewonnen(List<Position> gespieltePositionen, int anzahlPositionenZumGewinn) {
+    public static boolean hasWon(List<Position> playedPositions, int tokensToWin) {
 
         /**
-         * Es müssen mindestens so viele Positionen zum Gewinn bestehen, um eine
-         * Möglichkeit zu haben zu gewinnen.
+         * The played positions size must equal or exceed the tokens required to
+         * win.
          */
-        if(gespieltePositionen.size() < anzahlPositionenZumGewinn) {
+        if(playedPositions.size() < tokensToWin) {
 
             return false;
         }
+        
+        for (Position playedPosition : playedPositions) {
 
-        if(anzahlPositionenZumGewinn < 3) {
+            /** Next position in the row, column or diagonal */
+            Position sameRow = createUpdatedPosition(playedPosition, gRX, gRY);
+            Position sameColumn = createUpdatedPosition(playedPosition, gSX, gSY);
+            Position sameDiagonalR = createUpdatedPosition(playedPosition, gDrX, gDrY);
+            Position sameDiagonalL = createUpdatedPosition(playedPosition, gDlX, gDlY);
 
-//            throw new IllegalArgumentException("Die minimale Anzahl zum " +
-//                    "gewinnen beträgt 3.");
-            return false;
-        }
+            /** List of all possible next positions  */
+            List<Position> nextPositions = new ArrayList<>();
+            nextPositions.add(sameRow);
+            nextPositions.add(sameColumn);
+            nextPositions.add(sameDiagonalR);
+            nextPositions.add(sameDiagonalL);
 
-        /** Steigung einer Reihe */
-        int gRX = 1;
-        int gRY = 0;
+            for (int i = 0; i < nextPositions.size(); i++) {
 
-        /** Steigung einer Spalte */
-        int gSX = 0;
-        int gSY = 1;
+                /** Checks if the next possible position was played */
+                if (playedPositions.contains(nextPositions.get(i))) {
 
-        /** Steigung einer rechten Diagonalen */
-        int gDrX = 1;
-        int gDrY = 1;
+                    Position nextPosition = nextPositions.get(i);
+                    int numberOfFoundPositions = 1;
 
-        /** Steigung einer linken Diagonale */
-        int gDlX = -1;
-        int gDlY = 1;
-
-        for (Position gespieltePosition : gespieltePositionen) {
-
-            /** Nächste Position in der Reihe, Spalte oder Diagonalen */
-            Position gleicheReihe = erstellePosition(gespieltePosition, gRX, gRY);
-            Position gleicheSpalte = erstellePosition(gespieltePosition, gSX, gSY);
-            Position gleicheDiagonaleR = erstellePosition(gespieltePosition, gDrX, gDrY);
-            Position gleicheDiagonaleL = erstellePosition(gespieltePosition, gDlX, gDlY);
-
-            /** Liste von nächst möglichen Positionen */
-            List<Position> naechstePositionen = new ArrayList<>();
-            naechstePositionen.add(gleicheReihe);
-            naechstePositionen.add(gleicheSpalte);
-            naechstePositionen.add(gleicheDiagonaleR);
-            naechstePositionen.add(gleicheDiagonaleL);
-
-            for (int i = 0; i < naechstePositionen.size(); i++) {
-
-                /** Ist die nächst mögliche Position eine gespielte Position */
-                if (gespieltePositionen.contains(naechstePositionen.get(i))) {
-
-                    Position naechstePosition = naechstePositionen.get(i);
-                    int anzahlGefundenerPositionen = 1;
-
-                    /** Gibt an um welche Reihenfolge von Position es sich handelt */
-                    float faktorX = naechstePosition.getXPosition() - gespieltePosition.getXPosition();
-                    float faktorY = naechstePosition.getYPosition() - gespieltePosition.getYPosition();
+                    /** Indicated which sequence of position this is */
+                    float factorX = nextPosition.getXPosition() - playedPosition.getXPosition();
+                    float factorY = nextPosition.getYPosition() - playedPosition.getYPosition();
 
                     /**
-                     * Es wird solange nach der nächsten Position gesucht bis
-                     * die Anzahl von Positionen zum gewinnen erreicht wurde.
+                     * The next position is so long searched for until the amount
+                     * of positions to win is reached.
                      */
-                    for (int x = 0; x < anzahlPositionenZumGewinn - 2; x++) {
+                    for (int x = 0; x < tokensToWin - 2; x++) {
 
-                        Position neuePosition = erstellePosition(naechstePosition, faktorX, faktorY);
+                        Position newPosition = createUpdatedPosition(nextPosition, factorX, factorY);
 
-                        if (gespieltePositionen.contains(neuePosition)) {
+                        if (playedPositions.contains(newPosition)) {
 
-                            anzahlGefundenerPositionen++;
-                            naechstePosition = erstellePosition(naechstePosition, faktorX, faktorY);
+                            numberOfFoundPositions++;
+                            nextPosition = createUpdatedPosition(nextPosition, factorX, factorY);
                         }
 
-                        if (anzahlGefundenerPositionen >= anzahlPositionenZumGewinn - 1) {
+                        if (numberOfFoundPositions >= tokensToWin - 1) {
                             return true;
                         }
                     }
@@ -115,14 +105,14 @@ public class Standings {
     }
 
     /**
-     * Erzeugt ein neues Positions Objekt.
+     * Creates from an old position a new updated position.
      *
-     * @param position alte Position
-     * @param x Verschiebung der X Koordinate
-     * @param y Verschiebung der Y Koordinate
-     * @return Aktualisierte Position
+     * @param position old Position
+     * @param x new X coordinate
+     * @param y new y coordinate
+     * @return updated position
      */
-    private static Position erstellePosition(Position position, float x, float y) {
+    private static Position createUpdatedPosition(Position position, float x, float y) {
 
         return new Position(position.getXPosition() + x, position.getYPosition() + y);
     }

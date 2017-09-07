@@ -4,23 +4,20 @@ import shafou.xospiel.SpielLogik.Position;
 
 /**
  *
- * Diese Klasse stellt eine Line dar.
- * Eine Line besteht aus einem Anfangs und einem Endpunkt.
+ * This class represents a line.
+ * A line has a immutable starting and ending position.
  *
  * @author Sharif Elfouly
  * @version 1.0
  *
- * Änderungshistorie:
- * 1)
- * 01.06.2017 ELF Klasse erstellt.
+ * Change log:
+ * 1) 01.06.2017 ELF Class created.
  */
 
 public class Line {
 
-    /** Stellt den Anfangspunkt der Line dar */
     private final Position start;
 
-    /** Stellt den End Punkt der Line dar */
     private final Position end;
 
     public Line(Position start, Position end) {

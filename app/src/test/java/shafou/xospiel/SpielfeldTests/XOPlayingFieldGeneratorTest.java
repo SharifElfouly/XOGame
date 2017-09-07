@@ -17,7 +17,7 @@ import static org.junit.Assert.assertEquals;
  * @author Sharif Elfouly
  * @version 1.0
  *
- * Änderungshistorie:
+ * Change log:
  * 1) 01.06.2017 ELF Klasse erstellt.
  */
 
@@ -45,7 +45,7 @@ public class XOPlayingFieldGeneratorTest {
         xOFeldLinienTest.add(line3);
         xOFeldLinienTest.add(line4);
 
-        ArrayList<Line> xOFeldLinienGeneriert = sG.feldlinienBerechnen();
+        ArrayList<Line> xOFeldLinienGeneriert = sG.calculatesLines();
 
         assertEquals(xOFeldLinienTest, xOFeldLinienGeneriert);
     }
@@ -70,7 +70,7 @@ public class XOPlayingFieldGeneratorTest {
         xOFeldLinienTest.add(line5);
         xOFeldLinienTest.add(line6);
 
-        ArrayList<Line> xOFeldLinienGeneriert = sG.feldlinienBerechnen();
+        ArrayList<Line> xOFeldLinienGeneriert = sG.calculatesLines();
 
         assertEquals(xOFeldLinienTest, xOFeldLinienGeneriert);
     }
@@ -79,21 +79,21 @@ public class XOPlayingFieldGeneratorTest {
 //    public void XOFeldlinienBerechnen_2x3_Exception(){
 //
 //        XOPlayingFieldGenerator sG = new XOPlayingFieldGenerator(120, 120, 2, 3);
-//        sG.feldlinienBerechnen();
+//        sG.calculatesLines();
 //    }
 
     @Test(expected = IllegalArgumentException.class)
     public void ProzentVonLinieAbziehen_NegativerParameter_Exception() {
 
         XOPlayingFieldGenerator sG = new XOPlayingFieldGenerator(100, 100, 3);
-        sG.feldLinienBerechnen(-10);
+        sG.calculatesLines(-10);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void ProzentVonLinieAbziehen_0_Parameter_Exception() {
 
         XOPlayingFieldGenerator sG = new XOPlayingFieldGenerator(100, 100, 3);
-        sG.feldLinienBerechnen(0);
+        sG.calculatesLines(0);
     }
 
     @Test
@@ -112,26 +112,26 @@ public class XOPlayingFieldGeneratorTest {
         xOFeldLinienTest.add(line3);
         xOFeldLinienTest.add(line4);
 
-        ArrayList<Line> xOFeldLinienGeneriert = sG.feldLinienBerechnen(10);
+        ArrayList<Line> xOFeldLinienGeneriert = sG.calculatesLines(10);
         assertEquals(xOFeldLinienTest, xOFeldLinienGeneriert);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void ProzentBerechnen_0_ProzentParameter_Exception() {
 
-        XOPlayingFieldGenerator.prozentBerechnen(100, 0);
+        XOPlayingFieldGenerator.calculatePercentage(100, 0);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void ProzentBerechnen_0_BetragParameter_Exception() {
 
-        XOPlayingFieldGenerator.prozentBerechnen(0, 100);
+        XOPlayingFieldGenerator.calculatePercentage(0, 100);
     }
 
     @Test
     public void ProzentBerechnen_10ProzentVon100_Berechnet() {
 
-        double berechneterBetrag = XOPlayingFieldGenerator.prozentBerechnen(100, 10);
+        double berechneterBetrag = XOPlayingFieldGenerator.calculatePercentage(100, 10);
 
         assertEquals(10, berechneterBetrag, 0.0);
     }
@@ -139,7 +139,7 @@ public class XOPlayingFieldGeneratorTest {
     @Test
     public void ProzentBerechnen_45ProzentVon322_Berechnet() {
 
-        double berechneterBetrag = XOPlayingFieldGenerator.prozentBerechnen(322, 45);
+        double berechneterBetrag = XOPlayingFieldGenerator.calculatePercentage(322, 45);
 
         assertEquals(144.9, berechneterBetrag, 0.0);
     }
@@ -147,7 +147,7 @@ public class XOPlayingFieldGeneratorTest {
     @Test
     public void ProzentBerechnen_3ProzentVon10_Berechnet() {
 
-        double berechneterBetrag = XOPlayingFieldGenerator.prozentBerechnen(10, 3);
+        double berechneterBetrag = XOPlayingFieldGenerator.calculatePercentage(10, 3);
 
         assertEquals(0.3, berechneterBetrag, 0.0);
     }
@@ -155,7 +155,7 @@ public class XOPlayingFieldGeneratorTest {
     @Test
     public void ProzentBerechnen_22ProzentVon100_Berechnet() {
 
-        double berechneterBetrag = XOPlayingFieldGenerator.prozentBerechnen(100, 22);
+        double berechneterBetrag = XOPlayingFieldGenerator.calculatePercentage(100, 22);
 
         assertEquals(22, berechneterBetrag, 0.0);
     }
@@ -163,14 +163,14 @@ public class XOPlayingFieldGeneratorTest {
     @Test
     public void ProzentBerechnen_200ProzentVon100_Berechnet() {
 
-        double berechneterBetrag = XOPlayingFieldGenerator.prozentBerechnen(100, 200);
+        double berechneterBetrag = XOPlayingFieldGenerator.calculatePercentage(100, 200);
         assertEquals(200, berechneterBetrag, 0.1);
     }
 
     @Test
     public void ProzentBerechnen_222ProzentVon33_Berechnet() {
 
-        double berechneterBetrag = XOPlayingFieldGenerator.prozentBerechnen(33, 222);
+        double berechneterBetrag = XOPlayingFieldGenerator.calculatePercentage(33, 222);
         assertEquals(73.26, berechneterBetrag, 0.1);
     }
 

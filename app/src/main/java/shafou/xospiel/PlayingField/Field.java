@@ -4,10 +4,10 @@ import shafou.xospiel.SpielLogik.Position;
 
 /**
  *
- * Diese Klasse stellt 1 Field auf dem gesamten Spielfeld dar.
+ * This class represents a field on the playing field.
  *
- * Ein Field wird aus 4 Positionen zusammengestellt.
- * Ein Field ist immutable.
+ * One field is constructed of 4 points.
+ * A field is immutable.
  *
  * x1 --------------- x2
  *    |             |
@@ -16,8 +16,8 @@ import shafou.xospiel.SpielLogik.Position;
  *    |             |
  * x4 --------------- x3
  *
- * Eih Field kann eine Position in Relation zum gesamten Spielfeld haben. In
- * diesem Beispiel hätte das Field die Position 1/1 oder 2/1.
+ * A field can have an index in relation to the whole playing field. In this
+ * example this field could have the positionOnPlayingField 1/1 or 2/1.
  * --------------------
  * |        |         |
  * |   1/1  |   2/1   |
@@ -27,37 +27,31 @@ import shafou.xospiel.SpielLogik.Position;
  * @author Sharif Elfouly
  * @version 1.0
  *
- * Änderungshistorie:
- * 1) 26.05.2017 ELF Klasse erstellt.
- * 2) 11.06.2017 ELF Relative Position zum gesamten Spielfeld hinzugefügt.
+ * Change log:
+ * 1) 26.05.2017 Class created.
+ * 2) 11.06.2017 ELF Relative positionOnPlayingField added.
  */
 
 public class Field {
 
-    /** Position x1 */
     private final Position x1;
 
-    /** Position x2 */
     private final Position x2;
 
-    /** Position x3 */
     private final Position x3;
 
-    /** Position x4 */
     private final Position x4;
 
-    /**
-     * Jedes Field auf dem Spielfeld besitzt eine eindeutige Nummer.
-     * Der Start des Indexes ist 1.
-     */
+    /** Every field has an unique index. */
     private final int index;
 
-    /** Gibt die Position auf dem Field an */
-    private Position position;
+    /** Relative positionOnPlayingField on the field */
+    private Position positionOnPlayingField;
 
     /**
-     * Ein LayoutOutDisplay Objekt besteht aus der Fläche zwischen 4 Positionen
-     *  @param x1 Position x1
+     * A field is constructed from 4 positions and an index.
+     *
+     * @param x1 Position x1
      * @param x2 Position x2
      * @param x3 Position x3
      * @param x4 Position x4
@@ -73,12 +67,12 @@ public class Field {
         this.index = index;
     }
 
-    public void setPosition(Position position) {
-        this.position = position;
+    public void setPositionOnPlayingField(Position positionOnPlayingField) {
+        this.positionOnPlayingField = positionOnPlayingField;
     }
 
-    public Position getPosition() {
-        return position;
+    public Position getPositionOnPlayingField() {
+        return positionOnPlayingField;
     }
 
     public Position getX1() {

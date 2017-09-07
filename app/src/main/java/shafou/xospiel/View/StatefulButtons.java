@@ -61,7 +61,7 @@ public class StatefulButtons {
 
     public static void setSelectableButtons(XOGame.Mode spielart) {
 
-        int[] anzahlSteineZumGewinn = spielart.getAnzahlSteineZumGewinn();
+        int[] anzahlSteineZumGewinn = spielart.getTokens();
 
         for(int anzahlSteine: anzahlSteineZumGewinn) {
 
@@ -97,7 +97,7 @@ public class StatefulButtons {
 
     public static void setNotSelectableButtons(XOGame.Mode spielart) {
 
-        int[] anzahlSteineZumGewinn = spielart.getAnzahlSteineZumGewinn();
+        int[] anzahlSteineZumGewinn = spielart.getTokens();
 
         boolean is4In = false;
         boolean is5In = false;
