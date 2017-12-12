@@ -5,7 +5,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 
 import shafou.xospiel.PlayingField.Line;
-import shafou.xospiel.SpielLogik.Position;
+import shafou.xospiel.GameLogic.Position;
 import shafou.xospiel.PlayingField.XOPlayingFieldGenerator;
 
 import static org.junit.Assert.assertEquals;

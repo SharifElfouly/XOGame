@@ -5,8 +5,8 @@ import org.junit.Test;
 import java.util.List;
 
 import shafou.xospiel.PlayingField.Field;
-import shafou.xospiel.SpielLogik.PlayingFieldInputProcessor;
-import shafou.xospiel.SpielLogik.Position;
+import shafou.xospiel.GameLogic.PlayingFieldInputProcessor;
+import shafou.xospiel.GameLogic.Position;
 import shafou.xospiel.PlayingField.FieldsCalculator;
 import shafou.xospiel.PlayingField.XOPlayingFieldGenerator;
 

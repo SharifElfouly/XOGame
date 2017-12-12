@@ -3,7 +3,7 @@ package shafou.xospiel.PlayingField;
 import java.util.ArrayList;
 import java.util.List;
 
-import shafou.xospiel.SpielLogik.Position;
+import shafou.xospiel.GameLogic.Position;
 
 /**
  *

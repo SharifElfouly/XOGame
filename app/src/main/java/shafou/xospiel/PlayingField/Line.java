@@ -1,6 +1,6 @@
 package shafou.xospiel.PlayingField;
 
-import shafou.xospiel.SpielLogik.Position;
+import shafou.xospiel.GameLogic.Position;
 
 /**
  *

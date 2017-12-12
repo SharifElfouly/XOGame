@@ -4,7 +4,6 @@ import android.app.Activity;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mockito;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
@@ -15,9 +14,9 @@ import shafou.xospiel.BuildConfig;
 import shafou.xospiel.PlayingField.Field;
 import shafou.xospiel.PlayingField.Token;
 import shafou.xospiel.PlayingField.XToken;
-import shafou.xospiel.SpielLogik.Position;
-import shafou.xospiel.SpielLogik.Turn;
-import shafou.xospiel.SpielLogik.XOGame;
+import shafou.xospiel.GameLogic.Position;
+import shafou.xospiel.GameLogic.Turn;
+import shafou.xospiel.GameLogic.XOGame;
 import shafou.xospiel.PlayingField.OToken;
 
 import static com.google.common.truth.Truth.assertThat;

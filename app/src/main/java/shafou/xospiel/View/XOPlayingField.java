@@ -17,10 +17,10 @@ import butterknife.ButterKnife;
 import shafou.xospiel.PlayingField.Field;
 import shafou.xospiel.PlayingField.Line;
 import shafou.xospiel.R;
-import shafou.xospiel.SpielLogik.PlayingFieldInputProcessor;
-import shafou.xospiel.SpielLogik.Position;
-import shafou.xospiel.SpielLogik.Turn;
-import shafou.xospiel.SpielLogik.XOGame;
+import shafou.xospiel.GameLogic.PlayingFieldInputProcessor;
+import shafou.xospiel.GameLogic.Position;
+import shafou.xospiel.GameLogic.Turn;
+import shafou.xospiel.GameLogic.XOGame;
 import shafou.xospiel.PlayingField.XOPlayingFieldGenerator;
 
 /**

@@ -2,7 +2,7 @@ package shafou.xospiel.SpielLogikTest;
 
 import org.junit.Test;
 
-import shafou.xospiel.SpielLogik.Position;
+import shafou.xospiel.GameLogic.Position;
 
 import static org.junit.Assert.*;
 

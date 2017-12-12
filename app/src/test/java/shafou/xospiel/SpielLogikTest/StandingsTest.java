@@ -5,10 +5,10 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import shafou.xospiel.SpielLogik.Position;
+import shafou.xospiel.GameLogic.Position;
 
 import static com.google.common.truth.Truth.assertThat;
-import static shafou.xospiel.SpielLogik.Standings.hasWon;
+import static shafou.xospiel.GameLogic.Standings.hasWon;
 
 /**
  *

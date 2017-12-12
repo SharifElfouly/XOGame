@@ -36,6 +36,7 @@ public class StatefulButton {
     /** Angezeigtes Drawable wenn der Button nicht selektiert werden kann */
     private final Drawable notSelectable;
 
+
     /**
      * Ein Button mit einem zugeordneten status
      *

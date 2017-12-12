@@ -1,10 +1,12 @@
 package shafou.xospiel.View;
 
 
+import android.support.annotation.Nullable;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import shafou.xospiel.SpielLogik.XOGame;
+import shafou.xospiel.GameLogic.XOGame;
 
 import static shafou.xospiel.View.StatefulButton.State.*;
 import static shafou.xospiel.View.StatefulButton.State.NOT_SELECTABLE;
@@ -25,11 +27,11 @@ import static shafou.xospiel.View.StatefulButton.State.SELECTED;
 public class StatefulButtons {
 
     /** Liste von Stateful Buttons */
-    private static List<StatefulButton> list = new ArrayList<>();
+    private static List<StatefulButton> buttonList = new ArrayList<>();
 
     public static void add(StatefulButton button) {
 
-        list.add(button);
+        buttonList.add(button);
     }
 
     /**
@@ -44,7 +46,7 @@ public class StatefulButtons {
             return;
         }
 
-        for(StatefulButton sButton: list) {
+        for(StatefulButton sButton: buttonList) {
 
             switch (sButton.getState()){
 
@@ -68,27 +70,27 @@ public class StatefulButtons {
             switch (anzahlSteine){
 
                 case 3:
-                    if(list.get(0).getState() == SELECTED) {
+                    if(buttonList.get(0).getState() == SELECTED) {
                         break;
                     } else {
 
-                        list.get(0).setState(NOT_SELECTED);
+                        buttonList.get(0).setState(NOT_SELECTED);
                         break;
                     }
                 case 4:
-                    if(list.get(1).getState() == SELECTED) {
+                    if(buttonList.get(1).getState() == SELECTED) {
                         break;
                     } else {
 
-                        list.get(1).setState(NOT_SELECTED);
+                        buttonList.get(1).setState(NOT_SELECTED);
                         break;
                     }
                 case 5:
-                    if(list.get(2).getState() == SELECTED) {
+                    if(buttonList.get(2).getState() == SELECTED) {
                         break;
                     } else {
 
-                        list.get(2).setState(NOT_SELECTED);
+                        buttonList.get(2).setState(NOT_SELECTED);
                         break;
                     }
             }
@@ -116,20 +118,37 @@ public class StatefulButtons {
 
         if(!is4In) {
 
-            list.get(0).setState(SELECTED);
-            list.get(1).setState(NOT_SELECTABLE);
-            list.get(2).setState(NOT_SELECTABLE);
+            buttonList.get(0).setState(SELECTED);
+            buttonList.get(1).setState(NOT_SELECTABLE);
+            buttonList.get(2).setState(NOT_SELECTABLE);
             return;
         }
 
         if(!is5In) {
 
-            if(list.get(0).getState() != SELECTED) {
+            if(buttonList.get(0).getState() != SELECTED) {
 
-                list.get(1).setState(SELECTED);
+                buttonList.get(1).setState(SELECTED);
             }
 
-            list.get(2).setState(NOT_SELECTABLE);
+            buttonList.get(2).setState(NOT_SELECTABLE);
         }
+    }
+
+    /**
+     * Returns selected button in list.
+     */
+    @Nullable
+    public static StatefulButton getSelected() {
+
+        for(StatefulButton button: buttonList) {
+
+            if(button.getState() == SELECTED) {
+
+               return button;
+            }
+        }
+
+        return null;
     }
 }

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import shafou.xospiel.PlayingField.Field;
-import shafou.xospiel.SpielLogik.Position;
+import shafou.xospiel.GameLogic.Position;
 import shafou.xospiel.PlayingField.FieldsCalculator;
 
 import static com.google.common.truth.Truth.assertThat;
