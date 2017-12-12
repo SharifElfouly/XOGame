@@ -3,6 +3,7 @@ package shafou.xospiel.Activities;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.Window;
@@ -21,7 +22,7 @@ import butterknife.BindDrawable;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import shafou.xospiel.R;
-import shafou.xospiel.SpielLogik.XOGame;
+import shafou.xospiel.GameLogic.XOGame;
 import shafou.xospiel.View.StatefulButton;
 import shafou.xospiel.View.StatefulButtons;
 import shafou.xospiel.View.XOPlayingField;
@@ -277,11 +278,55 @@ public class GameMenuActivity extends AppCompatActivity {
     }
 
     /**
-     * Starts the game
+     * Starts game activity
      */
     private void startGame() {
 
         Intent gameActivity = new Intent(this, GameActivity.class);
+        gameActivity.putExtra("field_size", getFieldSize(gameModeIndex));
+        gameActivity.putExtra("tokens_to_win", getTokenNumberOfSelectedButton());
+
+
         startActivity(gameActivity);
+    }
+
+    /**
+     * Returns number of required tokens to win button.
+     */
+    @Nullable
+    private Integer getTokenNumberOfSelectedButton() {
+
+        StatefulButton button = StatefulButtons.getSelected();
+
+        if(button != null) {
+
+            if(button.equals(sThreeTokensBtn)) {
+
+                return 3;
+            } else if(button.equals(sFourTokensBtn)) {
+
+                return 4;
+            } else if(button.equals(sFiveTokensBtn)) {
+
+                return 5;
+            }
+        } else {
+
+            throw new NullPointerException("No required tokens to win button " +
+                    "selected");
+        }
+
+        return null;
+    }
+
+    private int getFieldSize(int gameModeIndex) {
+
+        switch (gameModeIndex){
+            case 0: return 3;
+            case 1: return 4;
+            case 2: return 5;
+        }
+
+        return 3;
     }
 }
