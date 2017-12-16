@@ -50,6 +50,8 @@ public class XOPlayingField extends View {
 
     Context context;
 
+    Boolean playable;
+
     public XOPlayingField(Context context, AttributeSet attrs) {
         super(context, attrs);
 
@@ -65,8 +67,10 @@ public class XOPlayingField extends View {
         ButterKnife.bind(this);
     }
 
-    public XOPlayingField(Context context, int columnsAndRows) {
+    public XOPlayingField(Context context, int columnsAndRows, boolean playable) {
         super(context);
+
+        this.playable = playable;
 
         blackPaint = new Paint();
         blackPaint.setColor(Color.BLACK);
@@ -74,7 +78,12 @@ public class XOPlayingField extends View {
         blackPaint.setStyle(Paint.Style.FILL_AND_STROKE);
 
         xOG = new XOPlayingFieldGenerator(columnsAndRows);
-        inputVerarbeiter = new PlayingFieldInputProcessor<>(xOG);
+
+        if(playable) {
+
+            inputVerarbeiter = new PlayingFieldInputProcessor<>(xOG);
+        }
+
         ButterKnife.bind(this);
     }
 
@@ -84,7 +93,11 @@ public class XOPlayingField extends View {
         xOG.setWidth(getWidth());
         xOG.setHeight(getHeight());
         xOG.berechneSpielfelder();
-        inputVerarbeiter = new PlayingFieldInputProcessor<>(xOG);
+
+        if(playable) {
+
+            inputVerarbeiter = new PlayingFieldInputProcessor<>(xOG);
+        }
 
         List<Line> spielfeldLinien = xOG.calculatesLines(5);
 

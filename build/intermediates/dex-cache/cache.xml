@@ -124,7 +124,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.1"
-        sha1="92b38fdd96bbf379d3e36d2dbb742724a8cb6ccc">
+        sha1="614c047f47acea48d650a1449164fc997390ddf8">
         <dex dex="/Users/Shafou/Documents/XOGame/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_d7ea17a0594649b0634687ed67f254f44aeef204/classes.dex" />
     </item>
     <item
@@ -178,7 +178,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.1"
-        sha1="9a5e4c9a2c0eb55c8fd6f46887f42ce2cd391354">
+        sha1="d02434e8e4f4ff09fd9371627d495511bb05196f">
         <dex dex="/Users/Shafou/Documents/XOGame/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_01b9fd4ffb6156ed21ffb6b60d671eb41e3013e2/classes.dex" />
     </item>
 

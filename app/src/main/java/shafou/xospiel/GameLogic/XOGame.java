@@ -154,7 +154,7 @@ public final class XOGame {
 
             xOGame = new XOGame(tokens_to_win);
             XOGame.context = context;
-            xOSpielView = new XOPlayingField(context, columnsAndRows);
+            xOSpielView = new XOPlayingField(context, columnsAndRows, true);
             gespielteZuege = new ArrayList<>();
             XOGame.spalten = columnsAndRows;
         }

@@ -148,7 +148,7 @@ public class GameMenuActivity extends Activity {
 
         for(XOGame.Mode gameMode: gameModes) {
 
-            XOPlayingField xOPF = new XOPlayingField(this, gameMode.getColumnsAndRows());
+            XOPlayingField xOPF = new XOPlayingField(this, gameMode.getColumnsAndRows(), false);
             gameModePreviewViewAnimator.addView(xOPF);
         }
     }
