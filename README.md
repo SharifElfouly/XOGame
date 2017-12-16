@@ -1,2 +1,2 @@
 # XOGame
-A X/O game that just makes fun to play!
+Dynamically generated X/O game!
