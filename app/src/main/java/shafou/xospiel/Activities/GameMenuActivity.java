@@ -1,5 +1,6 @@
 package shafou.xospiel.Activities;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -49,7 +50,7 @@ import static shafou.xospiel.View.StatefulButton.State.SELECTED;
  * 2) 16.12.2017 ELF fixed bug when switching between game mode previews
  */
 
-public class GameMenuActivity extends AppCompatActivity {
+public class GameMenuActivity extends Activity {
 
     /** Buttons to change the game mode */
     @BindView(R.id.change_mode_left_btn) Button changeGameModeLeftBtn;

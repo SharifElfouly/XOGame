@@ -22,7 +22,7 @@ import shafou.xospiel.R;
 
 public final class StartAnimationActivity extends Activity {
 
-    private static final int ANIMATION_DURATION_IN_MS = 700;
+    private static final int ANIMATION_DURATION_IN_MS = 1700;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
