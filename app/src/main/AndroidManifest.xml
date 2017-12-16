@@ -9,13 +9,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".Activities.GameMenuActivity">
+
+        </activity>
+        <activity android:name=".Activities.GameActivity"></activity>
+        <activity android:name=".Activities.StartAnimationActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activities.GameActivity"></activity>
     </application>
 
 </manifest>
