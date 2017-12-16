@@ -45,7 +45,8 @@ import static shafou.xospiel.View.StatefulButton.State.SELECTED;
  * @version 1.0
  *
  * Change log:
- * 1) 11.06.2017 ELF Class created.
+ * 1) 11.06.2017 ELF class created.
+ * 2) 16.12.2017 ELF fixed bug when switching between game mode previews
  */
 
 public class GameMenuActivity extends AppCompatActivity {
@@ -124,7 +125,7 @@ public class GameMenuActivity extends AppCompatActivity {
 
         if(gameModeIndex >= gameModes - 1) {
 
-            gameModeIndex = gameModes -1;
+            gameModeIndex = gameModes - 1;
         }
     }
 
@@ -165,12 +166,11 @@ public class GameMenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                setLeftToRightPreviewAnimation();
                 gameModeIndex--;
                 setGameModeIndex(gameModeNames.size());
                 gameModeTV.animateText(gameModeNames.get(gameModeIndex));
                 StatefulButtons.setNotSelectableButtons(gameModes[gameModeIndex]);
-                setLeftToRightPreviewAnimation();
-                gameModePreviewViewAnimator.showPrevious();
             }
         });
     }
@@ -180,11 +180,16 @@ public class GameMenuActivity extends AppCompatActivity {
      */
     private void setLeftToRightPreviewAnimation() {
 
-        Animation leftIn = AnimationUtils.loadAnimation(this, R.anim.left_in);
-        Animation rightOut = AnimationUtils.loadAnimation(this, R.anim.right_out);
+        if(gameModeIndex != 0){
 
-        gameModePreviewViewAnimator.setInAnimation(leftIn);
-        gameModePreviewViewAnimator.setOutAnimation(rightOut);
+            Animation leftIn = AnimationUtils.loadAnimation(this, R.anim.left_in);
+            Animation rightOut = AnimationUtils.loadAnimation(this, R.anim.right_out);
+
+            gameModePreviewViewAnimator.setInAnimation(leftIn);
+            gameModePreviewViewAnimator.setOutAnimation(rightOut);
+
+            gameModePreviewViewAnimator.showPrevious();
+        }
     }
 
     /**
@@ -192,11 +197,16 @@ public class GameMenuActivity extends AppCompatActivity {
      */
     private void setRightToLeftPreviewAnimation() {
 
-        Animation leftOut = AnimationUtils.loadAnimation(this, R.anim.left_out);
-        Animation rightIn = AnimationUtils.loadAnimation(this, R.anim.right_in);
+        if(gameModeIndex != gameModeNames.size() - 1) {
 
-        gameModePreviewViewAnimator.setOutAnimation(leftOut);
-        gameModePreviewViewAnimator.setInAnimation(rightIn);
+            Animation leftOut = AnimationUtils.loadAnimation(this, R.anim.left_out);
+            Animation rightIn = AnimationUtils.loadAnimation(this, R.anim.right_in);
+
+            gameModePreviewViewAnimator.setOutAnimation(leftOut);
+            gameModePreviewViewAnimator.setInAnimation(rightIn);
+
+            gameModePreviewViewAnimator.showNext();
+        }
     }
 
     /**
@@ -213,12 +223,11 @@ public class GameMenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                setRightToLeftPreviewAnimation();
                 gameModeIndex++;
                 setGameModeIndex(gameModeNames.size());
                 gameModeTV.animateText(gameModeNames.get(gameModeIndex));
                 StatefulButtons.setSelectableButtons(gameModes[gameModeIndex]);
-                setRightToLeftPreviewAnimation();
-                gameModePreviewViewAnimator.showNext();
             }
         });
     }
